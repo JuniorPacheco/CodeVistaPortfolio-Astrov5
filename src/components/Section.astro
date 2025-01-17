@@ -1,0 +1,25 @@
+---
+const {
+  styles = "",
+  containerStyle = "",
+  separation = "",
+  id = "",
+} = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={[
+    {
+      "py-12": separation === "",
+      "py-0": separation === "none",
+    },
+    [containerStyle],
+  ]}
+>
+  <article
+    class:list={["max-w-[1320px] w-[80vw] font-inter mx-auto px-4", [styles]]}
+  >
+    <slot />
+  </article>
+</section>

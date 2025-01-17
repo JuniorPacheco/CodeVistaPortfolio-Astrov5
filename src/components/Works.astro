@@ -1,0 +1,19 @@
+---
+import Portfolio from "./Portfolio.jsx";
+import Section from "./Section.astro";
+---
+
+<Section
+  id="works"
+  styles="grid gap-2 text-center"
+  containerStyle="bg-slate-300/15 dark:bg-primary/20"
+>
+  <h4 class="text-primary text-lg font-semibold">Portafolio</h4>
+  <h3 class="text-5xl font-bold dark:text-white">Trabajos recientes</h3>
+  <p class="text-balance max-w-[500px] mx-auto text-slate-500">
+    Descubre nuestros proyectos recientes en CodeVista. Inspírate con nuestra
+    experiencia y calidad en proyectos innovadores y visualmente impactantes
+    para clientes satisfechos.
+  </p>
+  <Portfolio client:load />
+</Section>

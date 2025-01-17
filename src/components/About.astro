@@ -1,0 +1,173 @@
+---
+import Section from "./Section.astro";
+---
+
+<Section
+  id="about"
+  styles="text-secondary relative overflow-hidden grid gap-20 mmd:grid-cols-2"
+>
+  <div class="grid gap-2">
+    <h3 class="text-lg font-bold text-primary uppercase">Sobre nosotros</h3>
+    <h4 class="grid gap-2 text-3xl font-bold dark:text-white">
+      <span>El mejor diseño,</span>
+      <span>La mejor experiencia</span>
+    </h4>
+    <p class="text-slate-400">
+      CodeVista es una empresa líder en desarrollo web, reconocida por su
+      innovación y excelencia técnica. Fundada por un equipo apasionado, nos
+      destacamos por ofrecer soluciones de alta calidad, personalizadas para
+      cada cliente.
+    </p>
+  </div>
+  <div>
+    <h4 class="text-3xl font-bold dark:text-white">Conecta con nosotros</h4>
+    <p class="my-2 text-slate-500">
+      ¿Listo para llevar tu presencia en línea al siguiente nivel? ¡Estamos aquí
+      para ayudarte! Ponte en contacto con nuestro equipo experto en desarrollo
+      web y descubre cómo podemos hacer realidad tus proyectos digitales.
+      ¡Conéctate con nosotros hoy mismo!
+    </p>
+    <ul class="flex gap-3 py-2">
+      <!-- Facebook Icon -->
+      <li>
+        <a
+          class="border rounded-full p-2 grid place-content-center text-slate-400 hover:bg-blue-500 hover:text-white transition-all"
+          href="https://web.facebook.com/profile.php?id=61563485073532"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-facebook"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path
+              d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3"
+            ></path>
+          </svg>
+        </a>
+      </li>
+      <!-- X (Twitter) Icon -->
+      <li>
+        <a
+          class="border rounded-full p-2 grid place-content-center text-slate-400 hover:bg-black text-black hover:text-white transition-all"
+          href="https://x.com/codevistaweb"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-x"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="2.0"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+            <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
+          </svg>
+        </a>
+      </li>
+      <!-- LinkedIn Icon -->
+      <li>
+        <a
+          class="border rounded-full p-2 grid place-content-center text-slate-400 hover:bg-blue-500 hover:text-white transition-all"
+          href="https://www.linkedin.com/in/code-vista-desarrollo-web-3597202b9/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-linkedin"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path
+              d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"
+            ></path>
+            <path d="M8 11l0 5"></path>
+            <path d="M8 8l0 .01"></path>
+            <path d="M12 16l0 -5"></path>
+            <path d="M16 16v-3a2 2 0 0 0 -4 0"></path>
+          </svg>
+        </a>
+      </li>
+      <!-- Instagram Icon -->
+      <li>
+        <a
+          class="border rounded-full p-2 grid place-content-center text-slate-400 hover:bg-red-500 hover:text-white transition-all"
+          href="https://www.instagram.com/codevistaweb/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path
+              d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z"
+            ></path>
+            <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+            <path d="M16.5 7.5l0 .01"></path>
+          </svg>
+        </a>
+      </li>
+      <!-- TikTok Icon -->
+      <li>
+        <a
+          class="border rounded-full p-2 grid place-content-center text-slate-400 hover:bg-black hover:text-white transition-all"
+          href="https://www.tiktok.com/@codevistaweb"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-tiktok"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path
+              d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z"
+            ></path>
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </div>
+</Section>

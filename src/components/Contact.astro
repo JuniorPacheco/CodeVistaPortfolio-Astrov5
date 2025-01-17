@@ -1,0 +1,109 @@
+---
+import Section from "../components/Section.astro";
+---
+
+<Section id="contact" styles="grid gap-2 text-center">
+  <h4 class="text-primary text-lg font-semibold">Contacta con nosotros</h4>
+  <h3 class="text-4xl font-bold dark:text-white">
+    ¿Tienes algún proyecto en mente?
+  </h3>
+  <p class="text-balance max-w-[500px] mx-auto text-slate-500">
+    En CodeVista, transformamos tus ideas en realidad digital. Cuéntanos tu
+    visión y trabajaremos juntos para hacerla posible.
+  </p>
+
+  <form
+    class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[800px] mx-auto w-full mt-10"
+  >
+    <label
+      for="name"
+      class="relative block overflow-hidden border-b border-gray-200 pt-3 focus-within:border-primary bg-slate-300/10"
+    >
+      <input
+        type="text"
+        id="name"
+        placeholder="Ingrese su nombre"
+        class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm dark:text-white"
+      />
+
+      <span
+        class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-900 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs dark:text-white"
+      >
+        Nombre
+      </span>
+    </label>
+    <label
+      for="company"
+      class="relative block overflow-hidden border-b border-gray-200 pt-3 focus-within:border-primary bg-slate-300/10"
+    >
+      <input
+        type="text"
+        id="company"
+        placeholder="Compañia (Opcional)"
+        class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm dark:text-white"
+      />
+
+      <span
+        class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-900 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs dark:text-white"
+      >
+        Compañia (Opcional)
+      </span>
+    </label>
+    <label
+      for="email"
+      class="relative block overflow-hidden border-b border-gray-200 pt-3 focus-within:border-primary bg-slate-300/10"
+    >
+      <input
+        type="email"
+        id="email"
+        placeholder="Email"
+        class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm dark:text-white"
+      />
+
+      <span
+        class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-900 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs dark:text-white"
+      >
+        Correo
+      </span>
+    </label>
+    <label
+      for="phone"
+      class="relative block overflow-hidden border-b border-gray-200 pt-3 focus-within:border-primary bg-slate-300/10"
+    >
+      <input
+        type="tel"
+        id="phone"
+        placeholder="Email"
+        class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm dark:text-white"
+      />
+
+      <span
+        class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-900 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs dark:text-white"
+      >
+        Número de telefono
+      </span>
+    </label>
+    <label
+      for="UserEmail"
+      class="relative block overflow-hidden border-b border-gray-200 pt-3 focus-within:border-primary bg-slate-300/10 sm:col-span-2"
+    >
+      <textarea
+        id="UserEmail"
+        placeholder="Email"
+        class="peer h-20 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm resize-none dark:text-white"
+      ></textarea>
+
+      <span
+        class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-900 transition-all peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs peer-placeholder-shown:top-4 dark:text-white"
+      >
+        Cuentanos acerca del proyecto
+      </span>
+    </label>
+
+    <button
+      class="bg-primary hover:bg-primary/90 transition-all hover:shadow-md px-6 rounded-full text-white text-sm py-2 font-semibold sm:col-span-2 max-w-max mx-auto"
+    >
+      Contactar
+    </button>
+  </form>
+</Section>

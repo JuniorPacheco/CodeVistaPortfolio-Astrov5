@@ -1,0 +1,73 @@
+---
+import Section from "../components/Section.astro";
+import { Icon } from "astro-icon/components";
+
+const founders = [
+  {
+    name: "Oscar López",
+    description:
+      "Oscar López es un reconocido diseñador web y emprendedor, fundador y CEO de CodeVista. Especializado en técnicas innovadoras de desarrollo web, lidera la empresa hacia el éxito con su amplia experiencia y conocimiento en el campo.",
+    img: "/team/1.jpg",
+  },
+  {
+    name: "Junior Pacheco",
+    description:
+      "Cofundador de CodeVista, Desarrollador front-end con experiencia práctica y compromiso. Instructor de React, capacitando a futuros desarrolladores.",
+    subName: "Founder @ Code Vista",
+    img: "/team/2.jpg",
+  },
+  {
+    name: "Anderson Castro Vallejo",
+    description:
+      "Cofundador de CodeVista, es diseñador  front-end con buenas ideas de  diseño. Su creatividad y enfoque meticuloso han sido cruciales para el éxito de la empresa, desarrollando interfaces web intuitivas y atractivas.",
+    subName: "Founder @ Code Vista",
+    img: "/team/3.jpg",
+  },
+];
+---
+
+<Section
+  styles="grid gap-4 text-center"
+  containerStyle="bg-slate-300/15 dark:bg-primary/20"
+>
+  <h4 class="text-primary text-lg font-semibold">Trabajo inteligente</h4>
+  <h3 class="text-5xl font-bold dark:text-white">Nuestro equipo</h3>
+  <p class="text-balance max-w-[500px] mx-auto text-slate-500">
+    Conoce al dedicado equipo de CodeVista, comprometido en hacer realidad tus
+    proyectos digitales. Desde diseñadores creativos hasta desarrolladores
+    expertos, nos esforzamos por la excelencia en cada detalle. Confía en
+    nosotros para llevar tu visión más allá.
+  </p>
+
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
+    {
+      founders.map(({ description, name, subName, img }) => (
+        <blockquote class="rounded-lg shadow-md p-6 sm:p-8 relative flex flex-col justify-between dark:bg-primary/10">
+          <p class="text-slate-500 text-sm text-start dark:text-white">
+            {description}
+          </p>
+
+          <div class="flex items-center gap-4 mt-4">
+            <img
+              alt=""
+              src={img || "/team/default.jpg"}
+              class="size-11 rounded-full object-cover"
+            />
+            <div class="text-start">
+              <h6 class="text-sm font-semibold dark:text-white">{name}</h6>
+
+              <p class="mt-0.5 font-medium text-start text-[10px] text-slate-400">
+                {subName}
+              </p>
+            </div>
+          </div>
+          <Icon
+            class="absolute right-4 bottom-8 text-transparent group-hover:text-primary transition-colors"
+            name="quotes"
+            size={40}
+          />
+        </blockquote>
+      ))
+    }
+  </div>
+</Section>

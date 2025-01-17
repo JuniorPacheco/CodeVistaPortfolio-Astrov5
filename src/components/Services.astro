@@ -1,0 +1,67 @@
+---
+import { Icon } from "astro-icon/components";
+import Section from "./Section.astro";
+
+const services = [
+  {
+    icon: "user-search",
+    title: "Busqueda de usuarios",
+    description:
+      "Analizamos el comportamiento y preferencias para mejorar la usabilidad y aumentar la conversión.",
+  },
+  {
+    icon: "brand-visual-studio",
+    title: "Diseño Visual",
+    description:
+      "Destaca tu marca y conecta con tu audiencia de manera memorable con nuestra experiencia en diseño web.",
+  },
+  {
+    icon: "users",
+    title: "Experiencia de usuario",
+    description:
+      "Garantiza la excelencia de tu sitio web con pruebas exhaustivas para una experiencia óptima del usuario.",
+  },
+  {
+    icon: "brand-codesandbox",
+    title: "Prototipo",
+    description:
+      "Visualiza y prueba tus ideas con nuestros prototipos web. Garantiza un diseño perfecto desde el principio.",
+  },
+];
+---
+
+<Section id="services" styles="grid gap-2 text-center">
+  <h4 class="text-primary text-lg font-semibold">¿Que ofrecemos?</h4>
+  <h3 class="text-5xl font-bold dark:text-white">Nuestros servicios</h3>
+  <p class="text-balance max-w-[500px] mx-auto text-slate-500">
+    CodeVista potencia tu presencia en línea con soluciones web personalizadas.
+    Desde diseño creativo hasta desarrollo avanzado, hacemos realidad tus
+    proyectos digitales. ¡Destácate en la web con nosotros!
+  </p>
+  <ul
+    class="grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] lg:grid-cols-4 lg:justify-center lg:gap-12 gap-10 text-center mt-12"
+  >
+    {
+      services.map(({ icon, title, description }) => (
+        <li class="grid items-center gap-2 p-6 py-8 rounded-xl shadow-lg dark:shadow-primary/40 hover:bg-primary transition-colors group relative overflow-hidden">
+          <div class="block mx-auto max-w-max bg-primary p-3 rounded-full text-white group-hover:bg-white group-hover:text-primary transition-colors relative z-10">
+            <Icon name={icon} size={35} />
+          </div>
+          <h5 class="font-bold text-lg group-hover:text-white transition-colors relative z-10">
+            {title}
+          </h5>
+          <p class="text-slate-500 text-sm group-hover:text-white transition-colors relative z-10 dark:text-white">
+            {description}
+          </p>
+          <Icon
+            class="absolute bottom-0 left-0 text-transparent group-hover:text-white transition-colors"
+            name="points"
+            size={35}
+          />
+          <div class="size-28 absolute bg-transparent group-hover:bg-white transition-colors right-0 top-0 rounded-full translate-x-1/2 -translate-y-1/2 opacity-10" />
+          <div class="size-48 absolute bg-transparent group-hover:bg-white transition-colors right-0 top-0 rounded-full translate-x-1/4 -translate-y-1/2 opacity-5" />
+        </li>
+      ))
+    }
+  </ul>
+</Section>
