@@ -66,6 +66,59 @@ const plans = [
   });
 </script>
 
+<script>
+  function initPriceCounters() {
+    const counters = document.querySelectorAll('.price-counter');
+    if (!counters.length) return;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          const target = parseInt(el.dataset.target || '0', 10);
+          const currency = el.textContent?.includes('USD') ? 'USD' : '';
+
+          if (prefersReduced) {
+            el.textContent = `$${target.toLocaleString()} ${currency}`;
+            observer.unobserve(el);
+            return;
+          }
+
+          const duration = 1500;
+          const start = performance.now();
+
+          el.style.transform = 'scale(0.85)';
+          el.style.transition = 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1)';
+          el.style.transform = 'scale(1)';
+
+          function tick(now: number) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(eased * target);
+            el.textContent = `$${current.toLocaleString()} ${currency}`;
+            if (progress < 1) {
+              requestAnimationFrame(tick);
+            }
+          }
+
+          requestAnimationFrame(tick);
+          observer.unobserve(el);
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    counters.forEach((el) => observer.observe(el));
+  }
+
+  document.addEventListener('DOMContentLoaded', initPriceCounters);
+  document.addEventListener('astro:page-load', initPriceCounters);
+</script>
+
 <Section id="pricing">
   <!-- Decorative blobs -->
   <div class="absolute -left-40 top-1/4 w-96 h-96 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -118,8 +171,8 @@ const plans = [
             {description}
           </p>
           <div class="flex justify-center items-baseline my-8">
-            <span class="mr-2 text-3xl font-extrabold text-primary"
-              >${price} {currency}</span>
+            <span class="mr-2 text-3xl font-extrabold text-primary price-counter" data-target={price}
+              >$0 {currency}</span>
           </div>
           <!-- List -->
           <ul role="list" class="mb-8 space-y-4 text-left">
