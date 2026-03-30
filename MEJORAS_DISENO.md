@@ -133,7 +133,7 @@ La psicologia de pricing funciona mejor cuando hay una opcion claramente destaca
 
 ---
 
-## 8. Mejorar las tarjetas del Team con efecto de hover interactivo
+## ~~8. Mejorar las tarjetas del Team con efecto de hover interactivo~~ COMPLETADA
 
 **Seccion afectada:** `Team.astro`
 **Prioridad:** Baja
@@ -290,7 +290,7 @@ Es un detalle premium que se ve en sitios de agencias de diseno de alto nivel. C
 | 8 | ~~Plan destacado en pricing (#7)~~ COMPLETADA | Medio | Bajo |
 | 9 | Texto con gradiente (#12) | Medio | Bajo |
 | 10 | Contacto mejorado (#13) | Medio | Medio |
-| 11 | Team hover interactivo (#8) | Bajo | Bajo |
+| 11 | ~~Team hover interactivo (#8)~~ COMPLETADA | Bajo | Bajo |
 | 12 | ~~Conteo animado pricing (#6)~~ COMPLETADA | Bajo | Medio |
 | 13 | Dark mode transition (#11) | Bajo | Bajo |
 | 14 | Footer elaborado (#14) | Bajo | Medio |

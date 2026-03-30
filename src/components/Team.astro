@@ -43,19 +43,24 @@ const founders = [
   <div data-reveal-stagger class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
     {
       founders.map(({ description, name, subName, img }) => (
-        <blockquote data-reveal class="rounded-lg shadow-md p-6 sm:p-8 relative flex flex-col justify-between dark:bg-primary/10">
+        <blockquote data-reveal class="team-card rounded-lg shadow-md p-6 sm:p-8 relative flex flex-col justify-between dark:bg-primary/10 group transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-primary/10">
           <p class="text-slate-500 text-sm text-start dark:text-white">
             {description}
           </p>
 
           <div class="flex items-center gap-4 mt-4">
-            <img
-              alt=""
-              src={img || "/team/default.jpg"}
-              class="size-11 rounded-full object-cover"
-            />
+            <div class="overflow-hidden rounded-full flex-shrink-0">
+              <img
+                alt=""
+                src={img || "/team/default.jpg"}
+                class="size-11 rounded-full object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+            </div>
             <div class="text-start">
-              <h6 class="text-sm font-semibold dark:text-white">{name}</h6>
+              <h6 class="text-sm font-semibold dark:text-white relative inline-block">
+                {name}
+                <span class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+              </h6>
 
               <p class="mt-0.5 font-medium text-start text-[10px] text-slate-400">
                 {subName}
@@ -63,7 +68,7 @@ const founders = [
             </div>
           </div>
           <Icon
-            class="absolute right-4 bottom-8 text-transparent group-hover:text-primary transition-colors"
+            class="absolute right-4 bottom-8 text-primary/0 group-hover:text-primary/20 transition-colors duration-300"
             name="quotes"
             size={40}
           />
