@@ -187,7 +187,7 @@ Le da al usuario contexto de navegacion. Saber "donde estoy" en una pagina larga
 
 ---
 
-## 11. Transicion suave de Dark Mode
+## ~~11. Transicion suave de Dark Mode~~ COMPLETADA
 
 **Seccion afectada:** `Layout.astro`, todo el sitio
 **Prioridad:** Baja
@@ -204,7 +204,7 @@ Un cambio de tema abrupto se siente como un "flash". Una transicion suave se sie
 
 ---
 
-## 12. Efecto de texto con gradiente en titulos principales
+## ~~12. Efecto de texto con gradiente en titulos principales~~ COMPLETADA
 
 **Seccion afectada:** Titulos de cada seccion
 **Prioridad:** Baja
@@ -288,11 +288,11 @@ Es un detalle premium que se ve en sitios de agencias de diseno de alto nivel. C
 | 6 | ~~Active section en navbar (#10)~~ COMPLETADA | Medio | Medio |
 | 7 | ~~Fondos con profundidad (#5)~~ COMPLETADA | Alto | Medio |
 | 8 | ~~Plan destacado en pricing (#7)~~ COMPLETADA | Medio | Bajo |
-| 9 | Texto con gradiente (#12) | Medio | Bajo |
+| 9 | ~~Texto con gradiente (#12)~~ COMPLETADA | Medio | Bajo |
 | 10 | ~~Contacto mejorado (#13)~~ COMPLETADA | Medio | Medio |
 | 11 | ~~Team hover interactivo (#8)~~ COMPLETADA | Bajo | Bajo |
 | 12 | ~~Conteo animado pricing (#6)~~ COMPLETADA | Bajo | Medio |
-| 13 | Dark mode transition (#11) | Bajo | Bajo |
+| 13 | ~~Dark mode transition (#11)~~ COMPLETADA | Bajo | Bajo |
 | 14 | ~~Footer elaborado (#14)~~ COMPLETADA | Bajo | Medio |
 | 15 | ~~Cursor personalizado (#15)~~ COMPLETADA | Bajo | Medio |
 

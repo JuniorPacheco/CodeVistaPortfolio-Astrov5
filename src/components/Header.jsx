@@ -60,12 +60,16 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
+    document.documentElement.classList.add("theme-transitioning");
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
     localStorage.setItem("theme", theme);
+    setTimeout(() => {
+      document.documentElement.classList.remove("theme-transitioning");
+    }, 400);
   }, [theme]);
 
   const headerClass = [
