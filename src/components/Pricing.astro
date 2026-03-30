@@ -151,11 +151,21 @@ const plans = [
       >
         <!-- Pricing Card -->
         {
-          plans.map(({ name, price, currency, description, features }) => (
+          plans.map(({ name, price, currency, description, features }, index) => (
           <div
           data-reveal
-          class="flex flex-col p-6 px-12 mx-auto max-w-lg text-center text-gray-900 rounded-lg xl:p-8 shadow-none hover:shadow-lg transition-shadow relative group xl:px-10 dark:bg-primary/10 dark:hover:shadow-primary/20"
+          class:list={[
+            "flex flex-col p-6 px-12 mx-auto max-w-lg text-center text-gray-900 rounded-lg xl:p-8 relative group xl:px-10 transition-all duration-300",
+            index === 1
+              ? "border-2 border-primary shadow-lg shadow-primary/15 lg:scale-105 dark:bg-primary/15 hover:shadow-xl hover:shadow-primary/25"
+              : "shadow-none hover:shadow-lg dark:bg-primary/10 dark:hover:shadow-primary/20",
+          ]}
         >
+          {index === 1 && (
+            <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-semibold px-4 py-1 rounded-full shadow-md">
+              Recomendado
+            </span>
+          )}
           <Icon
             class="absolute bottom-1 right-0 text-transparent group-hover:text-primary transition-colors"
             name="points"
@@ -196,8 +206,13 @@ const plans = [
           </ul>
           <button
             id="btnWhatsapp"
-            data-title="Landing page"
-            class="bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center border border-primary hover:bg-primary transition-colors hover:text-white text-primary"
+            data-title={name}
+            class:list={[
+              "font-medium rounded-lg text-sm px-5 py-2.5 text-center border transition-colors",
+              index === 1
+                ? "bg-primary text-white border-primary hover:bg-primary/90"
+                : "border-primary hover:bg-primary hover:text-white text-primary",
+            ]}
             >¡Comienza ahora!</button>
         </div>
         ))}

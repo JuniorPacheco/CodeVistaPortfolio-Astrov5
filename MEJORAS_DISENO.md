@@ -115,7 +115,7 @@ Los numeros animados capturan la atencion y hacen que el usuario se detenga en e
 
 ---
 
-## 7. Destacar el plan recomendado en Pricing
+## ~~7. Destacar el plan recomendado en Pricing~~ COMPLETADA
 
 **Seccion afectada:** `Pricing.astro`
 **Prioridad:** Media
@@ -287,7 +287,7 @@ Es un detalle premium que se ve en sitios de agencias de diseno de alto nivel. C
 | 5 | Botones con micro-animaciones (#9) | Medio | Bajo |
 | 6 | Active section en navbar (#10) | Medio | Medio |
 | 7 | ~~Fondos con profundidad (#5)~~ COMPLETADA | Alto | Medio |
-| 8 | Plan destacado en pricing (#7) | Medio | Bajo |
+| 8 | ~~Plan destacado en pricing (#7)~~ COMPLETADA | Medio | Bajo |
 | 9 | Texto con gradiente (#12) | Medio | Bajo |
 | 10 | Contacto mejorado (#13) | Medio | Medio |
 | 11 | Team hover interactivo (#8) | Bajo | Bajo |
