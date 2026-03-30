@@ -80,7 +80,7 @@ Micro-interacciones bien pensadas comunican cuidado en el detalle. Las tarjetas 
 
 ---
 
-## 5. Gradientes y fondos con mas profundidad
+## ~~5. Gradientes y fondos con mas profundidad~~ COMPLETADA
 
 **Seccion afectada:** Varias secciones (About, Services, Pricing)
 **Prioridad:** Media
@@ -286,7 +286,7 @@ Es un detalle premium que se ve en sitios de agencias de diseno de alto nivel. C
 | 4 | ~~Hover mejorado en servicios (#4)~~ COMPLETADA | Medio | Bajo |
 | 5 | Botones con micro-animaciones (#9) | Medio | Bajo |
 | 6 | Active section en navbar (#10) | Medio | Medio |
-| 7 | Fondos con profundidad (#5) | Alto | Medio |
+| 7 | ~~Fondos con profundidad (#5)~~ COMPLETADA | Alto | Medio |
 | 8 | Plan destacado en pricing (#7) | Medio | Bajo |
 | 9 | Texto con gradiente (#12) | Medio | Bajo |
 | 10 | Contacto mejorado (#13) | Medio | Medio |

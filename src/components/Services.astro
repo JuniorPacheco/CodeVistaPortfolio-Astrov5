@@ -30,7 +30,10 @@ const services = [
 ];
 ---
 
-<Section id="services" styles="grid gap-2 text-center">
+<Section id="services" styles="grid gap-2 text-center relative">
+  <!-- Decorative blobs -->
+  <div class="absolute -right-40 -top-20 w-80 h-80 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute -left-32 bottom-0 w-64 h-64 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
   <h4 data-reveal class="text-primary text-lg font-semibold">¿Que ofrecemos?</h4>
   <h3 data-reveal class="text-5xl font-bold dark:text-white" style="transition-delay: 100ms;">Nuestros servicios</h3>
   <p data-reveal class="text-balance max-w-[500px] mx-auto text-slate-500" style="transition-delay: 200ms;">
