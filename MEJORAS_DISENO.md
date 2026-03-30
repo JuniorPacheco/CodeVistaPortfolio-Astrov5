@@ -222,7 +222,7 @@ Los titulos con degradado son un recurso visual moderno que rompe la monotonia d
 
 ---
 
-## 13. Mejorar la seccion de Contacto con mejor UX visual
+## ~~13. Mejorar la seccion de Contacto con mejor UX visual~~ COMPLETADA
 
 **Seccion afectada:** `Contact.astro`
 **Prioridad:** Media
@@ -241,7 +241,7 @@ El formulario de contacto es donde se genera la conversion. Un formulario que se
 
 ---
 
-## 14. Footer mas elaborado
+## ~~14. Footer mas elaborado~~ COMPLETADA
 
 **Seccion afectada:** `Footer.astro`
 **Prioridad:** Baja
@@ -260,7 +260,7 @@ Un footer completo da sensacion de sitio terminado y profesional. Un footer con 
 
 ---
 
-## 15. Cursor personalizado (opcional, sutil)
+## ~~15. Cursor personalizado (opcional, sutil)~~ COMPLETADA
 
 **Seccion afectada:** Global
 **Prioridad:** Baja
@@ -289,12 +289,12 @@ Es un detalle premium que se ve en sitios de agencias de diseno de alto nivel. C
 | 7 | ~~Fondos con profundidad (#5)~~ COMPLETADA | Alto | Medio |
 | 8 | ~~Plan destacado en pricing (#7)~~ COMPLETADA | Medio | Bajo |
 | 9 | Texto con gradiente (#12) | Medio | Bajo |
-| 10 | Contacto mejorado (#13) | Medio | Medio |
+| 10 | ~~Contacto mejorado (#13)~~ COMPLETADA | Medio | Medio |
 | 11 | ~~Team hover interactivo (#8)~~ COMPLETADA | Bajo | Bajo |
 | 12 | ~~Conteo animado pricing (#6)~~ COMPLETADA | Bajo | Medio |
 | 13 | Dark mode transition (#11) | Bajo | Bajo |
-| 14 | Footer elaborado (#14) | Bajo | Medio |
-| 15 | Cursor personalizado (#15) | Bajo | Medio |
+| 14 | ~~Footer elaborado (#14)~~ COMPLETADA | Bajo | Medio |
+| 15 | ~~Cursor personalizado (#15)~~ COMPLETADA | Bajo | Medio |
 
 ---
 

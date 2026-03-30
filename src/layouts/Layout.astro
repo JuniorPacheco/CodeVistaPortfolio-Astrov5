@@ -38,6 +38,7 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <div id="cursor-follower" class="cursor-follower"></div>
     <slot />
   </body>
 
@@ -148,6 +149,32 @@ const { title } = Astro.props;
       100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
     }
 
+    /* Custom cursor follower */
+    .cursor-follower {
+      position: fixed;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(74, 108, 247, 0.2);
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
+      mix-blend-mode: screen;
+      will-change: left, top;
+      display: none;
+    }
+
+    .cursor-follower.visible {
+      display: block;
+    }
+
+    .cursor-follower.hovering {
+      width: 40px;
+      height: 40px;
+      background: rgba(74, 108, 247, 0.15);
+    }
+
     /* Respect reduced motion */
     @media (prefers-reduced-motion: reduce) {
       [data-reveal] {
@@ -158,6 +185,17 @@ const { title } = Astro.props;
 
       [data-reveal-stagger] > * {
         transition-delay: 0ms !important;
+      }
+
+      .cursor-follower {
+        display: none !important;
+      }
+    }
+
+    /* Hide cursor on touch devices */
+    @media (hover: none) and (pointer: coarse) {
+      .cursor-follower {
+        display: none !important;
       }
     }
   </style>
@@ -191,5 +229,60 @@ const { title } = Astro.props;
 
     document.addEventListener('DOMContentLoaded', initScrollReveal);
     document.addEventListener('astro:page-load', initScrollReveal);
+  </script>
+
+  <script>
+    function initCursorFollower() {
+      const cursor = document.getElementById('cursor-follower');
+      if (!cursor) return;
+
+      // Only on non-touch desktop devices
+      const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (isTouch || prefersReduced) return;
+
+      let mouseX = 0;
+      let mouseY = 0;
+      let cursorX = 0;
+      let cursorY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (!cursor.classList.contains('visible')) {
+          cursor.classList.add('visible');
+        }
+      });
+
+      document.addEventListener('mouseleave', () => {
+        cursor.classList.remove('visible');
+      });
+
+      // Detect hoverable elements
+      const hoverSelectors = 'a, button, [role="button"], input, textarea, select';
+      document.addEventListener('mouseover', (e: Event) => {
+        if ((e.target as Element).closest(hoverSelectors)) {
+          cursor.classList.add('hovering');
+        }
+      });
+      document.addEventListener('mouseout', (e: Event) => {
+        if ((e.target as Element).closest(hoverSelectors)) {
+          cursor.classList.remove('hovering');
+        }
+      });
+
+      // Smooth follow with lerp
+      function animate() {
+        cursorX += (mouseX - cursorX) * 0.15;
+        cursorY += (mouseY - cursorY) * 0.15;
+        cursor.style.left = `${cursorX}px`;
+        cursor.style.top = `${cursorY}px`;
+        requestAnimationFrame(animate);
+      }
+      animate();
+    }
+
+    document.addEventListener('DOMContentLoaded', initCursorFollower);
+    document.addEventListener('astro:page-load', initCursorFollower);
   </script>
 </html>
