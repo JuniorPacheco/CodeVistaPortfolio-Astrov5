@@ -70,30 +70,32 @@ const plans = [
   <section>
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
       <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12 grid gap-4">
-        <h4 class="tracking-tight font-semibold text-primary">Tienda</h4>
-        <h3 class="text-4xl tracking-tight font-bold dark:text-white">
+        <h4 data-reveal class="tracking-tight font-semibold text-primary">Tienda</h4>
+        <h3 data-reveal class="text-4xl tracking-tight font-bold dark:text-white" style="transition-delay: 100ms;">
           Planes a un ☝️ solo pago
         </h3>
-        <p class="text-slate-500 max-w-[600px] mx-auto text-balance text-lg">
+        <p data-reveal class="text-slate-500 max-w-[600px] mx-auto text-balance text-lg" style="transition-delay: 200ms;">
           Aquí en CodeVista nos enfocamos en mercados donde la tecnología, la
           innovación y el capital pueden desbloquear valor a largo plazo y
           impulsar el crecimiento económico.
         </p>
-        <p class="tracking-tight font-semibold text-primary text-xl">
+        <p data-reveal class="tracking-tight font-semibold text-primary text-xl" style="transition-delay: 300ms;">
           Precios desde
         </p>
-        <p class="text-slate-500 max-w-[600px] mx-auto text-balance text-sm">
+        <p data-reveal class="text-slate-500 max-w-[600px] mx-auto text-balance text-sm" style="transition-delay: 350ms;">
           Los precios pueden estar sujetos a cambios segun la cantidad de
           funcionalidades.
         </p>
       </div>
       <div
+        data-reveal-stagger
         class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0"
       >
         <!-- Pricing Card -->
         {
           plans.map(({ name, price, currency, description, features }) => (
           <div
+          data-reveal
           class="flex flex-col p-6 px-12 mx-auto max-w-lg text-center text-gray-900 rounded-lg xl:p-8 shadow-none hover:shadow-lg transition-shadow relative group xl:px-10 dark:bg-primary/10 dark:hover:shadow-primary/20"
         >
           <Icon

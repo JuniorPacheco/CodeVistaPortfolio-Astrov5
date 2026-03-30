@@ -8,12 +8,14 @@ import Section from "./Section.astro";
   styles="grid gap-2 text-center"
   containerStyle="bg-slate-300/15 dark:bg-primary/20"
 >
-  <h4 class="text-primary text-lg font-semibold">Portafolio</h4>
-  <h3 class="text-5xl font-bold dark:text-white">Trabajos recientes</h3>
-  <p class="text-balance max-w-[500px] mx-auto text-slate-500">
+  <h4 data-reveal class="text-primary text-lg font-semibold">Portafolio</h4>
+  <h3 data-reveal class="text-5xl font-bold dark:text-white" style="transition-delay: 100ms;">Trabajos recientes</h3>
+  <p data-reveal class="text-balance max-w-[500px] mx-auto text-slate-500" style="transition-delay: 200ms;">
     Descubre nuestros proyectos recientes en CodeVista. Inspírate con nuestra
     experiencia y calidad en proyectos innovadores y visualmente impactantes
     para clientes satisfechos.
   </p>
-  <Portfolio client:load />
+  <div data-reveal style="transition-delay: 300ms;">
+    <Portfolio client:load />
+  </div>
 </Section>

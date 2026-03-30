@@ -3,16 +3,18 @@ import Section from "../components/Section.astro";
 ---
 
 <Section id="contact" styles="grid gap-2 text-center">
-  <h4 class="text-primary text-lg font-semibold">Contacta con nosotros</h4>
-  <h3 class="text-4xl font-bold dark:text-white">
+  <h4 data-reveal class="text-primary text-lg font-semibold">Contacta con nosotros</h4>
+  <h3 data-reveal class="text-4xl font-bold dark:text-white" style="transition-delay: 100ms;">
     ¿Tienes algún proyecto en mente?
   </h3>
-  <p class="text-balance max-w-[500px] mx-auto text-slate-500">
+  <p data-reveal class="text-balance max-w-[500px] mx-auto text-slate-500" style="transition-delay: 200ms;">
     En CodeVista, transformamos tus ideas en realidad digital. Cuéntanos tu
-    visión y trabajaremos juntos para hacerla posible.
+    visión y trabajaremos juntos para hacerla posible.
   </p>
 
   <form
+    data-reveal
+    style="transition-delay: 300ms;"
     class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[800px] mx-auto w-full mt-10"
   >
     <label
