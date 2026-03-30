@@ -25,7 +25,7 @@ Le da vida al sitio. Las paginas estaticas sin animacion de scroll se sienten "m
 
 ---
 
-## 2. Mejorar el Hero con animacion de texto y parallax sutil
+## ~~2. Mejorar el Hero con animacion de texto y parallax sutil~~ COMPLETADA
 
 **Seccion afectada:** `Hero.astro`
 **Prioridad:** Alta
@@ -44,7 +44,7 @@ El hero es la primera impresion. Una entrada animada y fluida comunica "aqui hay
 
 ---
 
-## 3. Efecto Glassmorphism en el Header (Navbar)
+## ~~3. Efecto Glassmorphism en el Header (Navbar)~~ COMPLETADA
 
 **Seccion afectada:** `Header.jsx`
 **Prioridad:** Media
@@ -281,8 +281,8 @@ Es un detalle premium que se ve en sitios de agencias de diseno de alto nivel. C
 | Paso | Mejora | Impacto Visual | Esfuerzo |
 |------|--------|---------------|----------|
 | 1 | ~~Scroll Reveal animations (#1)~~ COMPLETADA | Muy alto | Medio |
-| 2 | Hero animado (#2) | Alto | Medio |
-| 3 | Glassmorphism header (#3) | Alto | Bajo |
+| 2 | ~~Hero animado (#2)~~ COMPLETADA | Alto | Medio |
+| 3 | ~~Glassmorphism header (#3)~~ COMPLETADA | Alto | Bajo |
 | 4 | Hover mejorado en servicios (#4) | Medio | Bajo |
 | 5 | Botones con micro-animaciones (#9) | Medio | Bajo |
 | 6 | Active section en navbar (#10) | Medio | Medio |

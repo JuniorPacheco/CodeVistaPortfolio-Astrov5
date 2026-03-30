@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 const Header = () => {
   const [isShowMenu, setIsShowMenu] = useState(false);
   const [theme, setTheme] = useState("light");
+  const [scrolled, setScrolled] = useState(false);
 
   const handleClick = () => {
     setTheme(theme === "light" ? "dark" : "light");
@@ -14,6 +15,11 @@ const Header = () => {
 
   useEffect(() => {
     localStorage.getItem("theme") && setTheme(localStorage.getItem("theme"));
+
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
@@ -25,8 +31,17 @@ const Header = () => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
+  const headerClass = [
+    "p-4 sticky top-0 z-40 transition-all duration-300",
+    "backdrop-blur-md",
+    scrolled
+      ? "bg-white/80 dark:bg-black/80 shadow-lg dark:shadow-primary/5 border-b border-black/5 dark:border-white/10"
+      : "bg-white/60 dark:bg-black/60 border-b border-transparent",
+  ].join(" ");
+
   return (
-    <header className="bg-white/90 p-4 sticky top-0 z-40 dark:bg-black/90 transition-colors">
+    <>
+    <header className={headerClass}>
       <div className="max-w-[1320px] mx-auto flex justify-between items-center">
         {/* Logo */}
         {theme === "light" ? (
@@ -36,24 +51,30 @@ const Header = () => {
         )}
 
         {/* Navegacion desktop */}
-        <nav className="text-black dark:text-white text-[16.5px] font-inter md:flex gap-6 hidden">
-          <a className="hover:text-blue-600" href="#hero">
+        <nav className="text-black dark:text-white text-[16.5px] font-inter md:flex gap-6 hidden items-center">
+          <a className="hover:text-primary transition-colors relative group" href="#hero">
             Home
+            <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
           </a>
-          <a className="hover:text-blue-600" href="#about">
+          <a className="hover:text-primary transition-colors relative group" href="#about">
             Sobre nosotros
+            <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
           </a>
-          <a className="hover:text-blue-600" href="#services">
+          <a className="hover:text-primary transition-colors relative group" href="#services">
             Servicios
+            <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
           </a>
-          <a className="hover:text-blue-600" href="#works">
+          <a className="hover:text-primary transition-colors relative group" href="#works">
             Trabajos
+            <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
           </a>
-          <a className="hover:text-blue-600" href="#pricing">
+          <a className="hover:text-primary transition-colors relative group" href="#pricing">
             Precios
+            <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
           </a>
-          <a className="hover:text-blue-600" href="#contact">
+          <a className="hover:text-primary transition-colors relative group" href="#contact">
             Contacto
+            <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
           </a>
           <button onClick={handleClick}>
             {theme === "light" ? (
@@ -165,55 +186,56 @@ const Header = () => {
 
         {/* Navegacion mobile */}
         <nav
-          className={`text-black font-inter flex flex-col gap-6 md:hidden absolute top-[4.5rem] z-40 bg-white shadow-md p-5 right-4 dark:bg-black/90 dark:text-white dark:shadow-white/30 ${
+          className={`text-black font-inter flex flex-col gap-6 md:hidden absolute top-[4.5rem] z-40 bg-white/90 backdrop-blur-md shadow-md p-5 right-4 rounded-lg dark:bg-black/90 dark:text-white dark:shadow-white/30 border border-black/5 dark:border-white/10 ${
             isShowMenu ? "block" : "hidden"
           }`}
         >
-          <a className="hover:text-primary" href="#hero">
+          <a className="hover:text-primary transition-colors" href="#hero">
             Home
           </a>
-          <a className="hover:text-primary" href="#about">
+          <a className="hover:text-primary transition-colors" href="#about">
             Sobre nosotros
           </a>
-          <a className="hover:text-primary" href="#services">
+          <a className="hover:text-primary transition-colors" href="#services">
             Servicios
           </a>
-          <a className="hover:text-primary" href="#works">
+          <a className="hover:text-primary transition-colors" href="#works">
             Trabajos
           </a>
-          <a className="hover:text-primary" href="#pricing">
+          <a className="hover:text-primary transition-colors" href="#pricing">
             Precios
           </a>
-          <a className="hover:text-primary" href="#contact">
+          <a className="hover:text-primary transition-colors" href="#contact">
             Contacto
           </a>
         </nav>
-        {/* Botón de WhatsApp */}
-        <a
-          href="https://wa.me/+573184281039"
-          className="fixed bottom-4 right-4 bg-green-500 text-white p-3 rounded-full shadow-lg flex items-center justify-center duration-300 ease-in-out transform hover:scale-125 transition-transform "
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="icon icon-tabler icon-tabler-brand-whatsapp"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="#ffffff"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
-            <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
-          </svg>
-        </a>
       </div>
     </header>
+    {/* Botón de WhatsApp - fuera del header para que fixed funcione con backdrop-blur */}
+    <a
+      href="https://wa.me/+573184281039"
+      className="fixed bottom-4 right-4 z-50 bg-green-500 text-white p-3 rounded-full shadow-lg flex items-center justify-center duration-300 ease-in-out transform hover:scale-125 transition-transform"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-brand-whatsapp"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="#ffffff"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+        <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+      </svg>
+    </a>
+    </>
   );
 };
 export default Header;

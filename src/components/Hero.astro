@@ -2,19 +2,28 @@
   id="hero"
   class="text-secondary relative overflow-hidden grid gap-20 mmd:grid-cols-2 max-w-[1320px] mx-auto w-full pt-10 mmd:pt-0 px-4"
 >
+  <!-- Subtle dot pattern background -->
+  <div class="hero-dots absolute inset-0 -z-10 opacity-[0.03] dark:opacity-[0.05]"></div>
+
   <div class="grid gap-2 mmd:content-center">
-    <h1 data-reveal>
-      <span class="block text-5xl font-bold dark:text-white">Code Vista</span>
-      <span class="text-primary text-lg font-semibold">Soluciones sólidas</span>
+    <h1>
+      <span class="block text-5xl font-bold dark:text-white">
+        <span class="hero-word" style="--word-index: 0;">Code</span>
+        <span class="hero-word" style="--word-index: 1;">Vista</span>
+      </span>
+      <span class="text-primary text-lg font-semibold">
+        <span class="hero-word" style="--word-index: 2;">Soluciones</span>
+        <span class="hero-word" style="--word-index: 3;">sólidas</span>
+      </span>
     </h1>
-    <h2 data-reveal class="font-semibold dark:text-white" style="transition-delay: 150ms;">
+    <h2 class="font-semibold dark:text-white hero-fade" style="--fade-delay: 600ms;">
       <span class="text-slate-500">Profesionales</span> en el desarrollo web
     </h2>
-    <p data-reveal class="max-w-[600px] text-sm text-balance text-slate-400" style="transition-delay: 300ms;">
+    <p class="max-w-[600px] text-sm text-balance text-slate-400 hero-fade" style="--fade-delay: 800ms;">
       Experiencia, creatividad y tecnología: Nuestro compromiso
       en cada proyecto.
     </p>
-    <div data-reveal class="flex gap-2 mt-4" style="transition-delay: 450ms;">
+    <div class="flex gap-2 mt-4 hero-fade" style="--fade-delay: 1000ms;">
       <a
         href="#contact"
         class="bg-primary hover:bg-primary/90 transition-all hover:shadow-md px-6 rounded-full text-white text-sm py-2 font-semibold"
@@ -29,9 +38,10 @@
       </a>
     </div>
   </div>
-  <div data-reveal="right" style="transition-delay: 300ms;">
+  <div class="hero-fade" style="--fade-delay: 500ms;">
     <svg
-      class="absolute -bottom-[12%] -right-20"
+      id="hero-parallax-circle"
+      class="absolute -bottom-[12%] -right-20 will-change-transform"
       width="491"
       height="490"
       viewBox="0 0 491 490"
@@ -57,3 +67,74 @@
     <img class="relative z-10 block mx-auto" src="/hero-image.png" alt="" />
   </div>
 </section>
+
+<style>
+  /* Dot pattern */
+  .hero-dots {
+    background-image: radial-gradient(circle, rgb(74, 108, 247) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  /* Word-by-word animation */
+  .hero-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroWordIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--word-index) * 120ms + 100ms);
+  }
+
+  /* Fade-in for subtitle, description, buttons, image */
+  .hero-fade {
+    opacity: 0;
+    transform: translateY(25px);
+    animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--fade-delay);
+  }
+
+  @keyframes heroWordIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes heroFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-word,
+    .hero-fade {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  function initHeroParallax() {
+    const circle = document.getElementById('hero-parallax-circle');
+    if (!circle || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          circle.style.transform = `translateY(${scrollY * 0.3}px)`;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  document.addEventListener('DOMContentLoaded', initHeroParallax);
+  document.addEventListener('astro:page-load', initHeroParallax);
+</script>
