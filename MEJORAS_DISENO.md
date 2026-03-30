@@ -62,7 +62,7 @@ El glassmorphism bien ejecutado es uno de los recursos visuales mas modernos y p
 
 ---
 
-## 4. Hover effects mejorados en tarjetas de Servicios
+## ~~4. Hover effects mejorados en tarjetas de Servicios~~ COMPLETADA
 
 **Seccion afectada:** `Services.astro`
 **Prioridad:** Media
@@ -283,7 +283,7 @@ Es un detalle premium que se ve en sitios de agencias de diseno de alto nivel. C
 | 1 | ~~Scroll Reveal animations (#1)~~ COMPLETADA | Muy alto | Medio |
 | 2 | ~~Hero animado (#2)~~ COMPLETADA | Alto | Medio |
 | 3 | ~~Glassmorphism header (#3)~~ COMPLETADA | Alto | Bajo |
-| 4 | Hover mejorado en servicios (#4) | Medio | Bajo |
+| 4 | ~~Hover mejorado en servicios (#4)~~ COMPLETADA | Medio | Bajo |
 | 5 | Botones con micro-animaciones (#9) | Medio | Bajo |
 | 6 | Active section en navbar (#10) | Medio | Medio |
 | 7 | Fondos con profundidad (#5) | Alto | Medio |

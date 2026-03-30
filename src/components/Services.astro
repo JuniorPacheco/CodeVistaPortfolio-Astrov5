@@ -44,8 +44,9 @@ const services = [
   >
     {
       services.map(({ icon, title, description }) => (
-        <li data-reveal class="grid items-center gap-2 p-6 py-8 rounded-xl shadow-lg dark:shadow-primary/40 hover:bg-primary transition-colors group relative overflow-hidden">
-          <div class="block mx-auto max-w-max bg-primary p-3 rounded-full text-white group-hover:bg-white group-hover:text-primary transition-colors relative z-10">
+        <li data-reveal class="service-card grid items-center gap-2 p-6 py-8 rounded-xl shadow-lg dark:shadow-primary/40 hover:bg-primary hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 group relative overflow-hidden">
+          <div class="service-card-line"></div>
+          <div class="block mx-auto max-w-max bg-primary p-3 rounded-full text-white group-hover:bg-white group-hover:text-primary transition-all duration-300 relative z-10 group-hover:rotate-6">
             <Icon name={icon} size={35} />
           </div>
           <h5 class="font-bold text-lg group-hover:text-white transition-colors relative z-10">
@@ -66,3 +67,22 @@ const services = [
     }
   </ul>
 </Section>
+
+<style>
+  .service-card-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: rgb(74, 108, 247);
+    border-radius: 0 0 4px 4px;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .service-card:hover .service-card-line {
+    width: 100%;
+    background: white;
+  }
+</style>
