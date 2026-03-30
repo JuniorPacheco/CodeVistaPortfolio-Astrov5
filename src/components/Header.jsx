@@ -1,9 +1,19 @@
 import { useEffect, useState } from "react";
 
+const navLinks = [
+  { href: "#hero", label: "Home" },
+  { href: "#about", label: "Sobre nosotros" },
+  { href: "#services", label: "Servicios" },
+  { href: "#works", label: "Trabajos" },
+  { href: "#pricing", label: "Precios" },
+  { href: "#contact", label: "Contacto" },
+];
+
 const Header = () => {
   const [isShowMenu, setIsShowMenu] = useState(false);
   const [theme, setTheme] = useState("light");
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("#hero");
 
   const handleClick = () => {
     setTheme(theme === "light" ? "dark" : "light");
@@ -19,7 +29,34 @@ const Header = () => {
     const onScroll = () => setScrolled(window.scrollY > 10);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+
+    // Active section observer
+    const sectionIds = navLinks.map((l) => l.href.replace("#", ""));
+    const observers = [];
+
+    const handleIntersect = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(`#${entry.target.id}`);
+        }
+      });
+    };
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(handleIntersect, {
+        rootMargin: "-40% 0px -55% 0px",
+        threshold: 0,
+      });
+      obs.observe(el);
+      observers.push(obs);
+    });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      observers.forEach((obs) => obs.disconnect());
+    };
   }, []);
 
   useEffect(() => {
@@ -52,30 +89,24 @@ const Header = () => {
 
         {/* Navegacion desktop */}
         <nav className="text-black dark:text-white text-[16.5px] font-inter md:flex gap-6 hidden items-center">
-          <a className="hover:text-primary transition-colors relative group" href="#hero">
-            Home
-            <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-          </a>
-          <a className="hover:text-primary transition-colors relative group" href="#about">
-            Sobre nosotros
-            <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-          </a>
-          <a className="hover:text-primary transition-colors relative group" href="#services">
-            Servicios
-            <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-          </a>
-          <a className="hover:text-primary transition-colors relative group" href="#works">
-            Trabajos
-            <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-          </a>
-          <a className="hover:text-primary transition-colors relative group" href="#pricing">
-            Precios
-            <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-          </a>
-          <a className="hover:text-primary transition-colors relative group" href="#contact">
-            Contacto
-            <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
-          </a>
+          {navLinks.map(({ href, label }) => (
+            <a
+              key={href}
+              className={`transition-colors relative group ${
+                activeSection === href ? "text-primary" : "hover:text-primary"
+              }`}
+              href={href}
+            >
+              {label}
+              <span
+                className={`absolute -bottom-1 h-0.5 bg-primary transition-all duration-300 ${
+                  activeSection === href
+                    ? "w-full left-0"
+                    : "w-0 left-1/2 group-hover:w-full group-hover:left-0"
+                }`}
+              ></span>
+            </a>
+          ))}
           <button onClick={handleClick}>
             {theme === "light" ? (
               <svg
@@ -190,31 +221,25 @@ const Header = () => {
             isShowMenu ? "block" : "hidden"
           }`}
         >
-          <a className="hover:text-primary transition-colors" href="#hero">
-            Home
-          </a>
-          <a className="hover:text-primary transition-colors" href="#about">
-            Sobre nosotros
-          </a>
-          <a className="hover:text-primary transition-colors" href="#services">
-            Servicios
-          </a>
-          <a className="hover:text-primary transition-colors" href="#works">
-            Trabajos
-          </a>
-          <a className="hover:text-primary transition-colors" href="#pricing">
-            Precios
-          </a>
-          <a className="hover:text-primary transition-colors" href="#contact">
-            Contacto
-          </a>
+          {navLinks.map(({ href, label }) => (
+            <a
+              key={href}
+              className={`transition-colors ${
+                activeSection === href ? "text-primary font-semibold" : "hover:text-primary"
+              }`}
+              href={href}
+              onClick={() => setIsShowMenu(false)}
+            >
+              {label}
+            </a>
+          ))}
         </nav>
       </div>
     </header>
     {/* Botón de WhatsApp - fuera del header para que fixed funcione con backdrop-blur */}
     <a
       href="https://wa.me/+573184281039"
-      className="fixed bottom-4 right-4 z-50 bg-green-500 text-white p-3 rounded-full shadow-lg flex items-center justify-center duration-300 ease-in-out transform hover:scale-125 transition-transform"
+      className="whatsapp-pulse fixed bottom-4 right-4 z-50 bg-green-500 text-white p-3 rounded-full shadow-lg flex items-center justify-center duration-300 ease-in-out transform hover:scale-125 transition-transform"
       target="_blank"
       rel="noopener noreferrer"
     >

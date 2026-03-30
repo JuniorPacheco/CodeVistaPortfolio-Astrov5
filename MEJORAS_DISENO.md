@@ -151,7 +151,7 @@ La seccion de team es donde se humaniza la empresa. Interacciones mas ricas en e
 
 ---
 
-## 9. Botones con micro-animaciones
+## ~~9. Botones con micro-animaciones~~ COMPLETADA
 
 **Seccion afectada:** Todos los botones del sitio
 **Prioridad:** Media
@@ -169,7 +169,7 @@ Los botones son los elementos de accion principal. Micro-animaciones en botones 
 
 ---
 
-## 10. Smooth scroll mejorado y seccion activa en el navbar
+## ~~10. Smooth scroll mejorado y seccion activa en el navbar~~ COMPLETADA
 
 **Seccion afectada:** `Header.jsx`
 **Prioridad:** Media
@@ -284,8 +284,8 @@ Es un detalle premium que se ve en sitios de agencias de diseno de alto nivel. C
 | 2 | ~~Hero animado (#2)~~ COMPLETADA | Alto | Medio |
 | 3 | ~~Glassmorphism header (#3)~~ COMPLETADA | Alto | Bajo |
 | 4 | ~~Hover mejorado en servicios (#4)~~ COMPLETADA | Medio | Bajo |
-| 5 | Botones con micro-animaciones (#9) | Medio | Bajo |
-| 6 | Active section en navbar (#10) | Medio | Medio |
+| 5 | ~~Botones con micro-animaciones (#9)~~ COMPLETADA | Medio | Bajo |
+| 6 | ~~Active section en navbar (#10)~~ COMPLETADA | Medio | Medio |
 | 7 | ~~Fondos con profundidad (#5)~~ COMPLETADA | Alto | Medio |
 | 8 | ~~Plan destacado en pricing (#7)~~ COMPLETADA | Medio | Bajo |
 | 9 | Texto con gradiente (#12) | Medio | Bajo |
