@@ -20,51 +20,33 @@
       <span class="text-slate-500">Profesionales</span> en el desarrollo web
     </h2>
     <p class="max-w-[600px] text-sm text-balance text-slate-400 hero-fade" style="--fade-delay: 800ms;">
-      Experiencia, creatividad y tecnología: Nuestro compromiso
-      en cada proyecto.
+      Diseñamos y desarrollamos experiencias digitales que convierten
+      visitantes en clientes. Calidad y compromiso en cada proyecto.
     </p>
     <div class="flex gap-2 mt-4 hero-fade" style="--fade-delay: 1000ms;">
       <a
         href="#contact"
         class="btn-primary bg-primary hover:bg-primary/90 transition-all hover:shadow-md px-6 rounded-full text-white text-sm py-2 font-semibold"
       >
-        Contactanos
+        Contáctanos
       </a>
       <a
         href="#about"
         class="btn-secondary bg-secondary hover:bg-secondary/80 transition-all hover:shadow-md px-6 rounded-full text-white text-sm py-2 font-semibold dark:bg-white dark:text-primary"
       >
-        Conocenos
+        Conócenos
       </a>
     </div>
   </div>
-  <div class="hero-fade" style="--fade-delay: 500ms;">
-    <svg
-      id="hero-parallax-circle"
-      class="absolute -bottom-[12%] -right-20 will-change-transform"
-      width="491"
-      height="490"
-      viewBox="0 0 491 490"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="356.5" cy="356.5" r="356.5" fill="url(#paint0_linear_6:37)"
-      ></circle>
-      <defs>
-        <linearGradient
-          id="paint0_linear_6:37"
-          x1="356.5"
-          y1="0"
-          x2="356.5"
-          y2="713"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#4A6CF7"></stop>
-          <stop offset="1" stop-color="#1E3BB3"></stop>
-        </linearGradient>
-      </defs>
-    </svg>
-    <img class="relative z-10 block mx-auto" src="/hero-image.png" alt="" />
+  <div class="hero-fade relative" style="--fade-delay: 500ms;">
+    <!-- Gradient mesh blobs (estilo Stripe) -->
+    <div id="hero-parallax-circle" class="absolute inset-0 -z-0 will-change-transform">
+      <div class="mesh-blob mesh-blob-1"></div>
+      <div class="mesh-blob mesh-blob-2"></div>
+      <div class="mesh-blob mesh-blob-3"></div>
+      <div class="mesh-blob mesh-blob-4"></div>
+    </div>
+    <img class="relative z-10 block mx-auto" src="/hero-image.png" alt="Equipo de CodeVista desarrollando soluciones web" />
   </div>
 </section>
 
@@ -106,6 +88,83 @@
     }
   }
 
+  /* Gradient mesh blobs */
+  .mesh-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.25;
+    will-change: transform;
+  }
+
+  :global(.dark) .mesh-blob {
+    opacity: 0.35;
+  }
+
+  .mesh-blob-1 {
+    width: 350px;
+    height: 350px;
+    background: rgb(74, 108, 247);
+    bottom: -10%;
+    right: -5%;
+    animation: meshFloat1 35s ease-in-out infinite;
+  }
+
+  .mesh-blob-2 {
+    width: 280px;
+    height: 280px;
+    background: rgb(120, 80, 220);
+    bottom: 10%;
+    right: 15%;
+    animation: meshFloat2 40s ease-in-out infinite;
+  }
+
+  .mesh-blob-3 {
+    width: 220px;
+    height: 220px;
+    background: rgb(30, 59, 179);
+    bottom: -5%;
+    right: 30%;
+    animation: meshFloat3 30s ease-in-out infinite;
+  }
+
+  .mesh-blob-4 {
+    width: 180px;
+    height: 180px;
+    background: rgb(99, 102, 241);
+    bottom: 25%;
+    right: 0%;
+    animation: meshFloat4 45s ease-in-out infinite;
+  }
+
+  @keyframes meshFloat1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(30px, -40px) scale(1.05); }
+    50% { transform: translate(-20px, -60px) scale(0.95); }
+    75% { transform: translate(40px, -20px) scale(1.08); }
+  }
+
+  @keyframes meshFloat2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-40px, 30px) scale(1.1); }
+    50% { transform: translate(30px, 50px) scale(0.9); }
+    75% { transform: translate(-20px, -30px) scale(1.05); }
+  }
+
+  @keyframes meshFloat3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(50px, -30px) scale(1.08); }
+    66% { transform: translate(-30px, 40px) scale(0.92); }
+  }
+
+  @keyframes meshFloat4 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    20% { transform: translate(-25px, -45px) scale(1.06); }
+    40% { transform: translate(35px, -15px) scale(0.94); }
+    60% { transform: translate(-15px, 35px) scale(1.1); }
+    80% { transform: translate(20px, 20px) scale(0.96); }
+  }
+
   /* Respect reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .hero-word,
@@ -114,27 +173,10 @@
       transform: none;
       animation: none;
     }
+
+    .mesh-blob {
+      animation: none;
+    }
   }
 </style>
 
-<script>
-  function initHeroParallax() {
-    const circle = document.getElementById('hero-parallax-circle');
-    if (!circle || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          circle.style.transform = `translateY(${scrollY * 0.3}px)`;
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-  }
-
-  document.addEventListener('DOMContentLoaded', initHeroParallax);
-  document.addEventListener('astro:page-load', initHeroParallax);
-</script>

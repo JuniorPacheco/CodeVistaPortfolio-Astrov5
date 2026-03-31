@@ -20,7 +20,7 @@ const founders = [
   {
     name: "Anderson Castro Vallejo",
     description:
-      "Cofundador de CodeVista, es diseñador  front-end con buenas ideas de  diseño. Su creatividad y enfoque meticuloso han sido cruciales para el éxito de la empresa, desarrollando interfaces web intuitivas y atractivas.",
+      "Cofundador de CodeVista, es diseñador front-end con buenas ideas de diseño. Su creatividad y enfoque meticuloso han sido cruciales para el éxito de la empresa, desarrollando interfaces web intuitivas y atractivas.",
     subName: "Founder @ Code Vista",
     img: "/team/3.jpg",
   },
@@ -32,7 +32,7 @@ const founders = [
   containerStyle="bg-slate-300/15 dark:bg-primary/20"
 >
   <h4 data-reveal class="text-primary text-lg font-semibold">Trabajo inteligente</h4>
-  <h3 data-reveal class="text-5xl font-bold text-gradient" style="transition-delay: 100ms;">Nuestro equipo</h3>
+  <h3 data-split-text class="text-5xl font-bold text-gradient">Nuestro equipo</h3>
   <p data-reveal class="text-balance max-w-[500px] mx-auto text-slate-500" style="transition-delay: 200ms;">
     Conoce al dedicado equipo de CodeVista, comprometido en hacer realidad tus
     proyectos digitales. Desde diseñadores creativos hasta desarrolladores
@@ -43,7 +43,7 @@ const founders = [
   <div data-reveal-stagger class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
     {
       founders.map(({ description, name, subName, img }) => (
-        <blockquote data-reveal class="team-card rounded-lg shadow-md p-6 sm:p-8 relative flex flex-col justify-between dark:bg-primary/10 group transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-primary/10">
+        <blockquote data-reveal data-spotlight class="team-card rounded-lg shadow-md p-6 sm:p-8 relative flex flex-col justify-between dark:bg-primary/10 group transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-primary/10">
           <p class="text-slate-500 text-sm text-start dark:text-white">
             {description}
           </p>
@@ -51,7 +51,7 @@ const founders = [
           <div class="flex items-center gap-4 mt-4">
             <div class="overflow-hidden rounded-full flex-shrink-0">
               <img
-                alt=""
+                alt={name}
                 src={img || "/team/default.jpg"}
                 class="size-11 rounded-full object-cover transition-transform duration-300 group-hover:scale-110"
               />

@@ -4,7 +4,7 @@ import { MagicMotion } from "react-magic-motion";
 const Portfolio = () => {
   const [currentCategory, setCurrentCategory] = useState(0);
 
-  const categories = ["All", "Web design", "Mobile", "API"];
+  const categories = ["Todos", "Diseño web", "Móvil", "API"];
 
   const currentCategoryName = categories[currentCategory];
 
@@ -14,7 +14,7 @@ const Portfolio = () => {
       title: "Startup landing page",
       description:
         "Explora nuestra última creación: Startup para BuildingHomeConstructora. Descubre cómo esta empresa de construcción se destaca con una presentación impresionante y funcionalidades que capturan la atención de sus clientes potenciales. ¡Visita ahora y conoce el futuro de la construcción!",
-      categories: ["Web design", "API"],
+      categories: ["Diseño web", "API"],
       link: "https://www.buildinghomeconstructora.com/",
     },
     {
@@ -22,14 +22,14 @@ const Portfolio = () => {
       title: "E-commerce Rent car",
       description:
         "Explora nuestro e-commerce con tecnología 360° que te permite inspeccionar cada detalle de sus autos desde todos los ángulos.",
-      categories: ["Web design", "Mobile"],
+      categories: ["Diseño web", "Móvil"],
       link: "https://www.gamarentcarsas.com/",
     },
     {
       img: "/portfolio/portfolio-03.jpg",
       title: "SaaS landing page",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae dolor ultrices libero.",
+        "Plataforma SaaS con interfaz intuitiva, diseñada para optimizar la gestión de recursos y mejorar la productividad empresarial.",
       categories: ["API"],
       link: "/proyecto/saas-landing-page",
     },
@@ -37,16 +37,16 @@ const Portfolio = () => {
       img: "/portfolio/portfolio-04.jpg",
       title: "Business & corporate template",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae dolor ultrices libero.",
-      categories: ["Web design", "Mobile"],
+        "Plantilla corporativa profesional con diseño limpio y modular, ideal para empresas que buscan una presencia digital sólida y confiable.",
+      categories: ["Diseño web", "Móvil"],
       link: "/proyecto/business-corporate-template",
     },
     {
       img: "/portfolio/portfolio-05.webp",
       title: "SmartStart landing page",
       description:
-        "Landing page de una empresa que soluciones especializadas para la industria petrolera con un enfoque en calidad, tecnología de vanguardia y costos eficientes.",
-      categories: ["Web design"],
+        "Landing page de una empresa que ofrece soluciones especializadas para la industria petrolera con un enfoque en calidad, tecnología de vanguardia y costos eficientes.",
+      categories: ["Diseño web"],
       link: "https://www.smartstarsas.com/",
     },
   ];
@@ -81,7 +81,7 @@ const Portfolio = () => {
               <article className="text-start grid gap-4 group">
                 <header className="hover:shadow-2xl dark:hover:shadow-primary/40 shadow-none cursor-pointer transition-shadow">
                   <a href={link} target="_blank" rel="noreferrer">
-                    <img className="w-full rounded-lg" src={img} alt="" />
+                    <img className="w-full rounded-lg" src={img} alt={title} />
                   </a>
                 </header>
                 <h5 className="font-bold dark:text-white">{title}</h5>

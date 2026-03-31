@@ -1,0 +1,134 @@
+---
+import Section from "./Section.astro";
+
+const faqs = [
+  {
+    question: "¿Cuánto tiempo toma desarrollar una landing page?",
+    answer:
+      "El tiempo promedio es de 2 a 3 semanas, dependiendo de la complejidad del diseño y las funcionalidades requeridas. Mantenemos comunicación constante para cumplir con los plazos acordados.",
+  },
+  {
+    question: "¿Qué incluye el soporte premium?",
+    answer:
+      "El soporte premium incluye corrección de errores, actualizaciones de contenido, optimización de rendimiento, monitoreo del sitio y asistencia técnica prioritaria durante el período contratado.",
+  },
+  {
+    question: "¿Puedo solicitar cambios después de la entrega?",
+    answer:
+      "Sí, durante el período de soporte incluido puedes solicitar ajustes y modificaciones. Cambios mayores o nuevas funcionalidades se cotizan por separado con tarifas preferenciales para clientes existentes.",
+  },
+  {
+    question: "¿Cómo es el proceso de trabajo?",
+    answer:
+      "Nuestro proceso tiene 4 etapas: descubrimiento (entendemos tu negocio y objetivos), diseño (creamos prototipos y mockups), desarrollo (construimos tu sitio) y lanzamiento (pruebas finales y puesta en producción).",
+  },
+  {
+    question: "¿Ofrecen hosting y dominio?",
+    answer:
+      "Sí, podemos gestionar el hosting y dominio por ti. Trabajamos con proveedores confiables que garantizan velocidad, seguridad y un uptime del 99.9%.",
+  },
+  {
+    question: "¿Qué métodos de pago aceptan?",
+    answer:
+      "Aceptamos transferencias bancarias, pagos con tarjeta de crédito/débito y plataformas digitales. El pago se divide normalmente en 50% al iniciar y 50% al entregar.",
+  },
+];
+---
+
+<Section id="faq" styles="grid gap-2 text-center relative">
+  <!-- Decorative blobs -->
+  <div class="absolute -right-32 top-1/4 w-72 h-72 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute -left-24 bottom-10 w-56 h-56 bg-primary/5 dark:bg-primary/8 rounded-full blur-3xl pointer-events-none"></div>
+
+  <h4 data-reveal class="text-primary text-lg font-semibold">Resolvemos tus dudas</h4>
+  <h3 data-split-text class="text-5xl font-bold text-gradient">Preguntas frecuentes</h3>
+  <p data-reveal class="text-balance max-w-[500px] mx-auto text-slate-500" style="transition-delay: 200ms;">
+    Encuentra respuestas a las preguntas más comunes sobre nuestros servicios,
+    procesos y formas de trabajo.
+  </p>
+
+  <div class="max-w-2xl mx-auto w-full mt-8 text-left" data-reveal-stagger>
+    {
+      faqs.map(({ question, answer }, index) => (
+        <div
+          data-reveal
+          class="faq-item border-b border-slate-200 dark:border-white/10"
+        >
+          <button
+            class="faq-trigger w-full flex items-center justify-between py-5 text-left group"
+            aria-expanded="false"
+          >
+            <span class="font-semibold text-base dark:text-white group-hover:text-primary transition-colors pr-4">
+              {question}
+            </span>
+            <span class="faq-icon flex-shrink-0 w-6 h-6 relative">
+              <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-0.5 bg-primary rounded-full transition-transform duration-300"></span>
+              <span class="faq-icon-vertical absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-0.5 h-4 bg-primary rounded-full transition-transform duration-300"></span>
+            </span>
+          </button>
+          <div class="faq-content overflow-hidden transition-all duration-400 ease-out" style="max-height: 0;">
+            <p class="pb-5 text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+              {answer}
+            </p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</Section>
+
+<style>
+  .faq-item.active .faq-icon-vertical {
+    transform: translate(-50%, -50%) rotate(90deg);
+    opacity: 0;
+  }
+
+  .faq-item.active .faq-trigger {
+    color: rgb(74, 108, 247);
+  }
+
+  .duration-400 {
+    transition-duration: 400ms;
+  }
+</style>
+
+<script>
+  function initFAQ() {
+    const items = document.querySelectorAll('.faq-item');
+    if (!items.length) return;
+
+    items.forEach((item) => {
+      const trigger = item.querySelector('.faq-trigger') as HTMLButtonElement;
+      const content = item.querySelector('.faq-content') as HTMLElement;
+      if (!trigger || !content) return;
+
+      trigger.addEventListener('click', () => {
+        const isOpen = item.classList.contains('active');
+
+        // Close all others
+        items.forEach((other) => {
+          if (other !== item) {
+            other.classList.remove('active');
+            const otherBtn = other.querySelector('.faq-trigger') as HTMLButtonElement;
+            const otherContent = other.querySelector('.faq-content') as HTMLElement;
+            if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+            if (otherContent) otherContent.style.maxHeight = '0';
+          }
+        });
+
+        if (isOpen) {
+          item.classList.remove('active');
+          trigger.setAttribute('aria-expanded', 'false');
+          content.style.maxHeight = '0';
+        } else {
+          item.classList.add('active');
+          trigger.setAttribute('aria-expanded', 'true');
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initFAQ);
+  document.addEventListener('astro:page-load', initFAQ);
+</script>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const navLinks = [
-  { href: "#hero", label: "Home" },
+  { href: "#hero", label: "Inicio" },
   { href: "#about", label: "Sobre nosotros" },
   { href: "#services", label: "Servicios" },
   { href: "#works", label: "Trabajos" },
@@ -86,9 +86,9 @@ const Header = () => {
       <div className="max-w-[1320px] mx-auto flex justify-between items-center">
         {/* Logo */}
         {theme === "light" ? (
-          <img src="/Logo.svg" alt="" />
+          <img src="/Logo.svg" alt="CodeVista" />
         ) : (
-          <img className="max-w-[155px]" src="/logo-dark.png" alt="" />
+          <img className="max-w-[155px]" src="/logo-dark.png" alt="CodeVista" />
         )}
 
         {/* Navegacion desktop */}

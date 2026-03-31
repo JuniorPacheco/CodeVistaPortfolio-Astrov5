@@ -8,9 +8,9 @@ const plans = [
     price: "399",
     currency: "USD",
     description:
-      "La mejor opción para uso personal y para tu próximo proyecto.",
+      "Perfecta para emprendedores y profesionales que necesitan una presencia web impactante y funcional.",
     features: [
-      "Configuracion individual",
+      "Configuración individual",
       "Sin tarifas ni configuración ocultas",
       "Tamaño de equipo: 1 desarrollador",
       "Soporte premium: 1 mes",
@@ -21,12 +21,12 @@ const plans = [
     price: "1099",
     currency: "USD",
     description:
-      "Relevante para múltiples usuarios, soporte extendido y premium.",
+      "Tu tienda online completa con carrito de compras, pasarela de pagos y gestión de inventario integrada.",
     features: [
-      "Configuracion individual",
+      "Configuración individual",
       "Sin tarifas ni configuración ocultas",
       "Tamaño de equipo: 4 desarrolladores",
-      "Soporte premium: 2 mes",
+      "Soporte premium: 2 meses",
     ],
   },
   {
@@ -34,11 +34,11 @@ const plans = [
     price: "1199",
     currency: "USD",
     description:
-      "La mejor opción para crear ese proyecto único que tienes en mente.",
+      "Solución a medida para empresas con necesidades específicas. Funcionalidad avanzada y soporte dedicado.",
     features: [
-      "Configuracion individual",
+      "Configuración individual",
       "Sin tarifas ni configuración ocultas",
-      "Tamaño del equipo: 4 desarroladores",
+      "Tamaño del equipo: 4 desarrolladores",
       "Soporte premium: 3 meses",
     ],
   },
@@ -49,7 +49,7 @@ const plans = [
   function sendMessageWhatsapp(planInfo: any) {
     // Si se cambia algo en la estructura de esta funcion hay que recordar que se tiene que cambiar la información de contacto por correo
     const numeroWhatsApp = "573184281039";
-    let textValuation = `Buenos días/tardes, me interesa trabajar con ustedes en la realización de una pagina web bajo el plan de *${planInfo.name}*.`;
+    let textValuation = `Buenos días/tardes, me interesa trabajar con ustedes en la realización de una página web bajo el plan de *${planInfo.name}*.`;
 
     let url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${textValuation}`;
     window.open(url);
@@ -129,7 +129,7 @@ const plans = [
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
       <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12 grid gap-4">
         <h4 data-reveal class="tracking-tight font-semibold text-primary">Tienda</h4>
-        <h3 data-reveal class="text-4xl tracking-tight font-bold text-gradient" style="transition-delay: 100ms;">
+        <h3 data-split-text class="text-4xl tracking-tight font-bold text-gradient">
           Planes a un ☝️ solo pago
         </h3>
         <p data-reveal class="text-slate-500 max-w-[600px] mx-auto text-balance text-lg" style="transition-delay: 200ms;">
@@ -154,6 +154,7 @@ const plans = [
           plans.map(({ name, price, currency, description, features }, index) => (
           <div
           data-reveal
+          data-spotlight
           class:list={[
             "flex flex-col p-6 px-12 mx-auto max-w-lg text-center text-gray-900 rounded-lg xl:p-8 relative group xl:px-10 transition-all duration-300",
             index === 1

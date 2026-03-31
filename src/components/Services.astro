@@ -4,10 +4,10 @@ import Section from "./Section.astro";
 
 const services = [
   {
-    icon: "user-search",
-    title: "Busqueda de usuarios",
+    icon: "brand-codesandbox",
+    title: "Desarrollo Web a Medida",
     description:
-      "Analizamos el comportamiento y preferencias para mejorar la usabilidad y aumentar la conversión.",
+      "Construimos sitios web y aplicaciones desde cero, adaptados a las necesidades específicas de tu negocio. Código limpio, rendimiento óptimo y escalabilidad garantizada.",
   },
   {
     icon: "brand-visual-studio",
@@ -16,16 +16,22 @@ const services = [
       "Destaca tu marca y conecta con tu audiencia de manera memorable con nuestra experiencia en diseño web.",
   },
   {
-    icon: "users",
-    title: "Experiencia de usuario",
+    icon: "user-search",
+    title: "Investigación de Usuarios",
     description:
-      "Garantiza la excelencia de tu sitio web con pruebas exhaustivas para una experiencia óptima del usuario.",
+      "Analizamos el comportamiento y preferencias de tu público para mejorar la usabilidad y aumentar la conversión.",
   },
   {
-    icon: "brand-codesandbox",
-    title: "Prototipo",
+    icon: "users",
+    title: "Experiencia de Usuario",
     description:
-      "Visualiza y prueba tus ideas con nuestros prototipos web. Garantiza un diseño perfecto desde el principio.",
+      "Garantizamos la excelencia de tu sitio con pruebas exhaustivas para una experiencia óptima del usuario.",
+  },
+  {
+    icon: "device-mobile",
+    title: "Diseño Responsivo",
+    description:
+      "Tu sitio se verá perfecto en cualquier dispositivo. Diseñamos pensando en móvil, tablet y escritorio.",
   },
 ];
 ---
@@ -34,28 +40,44 @@ const services = [
   <!-- Decorative blobs -->
   <div class="absolute -right-40 -top-20 w-80 h-80 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute -left-32 bottom-0 w-64 h-64 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
-  <h4 data-reveal class="text-primary text-lg font-semibold">¿Que ofrecemos?</h4>
-  <h3 data-reveal class="text-5xl font-bold text-gradient" style="transition-delay: 100ms;">Nuestros servicios</h3>
+  <h4 data-reveal class="text-primary text-lg font-semibold">¿Qué ofrecemos?</h4>
+  <h3 data-split-text class="text-5xl font-bold text-gradient">Nuestros servicios</h3>
   <p data-reveal class="text-balance max-w-[500px] mx-auto text-slate-500" style="transition-delay: 200ms;">
     CodeVista potencia tu presencia en línea con soluciones web personalizadas.
     Desde diseño creativo hasta desarrollo avanzado, hacemos realidad tus
     proyectos digitales. ¡Destácate en la web con nosotros!
   </p>
-  <ul
+  <div
     data-reveal-stagger
-    class="grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] lg:grid-cols-4 lg:justify-center lg:gap-12 gap-10 text-center mt-12"
+    class="bento-grid mt-12"
   >
     {
-      services.map(({ icon, title, description }) => (
-        <li data-reveal class="service-card grid items-center gap-2 p-6 py-8 rounded-xl shadow-lg dark:shadow-primary/40 hover:bg-primary hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 group relative overflow-hidden">
+      services.map(({ icon, title, description }, index) => (
+        <div
+          data-reveal
+          data-spotlight
+          class:list={[
+            "service-card grid gap-2 p-6 py-8 rounded-xl shadow-lg dark:shadow-primary/40 hover:bg-primary hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 group relative overflow-hidden",
+            index === 0 ? "bento-featured items-start text-left" : "items-center text-center",
+          ]}
+        >
           <div class="service-card-line"></div>
-          <div class="block mx-auto max-w-max bg-primary p-3 rounded-full text-white group-hover:bg-white group-hover:text-primary transition-all duration-300 relative z-10 group-hover:rotate-6">
-            <Icon name={icon} size={35} />
+          <div class:list={[
+            "max-w-max bg-primary p-3 rounded-full text-white group-hover:bg-white group-hover:text-primary transition-all duration-300 relative z-10 group-hover:rotate-6",
+            index === 0 ? "" : "mx-auto",
+          ]}>
+            <Icon name={icon} size={index === 0 ? 40 : 35} />
           </div>
-          <h5 class="font-bold text-lg group-hover:text-white transition-colors relative z-10">
+          <h5 class:list={[
+            "font-bold dark:text-white group-hover:text-white transition-colors relative z-10",
+            index === 0 ? "text-xl" : "text-lg",
+          ]}>
             {title}
           </h5>
-          <p class="text-slate-500 text-sm group-hover:text-white transition-colors relative z-10 dark:text-white">
+          <p class:list={[
+            "text-slate-500 group-hover:text-white transition-colors relative z-10 dark:text-white",
+            index === 0 ? "text-sm max-w-md" : "text-sm",
+          ]}>
             {description}
           </p>
           <Icon
@@ -65,13 +87,40 @@ const services = [
           />
           <div class="size-28 absolute bg-transparent group-hover:bg-white transition-colors right-0 top-0 rounded-full translate-x-1/2 -translate-y-1/2 opacity-10" />
           <div class="size-48 absolute bg-transparent group-hover:bg-white transition-colors right-0 top-0 rounded-full translate-x-1/4 -translate-y-1/2 opacity-5" />
-        </li>
+        </div>
       ))
     }
-  </ul>
+  </div>
 </Section>
 
 <style>
+  .bento-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bento-featured {
+      grid-column: span 2;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .bento-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .bento-featured {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+  }
+
   .service-card-line {
     position: absolute;
     top: 0;
@@ -82,6 +131,11 @@ const services = [
     background: rgb(74, 108, 247);
     border-radius: 0 0 4px 4px;
     transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .bento-featured .service-card-line {
+    left: 0;
+    transform: none;
   }
 
   .service-card:hover .service-card-line {
