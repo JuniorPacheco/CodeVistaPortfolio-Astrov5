@@ -1,0 +1,84 @@
+---
+const metrics = [
+  { value: 5, suffix: "+", label: "Proyectos entregados" },
+  { value: 3, suffix: "+", label: "Años de experiencia" },
+  { value: 100, suffix: "%", label: "Clientes satisfechos" },
+  { value: 24, suffix: "/7", label: "Soporte disponible" },
+];
+---
+
+<section class="py-12 relative overflow-hidden">
+  <!-- Subtle background -->
+  <div class="absolute inset-0 bg-primary/[0.03] dark:bg-primary/[0.08]"></div>
+  <div class="absolute inset-0 opacity-[0.015] dark:opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(circle, rgb(74, 108, 247) 1px, transparent 1px); background-size: 24px 24px;"></div>
+
+  <div class="max-w-[1320px] w-[80vw] mx-auto px-4">
+    <div data-reveal-stagger class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 text-center">
+      {
+        metrics.map(({ value, suffix, label }) => (
+          <div data-reveal class="grid gap-1">
+            <span
+              class="metric-counter text-4xl md:text-5xl font-bold text-primary"
+              data-target={value}
+              data-suffix={suffix}
+            >
+              0{suffix}
+            </span>
+            <span class="text-slate-500 dark:text-slate-400 text-sm md:text-base">
+              {label}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  function initMetricCounters() {
+    const counters = document.querySelectorAll('.metric-counter');
+    if (!counters.length) return;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          const target = parseInt(el.dataset.target || '0', 10);
+          const suffix = el.dataset.suffix || '';
+
+          if (prefersReduced) {
+            el.textContent = `${target}${suffix}`;
+            observer.unobserve(el);
+            return;
+          }
+
+          const duration = 1200;
+          const start = performance.now();
+
+          function tick(now: number) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(eased * target);
+            el.textContent = `${current}${suffix}`;
+            if (progress < 1) {
+              requestAnimationFrame(tick);
+            }
+          }
+
+          requestAnimationFrame(tick);
+          observer.unobserve(el);
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    counters.forEach((el) => observer.observe(el));
+  }
+
+  document.addEventListener('DOMContentLoaded', initMetricCounters);
+  document.addEventListener('astro:page-load', initMetricCounters);
+</script>

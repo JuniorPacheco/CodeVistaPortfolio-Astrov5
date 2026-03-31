@@ -189,7 +189,7 @@ Los sitios premium agregan una textura de ruido casi imperceptible sobre toda la
 
 ---
 
-### 12. Seccion de testimonios o metricas con contadores
+### ~~12. Seccion de testimonios o metricas con contadores~~ COMPLETADA
 
 **Libreria:** Ninguna
 **Prioridad:** Media
