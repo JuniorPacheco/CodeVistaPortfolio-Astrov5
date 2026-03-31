@@ -26,10 +26,10 @@ const Portfolio = () => {
       link: "https://www.gamarentcarsas.com/",
     },
     {
-      img: "/portfolio/portfolio-03.jpg",
-      title: "SaaS landing page",
+      img: "/portfolio/portfolio-03.png",
+      title: "La Liga De Futbol Del Tolima",
       description:
-        "Plataforma SaaS con interfaz intuitiva, diseñada para optimizar la gestión de recursos y mejorar la productividad empresarial.",
+        "La página web de la Liga de Fútbol del Tolima, desarrollada por Codevistax, es una plataforma moderna y responsiva diseñada para fortalecer la presencia digital de la liga.Integra contenido informativo, secciones dinámicas y un panel administrativo que permite gestionar fácilmente noticias, eventos y resultados, ofreciendo una experiencia ágil y actualizada para todos los usuarios.                  .",
       categories: ["API"],
       link: "/proyecto/saas-landing-page",
     },
@@ -42,7 +42,7 @@ const Portfolio = () => {
       link: "/proyecto/business-corporate-template",
     },
     {
-      img: "/portfolio/portfolio-05.webp",
+      img: "/portfolio/portfolio-05.png",
       title: "SmartStart landing page",
       description:
         "Landing page de una empresa que ofrece soluciones especializadas para la industria petrolera con un enfoque en calidad, tecnología de vanguardia y costos eficientes.",
