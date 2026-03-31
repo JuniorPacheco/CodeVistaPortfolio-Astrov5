@@ -63,7 +63,7 @@ const services = [
         >
           <div class="service-card-line"></div>
           <div class:list={[
-            "max-w-max bg-primary p-3 rounded-full text-white group-hover:bg-white group-hover:text-primary transition-all duration-300 relative z-10 group-hover:rotate-6",
+            "service-icon max-w-max bg-primary p-3 rounded-full text-white group-hover:bg-white group-hover:text-primary transition-all duration-300 relative z-10",
             index === 0 ? "" : "mx-auto",
           ]}>
             <Icon name={icon} size={index === 0 ? 40 : 35} />
@@ -141,5 +141,85 @@ const services = [
   .service-card:hover .service-card-line {
     width: 100%;
     background: white;
+  }
+
+  /* Icon entrance animation — triggered when card is revealed */
+  .service-card.revealed .service-icon {
+    animation: iconBounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  /* Icon hover animation */
+  .service-card:hover .service-icon {
+    animation: iconPulse 0.8s ease-in-out infinite;
+  }
+
+  /* SVG stroke animation on hover */
+  .service-card .service-icon :global(svg) {
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover .service-icon :global(svg) {
+    transform: scale(1.15);
+  }
+
+  /* SVG path draw animation on reveal */
+  .service-card.revealed .service-icon :global(svg path),
+  .service-card.revealed .service-icon :global(svg circle),
+  .service-card.revealed .service-icon :global(svg rect),
+  .service-card.revealed .service-icon :global(svg line) {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: iconDraw 1s ease forwards 0.3s;
+  }
+
+  @keyframes iconBounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0) rotate(-30deg);
+    }
+    60% {
+      transform: scale(1.15) rotate(5deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  @keyframes iconPulse {
+    0%, 100% {
+      transform: scale(1) rotate(0deg);
+    }
+    25% {
+      transform: scale(1.08) rotate(3deg);
+    }
+    50% {
+      transform: scale(1) rotate(-3deg);
+    }
+    75% {
+      transform: scale(1.05) rotate(2deg);
+    }
+  }
+
+  @keyframes iconDraw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .service-card.revealed .service-icon,
+    .service-card:hover .service-icon {
+      animation: none;
+    }
+
+    .service-card.revealed .service-icon :global(svg path),
+    .service-card.revealed .service-icon :global(svg circle),
+    .service-card.revealed .service-icon :global(svg rect),
+    .service-card.revealed .service-icon :global(svg line) {
+      animation: none;
+      stroke-dasharray: none;
+      stroke-dashoffset: 0;
+    }
   }
 </style>

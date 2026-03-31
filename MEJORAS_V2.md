@@ -290,7 +290,7 @@ Reemplazar el circulo SVG estatico del hero por un gradiente mesh animado como e
 
 ---
 
-### 18. Animaciones de iconos con Rive o Lottie
+### ~~18. Animaciones de iconos SVG en Services~~ COMPLETADA
 
 **Libreria:** `@rive-app/canvas` o `lottie-web`
 **Prioridad:** Baja
@@ -309,7 +309,7 @@ Los iconos estaticos de servicios pueden ser reemplazados por iconos animados qu
 
 ---
 
-### 19. Lazy loading de imagenes del Portfolio
+### ~~19. Lazy loading de imagenes del Portfolio~~ COMPLETADA
 
 **Libreria:** Nativa (`loading="lazy"`)
 **Prioridad:** Alta
@@ -319,7 +319,7 @@ Las imagenes del portfolio cargan todas de golpe. Agregar `loading="lazy"` y `de
 
 ---
 
-### 20. Optimizar imagenes a formato WebP/AVIF
+### ~~20. Optimizar imagenes a formato WebP/AVIF~~ COMPLETADA
 
 **Libreria:** Integrada en Astro (`astro:assets`)
 **Prioridad:** Alta

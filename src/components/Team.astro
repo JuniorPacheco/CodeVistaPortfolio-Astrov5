@@ -1,6 +1,11 @@
 ---
 import Section from "../components/Section.astro";
 import { Icon } from "astro-icon/components";
+import { Image } from 'astro:assets';
+
+import team1 from '../assets/team/1.jpg';
+import team2 from '../assets/team/2.jpg';
+import team3 from '../assets/team/3.jpg';
 
 const founders = [
   {
@@ -8,21 +13,21 @@ const founders = [
     description:
       "Oscar López es un reconocido diseñador web y emprendedor, fundador y CEO de CodeVista. Especializado en técnicas innovadoras de desarrollo web, lidera la empresa hacia el éxito con su amplia experiencia y conocimiento en el campo.",
        subName: "Founder @ Code Vista",
-    img: "/team/1.jpg",
+    img: team1,
   },
   {
     name: "Junior Pacheco",
     description:
       "Cofundador de CodeVista, Desarrollador front-end con experiencia práctica y compromiso. Instructor de React, capacitando a futuros desarrolladores.",
     subName: "Founder @ Code Vista",
-    img: "/team/2.jpg",
+    img: team2,
   },
   {
     name: "Anderson Castro Vallejo",
     description:
       "Cofundador de CodeVista, es diseñador front-end con buenas ideas de diseño. Su creatividad y enfoque meticuloso han sido cruciales para el éxito de la empresa, desarrollando interfaces web intuitivas y atractivas.",
     subName: "Founder @ Code Vista",
-    img: "/team/3.jpg",
+    img: team3,
   },
 ];
 ---
@@ -50,9 +55,15 @@ const founders = [
 
           <div class="flex items-center gap-4 mt-4">
             <div class="overflow-hidden rounded-full flex-shrink-0">
-              <img
+              <Image
                 alt={name}
-                src={img || "/team/default.jpg"}
+                src={img}
+                width={44}
+                height={44}
+                format="webp"
+                quality={80}
+                loading="lazy"
+                decoding="async"
                 class="size-11 rounded-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
             </div>

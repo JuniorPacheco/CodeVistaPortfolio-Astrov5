@@ -76,8 +76,8 @@ const Header = () => {
     "p-4 sticky top-0 z-40 transition-all duration-300",
     "backdrop-blur-md",
     scrolled
-      ? "bg-white/80 dark:bg-black/80 shadow-lg dark:shadow-primary/5 border-b border-black/5 dark:border-white/10"
-      : "bg-white/60 dark:bg-black/60 border-b border-transparent",
+      ? "bg-white/80 dark:bg-[#050816]/90 shadow-lg dark:shadow-primary/5 border-b border-black/5 dark:border-white/10"
+      : "bg-white/60 dark:bg-[#050816]/90 border-b border-transparent",
   ].join(" ");
 
   return (
@@ -92,7 +92,7 @@ const Header = () => {
         )}
 
         {/* Navegacion desktop */}
-        <nav className="text-black dark:text-white text-[16.5px] font-inter md:flex gap-6 hidden items-center">
+        <nav className="text-black dark:text-slate-300 text-[16.5px] font-inter md:flex gap-6 hidden items-center">
           {navLinks.map(({ href, label }) => (
             <a
               key={href}
@@ -221,7 +221,7 @@ const Header = () => {
 
         {/* Navegacion mobile */}
         <nav
-          className={`text-black font-inter flex flex-col gap-6 md:hidden absolute top-[4.5rem] z-40 bg-white/90 backdrop-blur-md shadow-md p-5 right-4 rounded-lg dark:bg-black/90 dark:text-white dark:shadow-white/30 border border-black/5 dark:border-white/10 ${
+          className={`text-black font-inter flex flex-col gap-6 md:hidden absolute top-[4.5rem] z-40 bg-white/90 backdrop-blur-md shadow-md p-5 right-4 rounded-lg dark:bg-[#050816]/95 dark:text-slate-300 dark:shadow-primary/10 border border-black/5 dark:border-white/10 ${
             isShowMenu ? "block" : "hidden"
           }`}
         >

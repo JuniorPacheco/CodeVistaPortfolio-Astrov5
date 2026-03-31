@@ -1,6 +1,8 @@
 ---
 import Section from "../components/Section.astro";
 import { Icon } from "astro-icon/components";
+import { Image } from 'astro:assets';
+import logoDark from '../assets/logo-dark.png';
 
 const quickLinks = [
   { label: "Servicios", href: "#services" },
@@ -55,7 +57,7 @@ const socialLinks = [
       <div data-reveal class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
         <!-- Logo & description -->
         <div class="flex flex-col gap-4">
-          <img class="max-w-[155px]" src="/logo-dark.png" alt="CodeVista" />
+          <Image class="max-w-[155px]" src={logoDark} alt="CodeVista" format="webp" quality={80} loading="lazy" decoding="async" />
           <p class="text-sm text-slate-400 max-w-[280px]">
             Innovación en desarrollo y soluciones tecnológicas. Transformamos tus ideas en experiencias digitales.
           </p>

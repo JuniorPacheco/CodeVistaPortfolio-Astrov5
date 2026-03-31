@@ -1,3 +1,8 @@
+---
+import { Image } from 'astro:assets';
+import heroImage from '../assets/hero-image.png';
+---
+
 <section
   id="hero"
   class="text-secondary relative overflow-hidden grid gap-20 mmd:grid-cols-2 max-w-[1320px] mx-auto w-full pt-10 mmd:pt-0 px-4"
@@ -46,8 +51,12 @@
       <div class="mesh-blob mesh-blob-3"></div>
       <div class="mesh-blob mesh-blob-4"></div>
     </div>
-    <img class="relative z-10 block mx-auto" src="/hero-image.png" alt="Equipo de CodeVista desarrollando soluciones web" />
+    <Image class="relative z-10 block mx-auto" src={heroImage} alt="Equipo de CodeVista desarrollando soluciones web" format="webp" quality={80} />
+    <!-- Fade-out gradient bottom -->
+    <div class="hero-bottom-fade"></div>
   </div>
+  <!-- Fade-out gradient right (at section level to cover overflow) -->
+  <div class="hero-right-fade"></div>
 </section>
 
 <style>
@@ -86,6 +95,37 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* Bottom fade-out gradient */
+  .hero-bottom-fade {
+    position: absolute;
+    bottom: 0;
+    left: -10%;
+    right: -10%;
+    height: 45%;
+    background: linear-gradient(to top, white 5%, transparent 100%);
+    z-index: 20;
+    pointer-events: none;
+  }
+
+  :global(.dark) .hero-bottom-fade {
+    background: linear-gradient(to top, #050816 5%, transparent 100%);
+  }
+
+  .hero-right-fade {
+    position: absolute;
+    top: 0;
+    right: -1px;
+    bottom: 0;
+    width: 12%;
+    background: linear-gradient(to left, white 15%, transparent 100%);
+    z-index: 30;
+    pointer-events: none;
+  }
+
+  :global(.dark) .hero-right-fade {
+    background: linear-gradient(to left, #050816 15%, transparent 100%);
   }
 
   /* Gradient mesh blobs */

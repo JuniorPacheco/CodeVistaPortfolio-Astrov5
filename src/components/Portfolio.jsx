@@ -81,7 +81,7 @@ const Portfolio = () => {
               <article className="text-start grid gap-4 group">
                 <header className="hover:shadow-2xl dark:hover:shadow-primary/40 shadow-none cursor-pointer transition-shadow">
                   <a href={link} target="_blank" rel="noreferrer">
-                    <img className="w-full rounded-lg" src={img} alt={title} />
+                    <img className="w-full rounded-lg" src={img} alt={title} loading="lazy" decoding="async" />
                   </a>
                 </header>
                 <h5 className="font-bold dark:text-white">{title}</h5>
