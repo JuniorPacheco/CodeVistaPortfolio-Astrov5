@@ -173,7 +173,7 @@ Un degradado radial que sigue el cursor del mouse sobre las tarjetas, creando un
 
 ---
 
-### 11. Textura de grano/noise sutil (estilo premium)
+### ~~11. Textura de grano/noise sutil (estilo premium)~~ COMPLETADA
 
 **Libreria:** Ninguna (SVG filter)
 **Prioridad:** Baja
