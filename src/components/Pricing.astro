@@ -152,7 +152,7 @@ const plans = [
         </p>
       </div>
 
-      <div data-reveal-stagger class="space-y-8 lg:grid lg:grid-cols-4 sm:gap-6 xl:gap-10 lg:space-y-0">
+      <div data-reveal-stagger class="space-y-8 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 xl:grid-cols-4 xl:gap-10">
         {
           plans.map(({ name, price, currency, description, features }, index) => (
           <div
@@ -161,9 +161,9 @@ const plans = [
             class:list={[
               "flex flex-col p-6 px-10 mx-auto max-w-lg text-center text-gray-900 rounded-lg relative group transition-all duration-300",
               index === 3
-                ? "border-2 border-black dark:border-primary shadow-xl scale-105 dark:bg-primary/15 dark:shadow-primary/25"
+                ? "border-2 border-black dark:border-primary shadow-xl xl:scale-105 dark:bg-primary/15 dark:shadow-primary/25"
                 : index === 1
-                ? "border-2 border-primary shadow-lg lg:scale-105 dark:bg-primary/15 dark:shadow-primary/15"
+                ? "border-2 border-primary shadow-lg xl:scale-105 dark:bg-primary/15 dark:shadow-primary/15"
                 : "shadow-none hover:shadow-lg dark:bg-primary/10 dark:hover:shadow-primary/20",
             ]}
           >
