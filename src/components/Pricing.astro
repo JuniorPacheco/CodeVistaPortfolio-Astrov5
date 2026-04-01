@@ -143,30 +143,32 @@ const plans = [
   <section>
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
       <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12 grid gap-4">
-        <h4 class="tracking-tight font-semibold text-primary">Planes Codevistax</h4>
-        <h3 class="text-4xl tracking-tight font-bold text-gradient">
+        <h4 data-reveal class="tracking-tight font-semibold text-primary">Planes Codevistax</h4>
+        <h3 data-split-text class="text-4xl tracking-tight font-bold text-gradient">
           Soluciones digitales profesionales 🚀
         </h3>
-        <p class="text-slate-500 max-w-[600px] mx-auto text-lg">
+        <p data-reveal class="text-slate-500 max-w-[600px] mx-auto text-lg" style="transition-delay: 200ms;">
           Desarrollamos páginas web y plataformas diseñadas para escalar tu negocio y aumentar tus ventas.
         </p>
       </div>
 
-      <div class="space-y-8 lg:grid lg:grid-cols-4 sm:gap-6 xl:gap-10 lg:space-y-0">
+      <div data-reveal-stagger class="space-y-8 lg:grid lg:grid-cols-4 sm:gap-6 xl:gap-10 lg:space-y-0">
         {
           plans.map(({ name, price, currency, description, features }, index) => (
           <div
+            data-reveal
+            data-spotlight
             class:list={[
-              "flex flex-col p-6 px-10 mx-auto max-w-lg text-center rounded-lg relative group transition-all duration-300",
+              "flex flex-col p-6 px-10 mx-auto max-w-lg text-center text-gray-900 rounded-lg relative group transition-all duration-300",
               index === 3
-                ? "border-2 border-black shadow-xl scale-105"
+                ? "border-2 border-black dark:border-primary shadow-xl scale-105 dark:bg-primary/15 dark:shadow-primary/25"
                 : index === 1
-                ? "border-2 border-primary shadow-lg lg:scale-105"
-                : "shadow-none hover:shadow-lg",
+                ? "border-2 border-primary shadow-lg lg:scale-105 dark:bg-primary/15 dark:shadow-primary/15"
+                : "shadow-none hover:shadow-lg dark:bg-primary/10 dark:hover:shadow-primary/20",
             ]}
           >
             {index === 3 && (
-              <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-black text-white text-xs font-semibold px-4 py-1 rounded-full">
+              <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-black dark:bg-primary text-white text-xs font-semibold px-4 py-1 rounded-full">
                 Más completo
               </span>
             )}
@@ -177,7 +179,7 @@ const plans = [
               </span>
             )}
 
-            <h3 class="mb-4 text-2xl font-bold">{name}</h3>
+            <h3 class="mb-4 text-2xl font-bold dark:text-white">{name}</h3>
             <p class="text-slate-500 text-sm">{description}</p>
 
             <div class="flex justify-center items-baseline my-8">
@@ -192,7 +194,7 @@ const plans = [
             <ul class="mb-8 space-y-4 text-left">
               {
                 features.map((feature) => (
-                <li class="flex items-center space-x-3">
+                <li class="flex items-center space-x-3 dark:text-white">
                   <span class="text-green-500">✔</span>
                   <span>{feature}</span>
                 </li>
@@ -206,7 +208,7 @@ const plans = [
               class:list={[
                 "font-medium rounded-lg text-sm px-5 py-2.5 text-center border transition-all",
                 index === 3
-                  ? "bg-black text-white hover:bg-gray-800"
+                  ? "bg-black dark:bg-primary text-white hover:bg-gray-800 dark:hover:bg-primary/90"
                   : index === 1
                   ? "bg-primary text-white hover:bg-primary/90"
                   : "border-primary text-primary",
