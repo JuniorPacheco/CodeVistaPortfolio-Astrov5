@@ -1,8 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MagicMotion } from "react-magic-motion";
 
 const Portfolio = () => {
   const [currentCategory, setCurrentCategory] = useState(0);
+  const [gallery, setGallery] = useState(null);
+  const [galleryIndex, setGalleryIndex] = useState(0);
+
+  useEffect(() => {
+    if (!gallery) return;
+    const handleKey = (e) => {
+      if (e.key === "Escape") setGallery(null);
+      if (e.key === "ArrowRight") setGalleryIndex((i) => (i + 1) % gallery.images.length);
+      if (e.key === "ArrowLeft") setGalleryIndex((i) => (i - 1 + gallery.images.length) % gallery.images.length);
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKey);
+    };
+  }, [gallery]);
 
   const categories = ["Todos", "Diseño web", "Móvil", "API"];
 
@@ -34,12 +51,19 @@ const Portfolio = () => {
       link: "/proyecto/saas-landing-page",
     },
     {
-      img: "/portfolio/portfolio-04.jpg",
-      title: "Business & corporate template",
+      img: "/portfolio/cabal-dashboard.png",
+      title: "Cabal Studios - Sistema de Gestión",
       description:
-        "Plantilla corporativa profesional con diseño limpio y modular, ideal para empresas que buscan una presencia digital sólida y confiable.",
-      categories: ["Diseño web", "Móvil"],
-      link: "/proyecto/business-corporate-template",
+        "Sistema de gestión integral para un estudio de fotografía profesional. Incluye dashboard con KPIs en tiempo real, facturación con estados de pago, recordatorios automáticos vía WhatsApp y email, sincronización con Google Calendar, y generación de recibos tipo POS con código QR.",
+      categories: ["Diseño web", "API"],
+      link: null,
+      gallery: {
+        images: [
+          { src: "/portfolio/cabal-login.png", caption: "Login - Autenticación JWT con sistema de roles (Owner, Admin, Photographer, Assistant, Viewer)" },
+          { src: "/portfolio/cabal-dashboard.png", caption: "Dashboard - KPIs en tiempo real: clientes, facturas, pagos. Gráficas de ingresos mensuales y distribución de facturas" },
+          { src: "/portfolio/cabal-conexiones.png", caption: "Conexiones - Integración con WhatsApp (Evolution API) y Google Calendar (OAuth2) para recordatorios automáticos" },
+        ],
+      },
     },
     {
       img: "/portfolio/portfolio-05.png",
@@ -76,13 +100,23 @@ const Portfolio = () => {
       </ul>
       <MagicMotion>
         <ul className="grid grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] mx-auto gap-6 pt-6 w-full">
-          {projectsFilter.map(({ title, img, description, link }) => (
+          {projectsFilter.map(({ title, img, description, link, gallery: projectGallery }) => (
             <li key={title}>
               <article className="text-start grid gap-4 group">
                 <header className="hover:shadow-2xl dark:hover:shadow-primary/40 shadow-none cursor-pointer transition-shadow">
-                  <a href={link} target="_blank" rel="noreferrer">
-                    <img className="w-full rounded-lg" src={img} alt={title} loading="lazy" decoding="async" />
-                  </a>
+                  {projectGallery ? (
+                    <button
+                      type="button"
+                      className="w-full text-left"
+                      onClick={() => { setGallery({ title, ...projectGallery }); setGalleryIndex(0); }}
+                    >
+                      <img className="w-full rounded-lg" src={img} alt={title} loading="lazy" decoding="async" />
+                    </button>
+                  ) : (
+                    <a href={link} target="_blank" rel="noreferrer">
+                      <img className="w-full rounded-lg" src={img} alt={title} loading="lazy" decoding="async" />
+                    </a>
+                  )}
                 </header>
                 <h5 className="font-bold dark:text-white">{title}</h5>
                 <p className="text-slate-500 text-sm">{description}</p>
@@ -91,6 +125,66 @@ const Portfolio = () => {
           ))}
         </ul>
       </MagicMotion>
+      {gallery && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+          onClick={(e) => { if (e.target === e.currentTarget) setGallery(null); }}
+        >
+          <div className="relative max-w-5xl w-full max-h-[90vh] flex flex-col">
+            {/* Close */}
+            <button
+              onClick={() => setGallery(null)}
+              className="absolute -top-10 right-0 text-white/70 hover:text-white text-3xl font-light z-10"
+            >
+              &times;
+            </button>
+
+            {/* Title */}
+            <h4 className="text-white font-bold text-lg mb-4 text-center">{gallery.title}</h4>
+
+            {/* Image */}
+            <div className="relative flex-1 min-h-0 flex items-center justify-center">
+              <button
+                onClick={() => setGalleryIndex((i) => (i - 1 + gallery.images.length) % gallery.images.length)}
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl z-10"
+              >
+                &#8249;
+              </button>
+
+              <img
+                src={gallery.images[galleryIndex].src}
+                alt={gallery.images[galleryIndex].caption}
+                className="max-h-[70vh] w-auto max-w-full rounded-lg object-contain mx-auto"
+              />
+
+              <button
+                onClick={() => setGalleryIndex((i) => (i + 1) % gallery.images.length)}
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl z-10"
+              >
+                &#8250;
+              </button>
+            </div>
+
+            {/* Caption */}
+            <p className="text-white/80 text-sm text-center mt-4 px-4">
+              {gallery.images[galleryIndex].caption}
+            </p>
+
+            {/* Dots */}
+            <div className="flex justify-center gap-2 mt-3">
+              {gallery.images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setGalleryIndex(i)}
+                  className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                    i === galleryIndex ? "bg-primary" : "bg-white/40 hover:bg-white/60"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
