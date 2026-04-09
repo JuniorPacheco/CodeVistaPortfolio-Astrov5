@@ -6,6 +6,8 @@ const Portfolio = () => {
   const [gallery, setGallery] = useState(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
 
+  const [touchStart, setTouchStart] = useState(null);
+
   useEffect(() => {
     if (!gallery) return;
     const handleKey = (e) => {
@@ -127,26 +129,40 @@ const Portfolio = () => {
       </MagicMotion>
       {gallery && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 sm:bg-black/80 backdrop-blur-sm p-2 sm:p-4"
           onClick={(e) => { if (e.target === e.currentTarget) setGallery(null); }}
         >
-          <div className="relative max-w-5xl w-full max-h-[90vh] flex flex-col">
-            {/* Close */}
-            <button
-              onClick={() => setGallery(null)}
-              className="absolute -top-10 right-0 text-white/70 hover:text-white text-3xl font-light z-10"
+          <div className="relative max-w-5xl w-full max-h-[95vh] sm:max-h-[90vh] flex flex-col">
+            {/* Header: title + close */}
+            <div className="flex items-center justify-between mb-3 sm:mb-4 px-1">
+              <h4 className="text-white font-bold text-sm sm:text-lg truncate pr-4">{gallery.title}</h4>
+              <button
+                onClick={() => setGallery(null)}
+                className="text-white/70 hover:text-white text-2xl sm:text-3xl font-light shrink-0 w-8 h-8 flex items-center justify-center"
+              >
+                &times;
+              </button>
+            </div>
+
+            {/* Image with swipe */}
+            <div
+              className="relative flex-1 min-h-0 flex items-center justify-center"
+              onTouchStart={(e) => setTouchStart(e.touches[0].clientX)}
+              onTouchEnd={(e) => {
+                if (touchStart === null) return;
+                const diff = touchStart - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) {
+                  diff > 0
+                    ? setGalleryIndex((i) => (i + 1) % gallery.images.length)
+                    : setGalleryIndex((i) => (i - 1 + gallery.images.length) % gallery.images.length);
+                }
+                setTouchStart(null);
+              }}
             >
-              &times;
-            </button>
-
-            {/* Title */}
-            <h4 className="text-white font-bold text-lg mb-4 text-center">{gallery.title}</h4>
-
-            {/* Image */}
-            <div className="relative flex-1 min-h-0 flex items-center justify-center">
+              {/* Arrows - hidden on mobile, visible on sm+ */}
               <button
                 onClick={() => setGalleryIndex((i) => (i - 1 + gallery.images.length) % gallery.images.length)}
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl z-10"
+                className="hidden sm:flex absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full items-center justify-center text-xl z-10"
               >
                 &#8249;
               </button>
@@ -154,34 +170,37 @@ const Portfolio = () => {
               <img
                 src={gallery.images[galleryIndex].src}
                 alt={gallery.images[galleryIndex].caption}
-                className="max-h-[70vh] w-auto max-w-full rounded-lg object-contain mx-auto"
+                className="max-h-[60vh] sm:max-h-[70vh] w-auto max-w-full rounded-lg object-contain mx-auto select-none"
               />
 
               <button
                 onClick={() => setGalleryIndex((i) => (i + 1) % gallery.images.length)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl z-10"
+                className="hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full items-center justify-center text-xl z-10"
               >
                 &#8250;
               </button>
             </div>
 
             {/* Caption */}
-            <p className="text-white/80 text-sm text-center mt-4 px-4">
+            <p className="text-white/80 text-xs sm:text-sm text-center mt-3 sm:mt-4 px-2 sm:px-4 line-clamp-3">
               {gallery.images[galleryIndex].caption}
             </p>
 
             {/* Dots */}
-            <div className="flex justify-center gap-2 mt-3">
+            <div className="flex justify-center gap-3 sm:gap-2 mt-3">
               {gallery.images.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setGalleryIndex(i)}
-                  className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                  className={`w-3 h-3 sm:w-2.5 sm:h-2.5 rounded-full transition-colors ${
                     i === galleryIndex ? "bg-primary" : "bg-white/40 hover:bg-white/60"
                   }`}
                 />
               ))}
             </div>
+
+            {/* Swipe hint - only on mobile */}
+            <p className="text-white/30 text-xs text-center mt-2 sm:hidden">Desliza para navegar</p>
           </div>
         </div>
       )}
