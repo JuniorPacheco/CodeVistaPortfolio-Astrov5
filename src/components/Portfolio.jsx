@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { MagicMotion } from "react-magic-motion";
 
 const Portfolio = () => {
@@ -101,7 +102,7 @@ const Portfolio = () => {
         ))}
       </ul>
       <MagicMotion>
-        <ul className="grid grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] mx-auto gap-6 pt-6 w-full">
+        <ul className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] mx-auto gap-6 pt-6 w-full">
           {projectsFilter.map(({ title, img, description, link, gallery: projectGallery }) => (
             <li key={title}>
               <article className="text-start grid gap-4 group">
@@ -127,18 +128,18 @@ const Portfolio = () => {
           ))}
         </ul>
       </MagicMotion>
-      {gallery && (
+      {gallery && createPortal(
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 sm:bg-black/80 backdrop-blur-sm p-2 sm:p-4"
+          className="fixed inset-0 z-50 bg-black/95 sm:bg-black/80 backdrop-blur-sm overflow-y-auto"
           onClick={(e) => { if (e.target === e.currentTarget) setGallery(null); }}
         >
-          <div className="relative max-w-5xl w-full max-h-[95vh] sm:max-h-[90vh] flex flex-col">
+          <div className="min-h-full flex flex-col justify-center max-w-5xl mx-auto px-3 py-4 sm:p-6">
             {/* Header: title + close */}
-            <div className="flex items-center justify-between mb-3 sm:mb-4 px-1">
-              <h4 className="text-white font-bold text-sm sm:text-lg truncate pr-4">{gallery.title}</h4>
+            <div className="flex items-center justify-between mb-4 shrink-0">
+              <h4 className="text-white font-bold text-base sm:text-lg truncate pr-4">{gallery.title}</h4>
               <button
                 onClick={() => setGallery(null)}
-                className="text-white/70 hover:text-white text-2xl sm:text-3xl font-light shrink-0 w-8 h-8 flex items-center justify-center"
+                className="text-white/70 hover:text-white text-3xl font-light shrink-0 w-10 h-10 flex items-center justify-center"
               >
                 &times;
               </button>
@@ -146,7 +147,7 @@ const Portfolio = () => {
 
             {/* Image with swipe */}
             <div
-              className="relative flex-1 min-h-0 flex items-center justify-center"
+              className="relative flex items-center justify-center shrink-0"
               onTouchStart={(e) => setTouchStart(e.touches[0].clientX)}
               onTouchEnd={(e) => {
                 if (touchStart === null) return;
@@ -170,7 +171,7 @@ const Portfolio = () => {
               <img
                 src={gallery.images[galleryIndex].src}
                 alt={gallery.images[galleryIndex].caption}
-                className="max-h-[60vh] sm:max-h-[70vh] w-auto max-w-full rounded-lg object-contain mx-auto select-none"
+                className="w-full sm:w-auto sm:max-h-[70vh] max-w-full rounded-lg object-contain mx-auto select-none"
               />
 
               <button
@@ -182,17 +183,17 @@ const Portfolio = () => {
             </div>
 
             {/* Caption */}
-            <p className="text-white/80 text-xs sm:text-sm text-center mt-3 sm:mt-4 px-2 sm:px-4 line-clamp-3">
+            <p className="text-white/80 text-xs sm:text-sm text-center mt-4 px-1 sm:px-4">
               {gallery.images[galleryIndex].caption}
             </p>
 
             {/* Dots */}
-            <div className="flex justify-center gap-3 sm:gap-2 mt-3">
+            <div className="flex justify-center gap-4 sm:gap-2 mt-4 shrink-0">
               {gallery.images.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setGalleryIndex(i)}
-                  className={`w-3 h-3 sm:w-2.5 sm:h-2.5 rounded-full transition-colors ${
+                  className={`w-3.5 h-3.5 sm:w-2.5 sm:h-2.5 rounded-full transition-colors ${
                     i === galleryIndex ? "bg-primary" : "bg-white/40 hover:bg-white/60"
                   }`}
                 />
@@ -200,9 +201,10 @@ const Portfolio = () => {
             </div>
 
             {/* Swipe hint - only on mobile */}
-            <p className="text-white/30 text-xs text-center mt-2 sm:hidden">Desliza para navegar</p>
+            <p className="text-white/30 text-[11px] text-center mt-3 sm:hidden">Desliza para navegar</p>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
