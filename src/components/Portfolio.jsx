@@ -51,7 +51,7 @@ const Portfolio = () => {
       description:
         "La página web de la Liga de Fútbol del Tolima, desarrollada por Codevistax, es una plataforma moderna y responsiva diseñada para fortalecer su presencia digital. Cuenta con secciones dinámicas y un panel administrativo de autogestión que permite personalizar colores, contenidos y gestionar la información de manera fácil, brindando total control y actualización constante.",
       categories: ["API"],
-      link: "/proyecto/saas-landing-page",
+      link: "https://www.ligadefutboldeltolima.com/",
     },
     {
       img: "/portfolio/cabal-dashboard.png",
