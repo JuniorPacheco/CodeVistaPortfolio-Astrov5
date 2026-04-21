@@ -207,7 +207,6 @@ import heroImage from '../assets/hero-image.png';
 
   .hero-image {
     will-change: transform, opacity;
-    transition: transform 0.15s linear, opacity 0.15s linear;
   }
 
   /* Respect reduced motion */
@@ -223,9 +222,6 @@ import heroImage from '../assets/hero-image.png';
       animation: none;
     }
 
-    .hero-image {
-      transition: none;
-    }
   }
 </style>
 
@@ -236,25 +232,46 @@ import heroImage from '../assets/hero-image.png';
     const hero = document.getElementById('hero');
     if (!img || !hero) return;
 
-    let ticking = false;
-    function update() {
-      const rect = hero.getBoundingClientRect();
-      const progress = Math.max(0, Math.min(1, -rect.top / rect.height));
-      img.style.transform = `translate3d(${progress * 110}%, 0, 0)`;
-      img.style.opacity = `${1 - progress * 0.85}`;
-      ticking = false;
+    let target = 0;
+    let current = 0;
+    let rafId: number | null = null;
+    let running = false;
+
+    const LERP = 0.08;
+    const MAX_TRANSLATE = 115;
+    const MAX_FADE = 0.9;
+
+    function ease(t: number) {
+      return t * t * (3 - 2 * t);
     }
 
-    function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(update);
-        ticking = true;
+    function tick() {
+      current += (target - current) * LERP;
+      const eased = ease(Math.max(0, Math.min(1, current)));
+      img!.style.transform = `translate3d(${eased * MAX_TRANSLATE}%, 0, 0)`;
+      img!.style.opacity = `${1 - eased * MAX_FADE}`;
+
+      if (Math.abs(target - current) > 0.0005) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        current = target;
+        running = false;
+        rafId = null;
       }
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    update();
+    function computeTarget() {
+      const rect = hero!.getBoundingClientRect();
+      target = Math.max(0, Math.min(1, -rect.top / rect.height));
+      if (!running) {
+        running = true;
+        rafId = requestAnimationFrame(tick);
+      }
+    }
+
+    window.addEventListener('scroll', computeTarget, { passive: true });
+    window.addEventListener('resize', computeTarget, { passive: true });
+    computeTarget();
   }
 
   document.addEventListener('DOMContentLoaded', initHeroScroll);
