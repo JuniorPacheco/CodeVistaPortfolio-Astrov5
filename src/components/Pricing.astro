@@ -167,8 +167,8 @@ const plans = [
                 : "shadow-none hover:shadow-lg dark:bg-primary/10 dark:hover:shadow-primary/20",
             ]}
           >
-            <div class="pricing-glow" aria-hidden="true" />
-            <div class="pricing-rays" aria-hidden="true" />
+            <div class="pricing-beam" aria-hidden="true" />
+            <div class="pricing-beam pricing-beam--2" aria-hidden="true" />
             {index === 3 && (
               <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-black dark:bg-primary text-white text-xs font-semibold px-4 py-1 rounded-full">
                 Más completo
@@ -226,94 +226,58 @@ const plans = [
 </Section>
 
 <style>
-  @property --ray-angle {
-    syntax: '<angle>';
-    initial-value: 0deg;
-    inherits: false;
-  }
-
-  @keyframes pricing-ray-spin {
-    to { --ray-angle: 360deg; }
-  }
-
-  @keyframes pricing-ray-spin-fallback {
-    to { transform: rotate(360deg); }
-  }
-
   .pricing-card {
     isolation: isolate;
   }
 
-  .pricing-card .pricing-rays {
+  .pricing-card .pricing-beam {
     position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1.5px;
-    background: conic-gradient(
-      from var(--ray-angle, 0deg),
-      transparent 0deg,
-      rgb(74, 108, 247) 60deg,
-      transparent 140deg,
-      transparent 220deg,
-      rgb(74, 108, 247) 300deg,
-      transparent 360deg
+    top: 0;
+    left: 0;
+    width: 90px;
+    aspect-ratio: 1 / 1;
+    background: radial-gradient(
+      circle at center,
+      rgb(74, 108, 247) 0%,
+      rgba(74, 108, 247, 0.6) 25%,
+      rgba(74, 108, 247, 0) 60%
     );
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
-    opacity: 0.45;
-    animation: pricing-ray-spin 6s linear infinite;
+    filter: blur(4px);
     pointer-events: none;
-    transition: opacity 0.4s ease;
+    offset-path: rect(0 100% 100% 0 round 8px);
+    offset-distance: 0%;
+    offset-anchor: center;
+    animation: pricing-beam-travel 4s linear infinite;
+    opacity: 0.85;
+    transition: opacity 0.4s ease, filter 0.4s ease;
+    mix-blend-mode: screen;
   }
 
-  .pricing-card .pricing-glow {
-    position: absolute;
-    inset: -24px;
-    border-radius: 28px;
-    background: conic-gradient(
-      from var(--ray-angle, 0deg),
-      transparent 0deg,
-      rgba(74, 108, 247, 0.55) 60deg,
-      transparent 160deg,
-      transparent 220deg,
-      rgba(74, 108, 247, 0.55) 300deg,
-      transparent 360deg
-    );
-    filter: blur(32px);
-    opacity: 0;
-    animation: pricing-ray-spin 6s linear infinite;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
-    z-index: -1;
+  .pricing-card .pricing-beam--2 {
+    animation-delay: -2s;
+    opacity: 0.6;
   }
 
-  .pricing-card:hover .pricing-rays {
+  .pricing-card:hover .pricing-beam {
+    animation-duration: 2s;
     opacity: 1;
-    animation-duration: 2.5s;
+    filter: blur(3px);
   }
 
-  .pricing-card:hover .pricing-glow {
-    opacity: 0.75;
-    animation-duration: 2.5s;
+  @keyframes pricing-beam-travel {
+    to { offset-distance: 100%; }
   }
 
-  @supports not (background: conic-gradient(from var(--ray-angle), red)) {
-    .pricing-card .pricing-rays,
-    .pricing-card .pricing-glow {
-      animation-name: pricing-ray-spin-fallback;
+  @supports not (offset-path: rect(0 100% 100% 0 round 8px)) {
+    .pricing-card .pricing-beam {
+      display: none;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .pricing-card .pricing-rays,
-    .pricing-card .pricing-glow {
+    .pricing-card .pricing-beam {
       animation: none;
-    }
-    .pricing-card:hover .pricing-glow {
-      opacity: 0.4;
+      opacity: 0.3;
     }
   }
 </style>

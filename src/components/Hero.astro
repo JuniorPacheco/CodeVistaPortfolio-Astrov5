@@ -51,7 +51,7 @@ import heroImage from '../assets/hero-image.png';
       <div class="mesh-blob mesh-blob-3"></div>
       <div class="mesh-blob mesh-blob-4"></div>
     </div>
-    <Image class="relative z-10 block mx-auto" src={heroImage} alt="Equipo de CodeVista desarrollando soluciones web" format="webp" quality={80} />
+    <Image id="hero-image" class="hero-image relative z-10 block mx-auto" src={heroImage} alt="Equipo de CodeVista desarrollando soluciones web" format="webp" quality={80} />
     <!-- Fade-out gradient bottom -->
     <div class="hero-bottom-fade"></div>
   </div>
@@ -205,6 +205,11 @@ import heroImage from '../assets/hero-image.png';
     80% { transform: translate(20px, 20px) scale(0.96); }
   }
 
+  .hero-image {
+    will-change: transform, opacity;
+    transition: transform 0.15s linear, opacity 0.15s linear;
+  }
+
   /* Respect reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .hero-word,
@@ -217,6 +222,42 @@ import heroImage from '../assets/hero-image.png';
     .mesh-blob {
       animation: none;
     }
+
+    .hero-image {
+      transition: none;
+    }
   }
 </style>
+
+<script>
+  function initHeroScroll() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const img = document.getElementById('hero-image') as HTMLElement | null;
+    const hero = document.getElementById('hero');
+    if (!img || !hero) return;
+
+    let ticking = false;
+    function update() {
+      const rect = hero.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, -rect.top / rect.height));
+      img.style.transform = `translate3d(${progress * 110}%, 0, 0)`;
+      img.style.opacity = `${1 - progress * 0.85}`;
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  }
+
+  document.addEventListener('DOMContentLoaded', initHeroScroll);
+  document.addEventListener('astro:page-load', initHeroScroll);
+</script>
 
