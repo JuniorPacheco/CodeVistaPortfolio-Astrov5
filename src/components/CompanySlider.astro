@@ -9,13 +9,14 @@ const logos = [
   },
   {
     src: "/company-logos/gama-car-logo.png",
-    name: "Gama rent cars",
+    darkSrc: "/company-logos/gama-logo.png",
+    name: "Gama rent cars 1",
   },
   {
     src: "/company-logos/smart-start-logo.png",
     name: "Smart Start",
   },
-   {
+  {
     src: "/company-logos/liga-futbol-del-tolima.png",
     name: "Liga De Futbol Del Tolima",
   },
@@ -23,17 +24,13 @@ const logos = [
     src: "/company-logos/cabal-studios-logo.png",
     name: "Cabal Studios",
   },
-   {
+  {
     src: "/company-logos/ProfeLeo.png",
     name: "El ProfeLeo",
   },
   {
     src: "/company-logos/constructor-logo.png",
     name: "Constructor 2",
-  },
-  {
-    src: "/company-logos/gama-car-logo.png",
-    name: "Gama rent cars 2",
   },
   {
     src: "/company-logos/smart-start-logo.png",
@@ -47,7 +44,7 @@ const logos = [
     src: "/company-logos/cabal-studios-logo.png",
     name: "Cabal Studios 2",
   },
-   {
+  {
     src: "/company-logos/ProfeLeo.png",
     name: "El ProfeLeo",
   },
@@ -55,8 +52,12 @@ const logos = [
 ---
 
 <Section styles="relative overflow-hidden text-center" separation="none">
-  <h4 data-reveal class="text-primary text-lg font-semibold">¿Con quién trabajamos?</h4>
-  <h3 data-split-text class="text-5xl font-bold text-gradient">Nuestros clientes</h3>
+  <h4 data-reveal class="text-primary text-lg font-semibold">
+    ¿Con quién trabajamos?
+  </h4>
+  <h3 data-split-text class="text-5xl font-bold text-gradient">
+    Nuestros clientes
+  </h3>
   <div data-reveal style="transition-delay: 200ms;">
     <SliderImages images={logos} client:load />
   </div>

@@ -1,28 +1,46 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../style/slider.css";
 
 const SliderImages = ({ images }) => {
-  useEffect(() => {
-    const scrollers = document.querySelectorAll(".scroller");
-    //TODO Pendiente revisar el hecho de que al hacer un re-render el scroll aumenta la velocidad, esto se debe poder solucionar con un limpiado en el useEffect
+  const [theme, setTheme] = useState("light");
 
-    // If a user hasn't opted in for recuded motion, then we add the animation
+  useEffect(() => {
+    // Detectar tema actual al cargar
+    const updateTheme = () => {
+      if (document.documentElement.classList.contains("dark")) {
+        setTheme("dark");
+      } else {
+        setTheme("light");
+      }
+    };
+
+    updateTheme();
+
+    // Escuchar cambios de clase dark en html
+    const observer = new MutationObserver(() => {
+      updateTheme();
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    const scrollers = document.querySelectorAll(".scroller");
+
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       addAnimation();
     }
 
     function addAnimation() {
       scrollers.forEach((scroller) => {
-        // add data-animated="true" to every `.scroller` on the page
+        if (scroller.getAttribute("data-animated")) return;
+
         scroller.setAttribute("data-animated", true);
 
-        // Make an array from the elements within `.scroller-inner`
         const scrollerInner = scroller.querySelector(".scroller__inner");
         const scrollerContent = Array.from(scrollerInner.children);
 
-        // For each item in the array, clone it
-        // add aria-hidden to it
-        // add it into the `.scroller-inner`
         scrollerContent.forEach((item) => {
           const duplicatedItem = item.cloneNode(true);
           duplicatedItem.setAttribute("aria-hidden", true);
@@ -30,15 +48,18 @@ const SliderImages = ({ images }) => {
         });
       });
     }
+
+    return () => observer.disconnect();
   }, []);
+
   return (
     <div className="scroller">
       <div className="scroller__inner">
-        {images.map((image) => (
+        {images.map((image, index) => (
           <img
+            key={index}
             className="w-52 aspect-square object-contain"
-            key={image.src}
-            src={image.src}
+            src={theme === "dark" && image.darkSrc ? image.darkSrc : image.src}
             alt={image.name}
           />
         ))}
@@ -46,4 +67,5 @@ const SliderImages = ({ images }) => {
     </div>
   );
 };
+
 export default SliderImages;
