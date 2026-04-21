@@ -1,6 +1,7 @@
 ---
 import Section from "./Section.astro";
 import { Icon } from "astro-icon/components";
+import ElectricBorder from "./ElectricBorder.jsx";
 
 const plans = [
   {
@@ -152,23 +153,29 @@ const plans = [
         </p>
       </div>
 
-      <div data-reveal-stagger class="space-y-8 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 xl:grid-cols-4 xl:gap-10">
+      <div data-reveal-stagger class="pricing-grid space-y-8 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 xl:grid-cols-4 xl:gap-10">
         {
           plans.map(({ name, price, currency, description, features }, index) => (
+          <ElectricBorder
+            client:load
+            color="#4a6cf7"
+            speed={0.9}
+            chaos={0.1}
+            borderRadius={8}
+            className={`pricing-item h-full mx-auto max-w-lg ${index === 1 ? "pricing-item--featured" : ""} ${index === 1 || index === 3 ? "xl:scale-105" : ""}`}
+          >
           <div
             data-reveal
             data-spotlight
             class:list={[
-              "pricing-card flex flex-col p-6 px-10 mx-auto max-w-lg text-center text-gray-900 rounded-lg relative group transition-all duration-300",
+              "h-full flex flex-col p-6 px-10 text-center text-gray-900 rounded-lg relative group transition-all duration-300",
               index === 3
-                ? "border-2 border-black dark:border-primary shadow-xl xl:scale-105 dark:bg-primary/15 dark:shadow-primary/25"
+                ? "border-2 border-black dark:border-primary shadow-xl dark:bg-primary/15 dark:shadow-primary/25"
                 : index === 1
-                ? "border-2 border-primary shadow-lg xl:scale-105 dark:bg-primary/15 dark:shadow-primary/15"
+                ? "border-2 border-primary shadow-lg dark:bg-primary/15 dark:shadow-primary/15"
                 : "shadow-none hover:shadow-lg dark:bg-primary/10 dark:hover:shadow-primary/20",
             ]}
           >
-            <div class="pricing-beam" aria-hidden="true" />
-            <div class="pricing-beam pricing-beam--2" aria-hidden="true" />
             {index === 3 && (
               <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-black dark:bg-primary text-white text-xs font-semibold px-4 py-1 rounded-full">
                 Más completo
@@ -219,65 +226,62 @@ const plans = [
               Elegir plan
             </button>
           </div>
+          </ElectricBorder>
         ))}
       </div>
     </div>
   </section>
 </Section>
 
-<style>
-  .pricing-card {
-    isolation: isolate;
+<style is:global>
+  /* Equal height cards */
+  #pricing .electric-border { height: 100%; }
+  #pricing .electric-border > .eb-content { height: 100%; }
+
+  /* Hide electric by default */
+  #pricing .pricing-item .eb-canvas-container,
+  #pricing .pricing-item .eb-layers {
+    opacity: 0;
+    transition: opacity 0.35s ease;
   }
 
-  .pricing-card .pricing-beam {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 90px;
-    aspect-ratio: 1 / 1;
-    background: radial-gradient(
-      circle at center,
-      rgb(74, 108, 247) 0%,
-      rgba(74, 108, 247, 0.6) 25%,
-      rgba(74, 108, 247, 0) 60%
-    );
-    filter: blur(4px);
-    pointer-events: none;
-    offset-path: rect(0 100% 100% 0 round 8px);
-    offset-distance: 0%;
-    offset-anchor: center;
-    animation: pricing-beam-travel 4s linear infinite;
-    opacity: 0.85;
-    transition: opacity 0.4s ease, filter 0.4s ease;
-    mix-blend-mode: screen;
-  }
-
-  .pricing-card .pricing-beam--2 {
-    animation-delay: -2s;
-    opacity: 0.6;
-  }
-
-  .pricing-card:hover .pricing-beam {
-    animation-duration: 2s;
+  /* Show on featured default when no card hovered */
+  #pricing .pricing-grid:not(:has(.pricing-item:hover)) .pricing-item--featured .eb-canvas-container,
+  #pricing .pricing-grid:not(:has(.pricing-item:hover)) .pricing-item--featured .eb-layers {
     opacity: 1;
-    filter: blur(3px);
   }
 
-  @keyframes pricing-beam-travel {
-    to { offset-distance: 100%; }
+  /* Switch to hovered card */
+  #pricing .pricing-grid .pricing-item:hover .eb-canvas-container,
+  #pricing .pricing-grid .pricing-item:hover .eb-layers {
+    opacity: 1;
   }
 
-  @supports not (offset-path: rect(0 100% 100% 0 round 8px)) {
-    .pricing-card .pricing-beam {
-      display: none;
-    }
+  /* Neon glow on electric strokes */
+  #pricing .pricing-item .eb-canvas {
+    filter:
+      drop-shadow(0 0 3px rgba(74, 108, 247, 0.95))
+      drop-shadow(0 0 8px rgba(74, 108, 247, 0.7))
+      drop-shadow(0 0 18px rgba(74, 108, 247, 0.4));
+  }
+
+  #pricing .pricing-item .eb-glow-1 {
+    filter: blur(2px);
+  }
+
+  #pricing .pricing-item .eb-glow-2 {
+    filter: blur(6px);
+  }
+
+  #pricing .pricing-item .eb-background-glow {
+    opacity: 0.45;
+    filter: blur(40px);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .pricing-card .pricing-beam {
-      animation: none;
-      opacity: 0.3;
+    #pricing .pricing-item .eb-canvas {
+      filter: none;
     }
   }
 </style>
+
