@@ -43,7 +43,6 @@ const Portfolio = () => {
       description:
         "Explora nuestro e-commerce con tecnología 360° que te permite inspeccionar cada detalle de sus autos desde todos los ángulos.",
       categories: ["Diseño web", "Móvil"],
-      link: "https://www.gamarentcarsas.com/",
     },
     {
       img: "/portfolio/portfolio-03.png",

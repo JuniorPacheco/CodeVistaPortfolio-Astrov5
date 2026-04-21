@@ -1,46 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "../style/slider.css";
 
 const SliderImages = ({ images }) => {
-  const [theme, setTheme] = useState("light");
-
   useEffect(() => {
-    // Detectar tema actual al cargar
-    const updateTheme = () => {
-      if (document.documentElement.classList.contains("dark")) {
-        setTheme("dark");
-      } else {
-        setTheme("light");
-      }
-    };
-
-    updateTheme();
-
-    // Escuchar cambios de clase dark en html
-    const observer = new MutationObserver(() => {
-      updateTheme();
-    });
-
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-
     const scrollers = document.querySelectorAll(".scroller");
 
+    // TODO: Pendiente revisar el hecho de que al hacer un re-render
+    // el scroll aumenta la velocidad, esto se debe poder solucionar
+    // con un limpiado en el useEffect
+
+    // Si el usuario NO ha activado reducir animaciones
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       addAnimation();
     }
 
     function addAnimation() {
       scrollers.forEach((scroller) => {
-        if (scroller.getAttribute("data-animated")) return;
-
+        // Agrega atributo de animación
         scroller.setAttribute("data-animated", true);
 
+        // Contenedor interno
         const scrollerInner = scroller.querySelector(".scroller__inner");
         const scrollerContent = Array.from(scrollerInner.children);
 
+        // Clonar elementos para efecto infinito
         scrollerContent.forEach((item) => {
           const duplicatedItem = item.cloneNode(true);
           duplicatedItem.setAttribute("aria-hidden", true);
@@ -48,18 +31,16 @@ const SliderImages = ({ images }) => {
         });
       });
     }
-
-    return () => observer.disconnect();
   }, []);
 
   return (
     <div className="scroller">
       <div className="scroller__inner">
-        {images.map((image, index) => (
+        {images.map((image) => (
           <img
-            key={index}
             className="w-52 aspect-square object-contain"
-            src={theme === "dark" && image.darkSrc ? image.darkSrc : image.src}
+            key={image.src}
+            src={image.src}
             alt={image.name}
           />
         ))}
