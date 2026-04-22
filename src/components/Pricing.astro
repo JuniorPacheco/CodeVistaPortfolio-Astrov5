@@ -101,13 +101,13 @@ const plans = t.plans.map((p, i) => ({ ...p, price: prices[i], currency: "USD" }
             speed={0.9}
             chaos={0.1}
             borderRadius={8}
-            className={`pricing-item h-full mx-auto max-w-lg ${index === 1 ? "pricing-item--featured" : ""} ${index === 1 || index === 3 ? "xl:scale-105" : ""}`}
+            className={`pricing-item sm:h-full mx-auto max-w-lg ${index === 1 ? "pricing-item--featured" : ""} ${index === 1 || index === 3 ? "xl:scale-105" : ""}`}
           >
           <div
             data-reveal
             data-spotlight
             class:list={[
-              "h-full flex flex-col p-6 px-10 text-center text-gray-900 rounded-lg relative group transition-all duration-300",
+              "sm:h-full flex flex-col p-6 px-10 text-center text-gray-900 rounded-lg relative group transition-all duration-300",
               index === 3
                 ? "border-2 border-black dark:border-primary shadow-xl dark:bg-primary/15 dark:shadow-primary/25"
                 : index === 1
@@ -174,8 +174,10 @@ const plans = t.plans.map((p, i) => ({ ...p, price: prices[i], currency: "USD" }
 
 <style is:global>
   /* Equal height cards */
-  #pricing .electric-border { height: 100%; }
-  #pricing .electric-border > .eb-content { height: 100%; }
+  @media (min-width: 640px) {
+    #pricing .electric-border { height: 100%; }
+    #pricing .electric-border > .eb-content { height: 100%; }
+  }
 
   /* Hide electric by default */
   #pricing .pricing-item .eb-canvas-container,
