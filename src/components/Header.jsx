@@ -239,7 +239,7 @@ const Header = ({ lang = defaultLang }) => {
           </nav>
 
           {/* Mobile controls */}
-          <div className="md:hidden flex items-center gap-3">
+          <div className="md:hidden flex items-center gap-3 text-black dark:text-slate-200">
             <LanguageSwitcher lang={lang} />
             <button onClick={handleClick} aria-label="Toggle theme">
               {theme === "light" ? "🌙" : "☀️"}

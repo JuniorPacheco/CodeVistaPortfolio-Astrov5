@@ -92,7 +92,7 @@ const plans = t.plans.map((p, i) => ({ ...p, price: prices[i], currency: "USD" }
         </p>
       </div>
 
-      <div data-reveal-stagger class="pricing-grid space-y-8 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 xl:grid-cols-4 xl:gap-10">
+      <div data-reveal-stagger class="pricing-grid flex flex-col gap-12 sm:grid sm:grid-cols-2 sm:gap-6 xl:grid-cols-4 xl:gap-10">
         {
           plans.map(({ name, price, currency, description, features }, index) => (
           <ElectricBorder
