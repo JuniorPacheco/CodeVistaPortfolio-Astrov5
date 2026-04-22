@@ -1,38 +1,9 @@
 ---
 import Section from "./Section.astro";
+import { useTranslations } from "../i18n/utils";
 
-const faqs = [
-  {
-    question: "¿Cuánto tiempo toma desarrollar una landing page?",
-    answer:
-      "El tiempo promedio es de 2 a 3 semanas, dependiendo de la complejidad del diseño y las funcionalidades requeridas. Mantenemos comunicación constante para cumplir con los plazos acordados.",
-  },
-  {
-    question: "¿Qué incluye el soporte premium?",
-    answer:
-      "El soporte premium incluye corrección de errores, actualizaciones de contenido, optimización de rendimiento, monitoreo del sitio y asistencia técnica prioritaria durante el período contratado.",
-  },
-  {
-    question: "¿Puedo solicitar cambios después de la entrega?",
-    answer:
-      "Sí, durante el período de soporte incluido puedes solicitar ajustes y modificaciones. Cambios mayores o nuevas funcionalidades se cotizan por separado con tarifas preferenciales para clientes existentes.",
-  },
-  {
-    question: "¿Cómo es el proceso de trabajo?",
-    answer:
-      "Nuestro proceso tiene 4 etapas: descubrimiento (entendemos tu negocio y objetivos), diseño (creamos prototipos y mockups), desarrollo (construimos tu sitio) y lanzamiento (pruebas finales y puesta en producción).",
-  },
-  {
-    question: "¿Ofrecen hosting y dominio?",
-    answer:
-      "Sí, podemos gestionar el hosting y dominio por ti. Trabajamos con proveedores confiables que garantizan velocidad, seguridad y un uptime del 99.9%.",
-  },
-  {
-    question: "¿Qué métodos de pago aceptan?",
-    answer:
-      "Aceptamos transferencias bancarias, pagos con tarjeta de crédito/débito y plataformas digitales. El pago se divide normalmente en 50% al iniciar y 50% al entregar.",
-  },
-];
+const t = useTranslations(Astro.currentLocale).faq;
+const faqs = t.items;
 ---
 
 <Section id="faq" styles="grid gap-2 text-center relative">
@@ -40,11 +11,10 @@ const faqs = [
   <div class="absolute -right-32 top-1/4 w-72 h-72 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute -left-24 bottom-10 w-56 h-56 bg-primary/5 dark:bg-primary/8 rounded-full blur-3xl pointer-events-none"></div>
 
-  <h4 data-reveal class="text-primary text-lg font-semibold">Resolvemos tus dudas</h4>
-  <h3 data-split-text class="text-5xl font-bold text-gradient">Preguntas frecuentes</h3>
+  <h4 data-reveal class="text-primary text-lg font-semibold">{t.tag}</h4>
+  <h3 data-split-text class="text-5xl font-bold text-gradient">{t.title}</h3>
   <p data-reveal class="text-balance max-w-[500px] mx-auto text-slate-500" style="transition-delay: 200ms;">
-    Encuentra respuestas a las preguntas más comunes sobre nuestros servicios,
-    procesos y formas de trabajo.
+    {t.description}
   </p>
 
   <div class="max-w-2xl mx-auto w-full mt-8 text-left" data-reveal-stagger>

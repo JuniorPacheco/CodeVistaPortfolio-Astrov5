@@ -6,43 +6,21 @@ import { Image } from 'astro:assets';
 import team1 from '../assets/team/1.jpg';
 import team2 from '../assets/team/2.jpg';
 import team3 from '../assets/team/3.jpg';
+import { useTranslations } from "../i18n/utils";
 
-const founders = [
-  {
-    name: "Oscar López",
-    description:
-      "Oscar López es diseñador web, emprendedor, empresario y fundador de CodeVista. Especialista en desarrollo web y estrategia digital, ha liderado proyectos con grandes empresas. Como CEO, impulsa soluciones innovadoras orientadas al crecimiento empresarial.",
-       subName: "Founder @ Code Vista",
-    img: team1,
-  },
-  {
-    name: "Junior Pacheco",
-    description:
-      "Cofundador y CTO de CodeVista, desarrollador FullStack con sólida experiencia en Frontend, Backend y Diseño, enfocado en la excelencia técnica y la creación de soluciones eficientes. Instructor de Programación Web, comprometido con la formación de nuevos desarrolladores.",
-    subName: "Founder @ Code Vista",
-    img: team2,
-  },
-  {
-    name: "Anderson Castro Vallejo",
-    description:
-      "Partner de CodeVista, es diseñador front-end con buenas ideas de diseño. Su creatividad y enfoque meticuloso han sido cruciales para el éxito de la empresa, desarrollando interfaces web intuitivas y atractivas.",
-    subName: "Partner @ Code Vista",
-    img: team3,
-  },
-];
+const t = useTranslations(Astro.currentLocale).team;
+const imgs = [team1, team2, team3];
+const founders = t.founders.map((f, i) => ({ ...f, img: imgs[i] }));
 ---
 
 <Section
   styles="grid gap-4 text-center"
   containerStyle="bg-slate-300/15 dark:bg-primary/20"
 >
-  <h4 data-reveal class="text-primary text-lg font-semibold">Trabajo inteligente</h4>
-  <h3 data-split-text class="text-5xl font-bold text-gradient">Nuestro equipo</h3>
+  <h4 data-reveal class="text-primary text-lg font-semibold">{t.tag}</h4>
+  <h3 data-split-text class="text-5xl font-bold text-gradient">{t.title}</h3>
   <p data-reveal class="text-balance max-w-[500px] mx-auto text-slate-500" style="transition-delay: 200ms;">
-    Conoce al dedicado equipo de CodeVista, comprometido en hacer realidad tus
-    proyectos digitales. Desde diseñadores creativos hasta desarrolladores
-    expertos, nos esforzamos por la excelencia en cada detalle. Confía en
-    nosotros para llevar tu visión más allá.
+    {t.description}
   </p>
 
   <div data-reveal-stagger class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">

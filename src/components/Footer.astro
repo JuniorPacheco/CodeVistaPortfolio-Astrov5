@@ -3,13 +3,10 @@ import Section from "../components/Section.astro";
 import { Icon } from "astro-icon/components";
 import { Image } from 'astro:assets';
 import logoDark from '../assets/logo-dark.png';
+import { useTranslations } from "../i18n/utils";
 
-const quickLinks = [
-  { label: "Servicios", href: "#services" },
-  { label: "Portafolio", href: "#works" },
-  { label: "Precios", href: "#pricing" },
-  { label: "Contacto", href: "#contact" },
-];
+const t = useTranslations(Astro.currentLocale).footer;
+const quickLinks = t.links.map(({ label, hash }) => ({ label, href: `#${hash}` }));
 
 const socialLinks = [
   { label: "Facebook", href: "https://web.facebook.com/profile.php?id=61563485073532", brandColor: "#0866FF", icon: `<path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/>` },
@@ -39,13 +36,13 @@ const socialLinks = [
         <div class="flex flex-col gap-4">
           <Image class="max-w-[155px]" src={logoDark} alt="CodeVista" format="webp" quality={80} loading="lazy" decoding="async" />
           <p class="text-sm text-slate-400 max-w-[280px]">
-            Innovación en desarrollo y soluciones tecnológicas. Transformamos tus ideas en experiencias digitales.
+            {t.description}
           </p>
         </div>
 
         <!-- Quick links -->
         <div>
-          <h5 class="text-white font-semibold mb-4">Enlaces</h5>
+          <h5 class="text-white font-semibold mb-4">{t.linksTitle}</h5>
           <ul class="grid gap-2">
             {quickLinks.map(({ label, href }) => (
               <li>
@@ -62,7 +59,7 @@ const socialLinks = [
 
         <!-- Contact info & social -->
         <div>
-          <h5 class="text-white font-semibold mb-4">Contacto</h5>
+          <h5 class="text-white font-semibold mb-4">{t.contactTitle}</h5>
           <ul class="grid gap-2 text-sm">
             <li class="flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"/><path d="M3 7l9 6l9 -6"/></svg>
@@ -95,13 +92,13 @@ const socialLinks = [
       <!-- Divider + copyright + scroll to top -->
       <div class="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p class="text-xs text-slate-400">
-          &copy; 2024. CodeVista. Todos los derechos reservados.
+          {t.copyright}
         </p>
         <a
           href="#hero"
           class="scroll-top-btn group flex items-center gap-2 text-xs text-slate-400 hover:text-primary transition-colors"
         >
-          Volver arriba
+          {t.backToTop}
           <span class="border border-slate-500 group-hover:border-primary rounded-full p-1.5 transition-all group-hover:-translate-y-0.5">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M18 11l-6 -6l-6 6"/></svg>
           </span>

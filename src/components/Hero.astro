@@ -1,6 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 import heroImage from '../assets/hero-image.png';
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations(Astro.currentLocale).hero;
 ---
 
 <section
@@ -13,33 +16,32 @@ import heroImage from '../assets/hero-image.png';
   <div class="grid gap-2 mmd:content-center">
     <h1>
       <span class="block text-5xl font-bold dark:text-white">
-        <span class="hero-word" style="--word-index: 0;">Code</span>
-        <span class="hero-word" style="--word-index: 1;">Vista</span>
+        <span class="hero-word" style="--word-index: 0;">{t.words[0]}</span>
+        <span class="hero-word" style="--word-index: 1;">{t.words[1]}</span>
       </span>
       <span class="text-primary text-lg font-semibold">
-        <span class="hero-word" style="--word-index: 2;">Soluciones</span>
-        <span class="hero-word" style="--word-index: 3;">sólidas</span>
+        <span class="hero-word" style="--word-index: 2;">{t.words[2]}</span>
+        <span class="hero-word" style="--word-index: 3;">{t.words[3]}</span>
       </span>
     </h1>
     <h2 class="font-semibold dark:text-white hero-fade" style="--fade-delay: 600ms;">
-      <span class="text-slate-500">Profesionales</span> en el desarrollo web
+      <span class="text-slate-500">{t.subtitlePre}</span> {t.subtitlePost}
     </h2>
     <p class="max-w-[600px] text-sm text-balance text-slate-400 hero-fade" style="--fade-delay: 800ms;">
-      Diseñamos y desarrollamos experiencias digitales que convierten
-      visitantes en clientes. Calidad y compromiso en cada proyecto.
+      {t.description}
     </p>
     <div class="flex gap-2 mt-4 hero-fade" style="--fade-delay: 1000ms;">
       <a
         href="#contact"
         class="btn-primary bg-primary hover:bg-primary/90 transition-all hover:shadow-md px-6 rounded-full text-white text-sm py-2 font-semibold"
       >
-        Contáctanos
+        {t.btnPrimary}
       </a>
       <a
         href="#about"
         class="btn-secondary bg-secondary hover:bg-secondary/80 transition-all hover:shadow-md px-6 rounded-full text-white text-sm py-2 font-semibold dark:bg-white dark:text-primary"
       >
-        Conócenos
+        {t.btnSecondary}
       </a>
     </div>
   </div>
@@ -51,7 +53,7 @@ import heroImage from '../assets/hero-image.png';
       <div class="mesh-blob mesh-blob-3"></div>
       <div class="mesh-blob mesh-blob-4"></div>
     </div>
-    <Image id="hero-image" class="hero-image relative z-10 block mx-auto" src={heroImage} alt="Equipo de CodeVista desarrollando soluciones web" format="webp" quality={80} />
+    <Image id="hero-image" class="hero-image relative z-10 block mx-auto" src={heroImage} alt={t.imageAlt} format="webp" quality={80} />
     <!-- Fade-out gradient bottom -->
     <div class="hero-bottom-fade"></div>
   </div>

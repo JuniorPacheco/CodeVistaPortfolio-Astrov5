@@ -1,6 +1,9 @@
 ---
 import SliderImages from "./SliderImages";
 import Section from "./Section.astro";
+import { useTranslations } from "../i18n/utils";
+
+const t = useTranslations(Astro.currentLocale).companySlider;
 
 const logos = [
   {
@@ -57,10 +60,10 @@ const logos = [
 
 <Section styles="relative overflow-hidden text-center" separation="none">
   <h4 data-reveal class="text-primary text-lg font-semibold">
-    ¿Con quién trabajamos?
+    {t.tag}
   </h4>
   <h3 data-split-text class="text-5xl font-bold text-gradient">
-    Nuestros clientes
+    {t.title}
   </h3>
   <div data-reveal style="transition-delay: 200ms;">
     <SliderImages images={logos} client:load />

@@ -1,5 +1,8 @@
 ---
 import Section from "./Section.astro";
+import { useTranslations } from "../i18n/utils";
+
+const t = useTranslations(Astro.currentLocale).about;
 ---
 
 <Section
@@ -7,25 +10,19 @@ import Section from "./Section.astro";
   styles="text-secondary relative overflow-hidden grid gap-20 mmd:grid-cols-2"
 >
   <div class="grid gap-2">
-    <h3 data-reveal class="text-lg font-bold text-primary uppercase">Sobre nosotros</h3>
+    <h3 data-reveal class="text-lg font-bold text-primary uppercase">{t.tag}</h3>
     <h4 data-reveal class="grid gap-2 text-3xl font-bold dark:text-white" style="transition-delay: 100ms;">
-      <span>El mejor diseño,</span>
-      <span>La mejor experiencia</span>
+      <span>{t.titleLine1}</span>
+      <span>{t.titleLine2}</span>
     </h4>
     <p data-reveal class="text-slate-400" style="transition-delay: 200ms;">
-      CodeVista es una empresa líder en desarrollo web, reconocida por su
-      innovación y excelencia técnica. Fundada por un equipo apasionado, nos
-      destacamos por ofrecer soluciones de alta calidad, personalizadas para
-      cada cliente.
+      {t.description}
     </p>
   </div>
   <div>
-    <h4 data-reveal class="text-3xl font-bold dark:text-white">Conecta con nosotros</h4>
+    <h4 data-reveal class="text-3xl font-bold dark:text-white">{t.connectTitle}</h4>
     <p data-reveal class="my-2 text-slate-500" style="transition-delay: 100ms;">
-      ¿Listo para llevar tu presencia en línea al siguiente nivel? ¡Estamos aquí
-      para ayudarte! Ponte en contacto con nuestro equipo experto en desarrollo
-      web y descubre cómo podemos hacer realidad tus proyectos digitales.
-      ¡Conéctate con nosotros hoy mismo!
+      {t.connectDescription}
     </p>
     <ul data-reveal class="flex gap-3 py-2" style="transition-delay: 200ms;">
       {[

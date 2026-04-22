@@ -1,30 +1,32 @@
 ---
 import Section from "../components/Section.astro";
+import { useTranslations } from "../i18n/utils";
+
+const t = useTranslations(Astro.currentLocale).contact;
 ---
 
 <Section id="contact" styles="grid gap-2 text-center relative">
   <!-- Decorative blobs -->
   <div class="absolute -right-32 top-0 w-72 h-72 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute -left-24 bottom-10 w-56 h-56 bg-primary/5 dark:bg-primary/8 rounded-full blur-3xl pointer-events-none"></div>
-  <h4 data-reveal class="text-primary text-lg font-semibold">Contacta con nosotros</h4>
+  <h4 data-reveal class="text-primary text-lg font-semibold">{t.tag}</h4>
   <h3 data-split-text class="text-4xl font-bold text-gradient">
-    ¿Tienes algún proyecto en mente?
+    {t.title}
   </h3>
   <p data-reveal class="text-balance max-w-[500px] mx-auto text-slate-500" style="transition-delay: 200ms;">
-    En CodeVista, transformamos tus ideas en realidad digital. Cuéntanos tu
-    visión y trabajaremos juntos para hacerla posible.
+    {t.description}
   </p>
 
   <div data-reveal style="transition-delay: 300ms;" class="grid grid-cols-1 mmd:grid-cols-[1fr_1.5fr] gap-10 max-w-[900px] mx-auto w-full mt-10">
     <!-- Contact info -->
     <div class="flex flex-col gap-6 text-left">
-      <h4 class="text-xl font-bold dark:text-white">Información de contacto</h4>
+      <h4 class="text-xl font-bold dark:text-white">{t.infoTitle}</h4>
       <div class="flex items-start gap-3">
         <div class="bg-primary/10 dark:bg-primary/20 p-2.5 rounded-lg text-primary flex-shrink-0">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"/><path d="M3 7l9 6l9 -6"/></svg>
         </div>
         <div>
-          <p class="text-xs text-slate-400">Correo</p>
+          <p class="text-xs text-slate-400">{t.email}</p>
           <p class="text-sm font-medium dark:text-white">codevistadevelopment@yahoo.com</p>
         </div>
       </div>
@@ -33,7 +35,7 @@ import Section from "../components/Section.astro";
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/></svg>
         </div>
         <div>
-          <p class="text-xs text-slate-400">Teléfono</p>
+          <p class="text-xs text-slate-400">{t.phone}</p>
           <p class="text-sm font-medium dark:text-white">+57 3007901757</p>
         </div>
       </div>
@@ -42,8 +44,8 @@ import Section from "../components/Section.astro";
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/><path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"/></svg>
         </div>
         <div>
-          <p class="text-xs text-slate-400">Ubicación</p>
-          <p class="text-sm font-medium dark:text-white">Colombia</p>
+          <p class="text-xs text-slate-400">{t.location}</p>
+          <p class="text-sm font-medium dark:text-white">{t.locationValue}</p>
         </div>
       </div>
     </div>
@@ -60,13 +62,13 @@ import Section from "../components/Section.astro";
         <input
           type="text"
           id="name"
-          placeholder="Ingrese su nombre"
+          placeholder={t.form.namePlaceholder}
           class="peer h-8 w-full border-none bg-transparent pl-6 p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm dark:text-white"
         />
         <span
           class="absolute start-6 top-2 -translate-y-1/2 text-xs text-gray-900 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs peer-focus:text-primary dark:text-white"
         >
-          Nombre
+          {t.form.name}
         </span>
       </label>
       <label
@@ -79,13 +81,13 @@ import Section from "../components/Section.astro";
         <input
           type="text"
           id="company"
-          placeholder="Compañía (Opcional)"
+          placeholder={t.form.company}
           class="peer h-8 w-full border-none bg-transparent pl-6 p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm dark:text-white"
         />
         <span
           class="absolute start-6 top-2 -translate-y-1/2 text-xs text-gray-900 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs peer-focus:text-primary dark:text-white"
         >
-          Compañía (Opcional)
+          {t.form.company}
         </span>
       </label>
       <label
@@ -98,13 +100,13 @@ import Section from "../components/Section.astro";
         <input
           type="email"
           id="email"
-          placeholder="Email"
+          placeholder={t.form.emailPlaceholder}
           class="peer h-8 w-full border-none bg-transparent pl-6 p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm dark:text-white"
         />
         <span
           class="absolute start-6 top-2 -translate-y-1/2 text-xs text-gray-900 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs peer-focus:text-primary dark:text-white"
         >
-          Correo
+          {t.form.emailLabel}
         </span>
       </label>
       <label
@@ -117,13 +119,13 @@ import Section from "../components/Section.astro";
         <input
           type="tel"
           id="phone"
-          placeholder="Telefono"
+          placeholder={t.form.phonePlaceholder}
           class="peer h-8 w-full border-none bg-transparent pl-6 p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm dark:text-white"
         />
         <span
           class="absolute start-6 top-2 -translate-y-1/2 text-xs text-gray-900 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs peer-focus:text-primary dark:text-white"
         >
-          Número de Teléfono
+          {t.form.phoneLabel}
         </span>
       </label>
       <label
@@ -135,20 +137,20 @@ import Section from "../components/Section.astro";
         </div>
         <textarea
           id="project-description"
-          placeholder="Proyecto"
+          placeholder={t.form.projectPlaceholder}
           class="peer h-20 w-full border-none bg-transparent pl-6 p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm resize-none dark:text-white"
         ></textarea>
         <span
           class="absolute start-6 top-2 -translate-y-1/2 text-xs text-gray-900 transition-all peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs peer-placeholder-shown:top-4 peer-focus:text-primary dark:text-white"
         >
-          Cuéntanos acerca del proyecto
+          {t.form.project}
         </span>
       </label>
 
       <button
         class="btn-primary bg-primary hover:bg-primary/90 transition-all hover:shadow-md px-6 rounded-full text-white text-sm py-2.5 font-semibold sm:col-span-2 max-w-max mx-auto"
       >
-        Contactar
+        {t.form.submit}
       </button>
     </form>
   </div>

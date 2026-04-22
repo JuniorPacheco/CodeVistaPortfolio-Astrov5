@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { MagicMotion } from "react-magic-motion";
 
-const Portfolio = () => {
+const Portfolio = ({ projects = [], filterLabels, filterKeys, swipeHint = "Desliza para navegar" }) => {
   const [currentCategory, setCurrentCategory] = useState(0);
   const [gallery, setGallery] = useState(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
@@ -24,63 +24,16 @@ const Portfolio = () => {
     };
   }, [gallery]);
 
-  const categories = ["Todos", "Diseño web", "Móvil", "API"];
+  const categories = filterLabels || ["Todos", "Diseño web", "Móvil", "API"];
+  const keys = filterKeys || ["Todos", "Diseño web", "Móvil", "API"];
 
-  const currentCategoryName = categories[currentCategory];
+  const currentCategoryKey = keys[currentCategory];
 
-  const projects = [
-    {
-      img: "/portfolio/portfolio-01.jpg",
-      title: "BuildingHomeConstructora S.A.S",
-      description:
-        "Explora nuestra última creación LandingPage: Startup para BuildingHomeConstructora. Descubre cómo esta empresa de construcción se destaca con una presentación impresionante y funcionalidades que capturan la atención de sus clientes potenciales. ¡Visita ahora y conoce el futuro de la construcción!",
-      categories: ["Diseño web", "API"],
-      link: "https://www.buildinghomeconstructora.com/",
-    },
-    {
-      img: "/portfolio/portfolio-02.jpg",
-      title: "GamaRentCar",
-      description:
-        "Explora nuestro e-commerce con tecnología 360° que te permite inspeccionar cada detalle de sus autos desde todos los ángulos.",
-      categories: ["Diseño web", "Móvil"],
-    },
-    {
-      img: "/portfolio/portfolio-03.png",
-      title: "La Liga De Futbol Del Tolima",
-      description:
-        "La página web de la Liga de Fútbol del Tolima, desarrollada por Codevistax, es una plataforma moderna y responsiva diseñada para fortalecer su presencia digital. Cuenta con secciones dinámicas y un panel administrativo de autogestión que permite personalizar colores, contenidos y gestionar la información de manera fácil, brindando total control y actualización constante.",
-      categories: ["API"],
-      link: "https://www.ligadefutboldeltolima.com/",
-    },
-    {
-      img: "/portfolio/cabal-dashboard.png",
-      title: "Cabal Studios - Sistema de Gestión",
-      description:
-        "Sistema de gestión integral para un estudio de fotografía profesional. Incluye dashboard con KPIs en tiempo real, facturación con estados de pago, recordatorios automáticos vía WhatsApp y email, sincronización con Google Calendar, y generación de recibos tipo POS con código QR.",
-      categories: ["Diseño web", "API"],
-      link: null,
-      gallery: {
-        images: [
-          { src: "/portfolio/cabal-login.png", caption: "Login - Autenticación JWT con sistema de roles (Owner, Admin, Photographer, Assistant, Viewer)" },
-          { src: "/portfolio/cabal-dashboard.png", caption: "Dashboard - KPIs en tiempo real: clientes, facturas, pagos. Gráficas de ingresos mensuales y distribución de facturas" },
-          { src: "/portfolio/cabal-conexiones.png", caption: "Conexiones - Integración con WhatsApp (Evolution API) y Google Calendar (OAuth2) para recordatorios automáticos" },
-        ],
-      },
-    },
-    {
-      img: "/portfolio/portfolio-05.png",
-      title: "SmartStart S.A.S",
-      description:
-        "Landing page de una empresa que ofrece soluciones especializadas para la industria petrolera con un enfoque en calidad, tecnología de vanguardia y costos eficientes.",
-      categories: ["Diseño web"],
-      link: "https://www.smartstarsas.com/",
-    },
-  ];
 
   const projectsFilter = projects.filter((project) =>
     currentCategory === 0
       ? true
-      : project.categories.includes(currentCategoryName)
+      : project.categories.includes(currentCategoryKey)
   );
   return (
     <>
@@ -200,7 +153,7 @@ const Portfolio = () => {
             </div>
 
             {/* Swipe hint - only on mobile */}
-            <p className="text-white/30 text-[11px] text-center mt-3 sm:hidden">Desliza para navegar</p>
+            <p className="text-white/30 text-[11px] text-center mt-3 sm:hidden">{swipeHint}</p>
           </div>
         </div>,
         document.body

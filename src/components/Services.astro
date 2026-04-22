@@ -1,51 +1,21 @@
 ---
 import { Icon } from "astro-icon/components";
 import Section from "./Section.astro";
+import { useTranslations } from "../i18n/utils";
 
-const services = [
-  {
-    icon: "brand-codesandbox",
-    title: "Desarrollo Web a Medida",
-    description:
-      "Construimos sitios web y aplicaciones desde cero, adaptados a las necesidades específicas de tu negocio. Código limpio, rendimiento óptimo y escalabilidad garantizada.",
-  },
-  {
-    icon: "brand-visual-studio",
-    title: "Diseño Visual",
-    description:
-      "Destaca tu marca y conecta con tu audiencia de manera memorable con nuestra experiencia en diseño web.",
-  },
-  {
-    icon: "user-search",
-    title: "Investigación de Usuarios",
-    description:
-      "Analizamos el comportamiento y preferencias de tu público para mejorar la usabilidad y aumentar la conversión.",
-  },
-  {
-    icon: "users",
-    title: "Experiencia de Usuario",
-    description:
-      "Garantizamos la excelencia de tu sitio con pruebas exhaustivas para una experiencia óptima del usuario.",
-  },
-  {
-    icon: "device-mobile",
-    title: "Diseño Responsivo",
-    description:
-      "Tu sitio se verá perfecto en cualquier dispositivo. Diseñamos pensando en móvil, tablet y escritorio.",
-  },
-];
+const t = useTranslations(Astro.currentLocale).services;
+const icons = ["brand-codesandbox", "brand-visual-studio", "user-search", "users", "device-mobile"];
+const services = t.items.map((item, i) => ({ ...item, icon: icons[i] }));
 ---
 
 <Section id="services" styles="grid gap-2 text-center relative">
   <!-- Decorative blobs -->
   <div class="absolute -right-40 -top-20 w-80 h-80 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute -left-32 bottom-0 w-64 h-64 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
-  <h4 data-reveal class="text-primary text-lg font-semibold">¿Qué ofrecemos?</h4>
-  <h3 data-split-text class="text-5xl font-bold text-gradient">Nuestros servicios</h3>
+  <h4 data-reveal class="text-primary text-lg font-semibold">{t.tag}</h4>
+  <h3 data-split-text class="text-5xl font-bold text-gradient">{t.title}</h3>
   <p data-reveal class="text-balance max-w-[500px] mx-auto text-slate-500" style="transition-delay: 200ms;">
-    CodeVista potencia tu presencia en línea con soluciones web personalizadas.
-    Desde diseño creativo hasta desarrollo avanzado, hacemos realidad tus
-    proyectos digitales. ¡Destácate en la web con nosotros!
+    {t.description}
   </p>
   <div
     data-reveal-stagger

@@ -1,6 +1,48 @@
 ---
 import Portfolio from "./Portfolio.jsx";
 import Section from "./Section.astro";
+import { useTranslations } from "../i18n/utils";
+
+const t = useTranslations(Astro.currentLocale).works;
+
+const projectAssets = [
+  { img: "/portfolio/portfolio-01.jpg", categories: ["Diseño web", "API"], link: "https://www.buildinghomeconstructora.com/" },
+  { img: "/portfolio/portfolio-02.jpg", categories: ["Diseño web", "Móvil"], link: null },
+  { img: "/portfolio/portfolio-03.png", categories: ["API"], link: "https://www.ligadefutboldeltolima.com/" },
+  {
+    img: "/portfolio/cabal-dashboard.png",
+    categories: ["Diseño web", "API"],
+    link: null,
+    galleryImages: [
+      "/portfolio/cabal-login.png",
+      "/portfolio/cabal-dashboard.png",
+      "/portfolio/cabal-conexiones.png",
+    ],
+  },
+  { img: "/portfolio/portfolio-05.png", categories: ["Diseño web"], link: "https://www.smartstarsas.com/" },
+];
+
+const filterKeys = ["Todos", "Diseño web", "Móvil", "API"];
+
+const projects = t.projects.map((p, i) => {
+  const asset = projectAssets[i];
+  const project: any = {
+    img: asset.img,
+    title: p.title,
+    description: p.description,
+    categories: asset.categories,
+    link: asset.link,
+  };
+  if (asset.galleryImages && "captions" in p) {
+    project.gallery = {
+      images: asset.galleryImages.map((src, idx) => ({
+        src,
+        caption: (p as any).captions[idx],
+      })),
+    };
+  }
+  return project;
+});
 ---
 
 <Section
@@ -8,14 +50,12 @@ import Section from "./Section.astro";
   styles="grid gap-2 text-center"
   containerStyle="bg-slate-300/15 dark:bg-primary/20"
 >
-  <h4 data-reveal class="text-primary text-lg font-semibold">Portafolio</h4>
-  <h3 data-split-text class="text-5xl font-bold text-gradient">Trabajos recientes</h3>
+  <h4 data-reveal class="text-primary text-lg font-semibold">{t.tag}</h4>
+  <h3 data-split-text class="text-5xl font-bold text-gradient">{t.title}</h3>
   <p data-reveal class="text-balance max-w-[500px] mx-auto text-slate-500" style="transition-delay: 200ms;">
-    Descubre nuestros proyectos recientes en CodeVista. Inspírate con nuestra
-    experiencia y calidad en proyectos innovadores y visualmente impactantes
-    para clientes satisfechos.
+    {t.description}
   </p>
   <div data-reveal style="transition-delay: 300ms;">
-    <Portfolio client:load />
+    <Portfolio client:load projects={projects} filterLabels={t.filters} filterKeys={filterKeys} swipeHint={t.swipeHint} />
   </div>
 </Section>

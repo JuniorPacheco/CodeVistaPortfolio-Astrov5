@@ -1,9 +1,12 @@
 ---
+import { useTranslations } from "../i18n/utils";
+
+const labels = useTranslations(Astro.currentLocale).metrics;
 const metrics = [
-  { value: 5, suffix: "+", label: "Proyectos entregados" },
-  { value: 3, suffix: "+", label: "Años de experiencia" },
-  { value: 100, suffix: "%", label: "Clientes satisfechos" },
-  { value: 24, suffix: "/7", label: "Soporte disponible" },
+  { value: 5, suffix: "+", label: labels[0] },
+  { value: 3, suffix: "+", label: labels[1] },
+  { value: 100, suffix: "%", label: labels[2] },
+  { value: 24, suffix: "/7", label: labels[3] },
 ];
 ---
 

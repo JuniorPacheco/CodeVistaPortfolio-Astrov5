@@ -2,87 +2,26 @@
 import Section from "./Section.astro";
 import { Icon } from "astro-icon/components";
 import ElectricBorder from "./ElectricBorder.jsx";
+import { useTranslations } from "../i18n/utils";
 
-const plans = [
-  {
-    name: "Landing Page Pro",
-    price: "1500",
-    currency: "USD",
-    description:
-      "Landing page de alto impacto diseñada para convertir visitantes en clientes.",
-    features: [
-      "Diseño UI/UX personalizado",
-      "Responsive mobile-first",
-      "Animaciones + slider",
-      "Integración WhatsApp",
-      "SEO optimizado",
-      "Soporte premium: 1 mes",
-    ],
-  },
-  {
-    name: "E-commerce Pro",
-    price: "3000",
-    currency: "USD",
-    description:
-      "Tienda online completa con pagos integrados y panel administrativo.",
-    features: [
-      "Carrito de compra",
-      "Pasarela de pagos",
-      "Gestión de productos",
-      "Panel autogestionable",
-      "Notificaciones",
-      "Soporte premium: 2 meses",
-    ],
-  },
-  {
-    name: "Plataforma Enterprise",
-    price: "4500",
-    currency: "USD",
-    description:
-      "Sistema web a medida con backend, API y arquitectura escalable.",
-    features: [
-      "Frontend + Backend",
-      "API propia",
-      "Base de datos",
-      "Roles y permisos",
-      "Escalabilidad",
-      "Soporte premium: 3 meses",
-    ],
-  },
-  {
-    name: "Elite Digital Solution",
-    price: "8000",
-    currency: "USD",
-    description:
-      "Solución digital avanzada para empresas que buscan escalar y automatizar.",
-    features: [
-      "Todo lo Enterprise",
-      "Automatización de procesos",
-      "Integraciones CRM/API",
-      "Dashboard avanzado",
-      "Alta prioridad",
-      "Soporte premium: 6 meses",
-    ],
-  },
-];
+const t = useTranslations(Astro.currentLocale).pricing;
+const prices = ["1500", "3000", "4500", "8000"];
+const plans = t.plans.map((p, i) => ({ ...p, price: prices[i], currency: "USD" }));
 ---
 
-<script>
-  function sendMessageWhatsapp(planInfo: any) {
+<script define:vars={{ whatsappTemplate: t.whatsappTemplate }}>
+  function sendMessageWhatsapp(planName) {
     const numeroWhatsApp = "573184281039";
-    let textValuation = `Hola, me interesa el plan *${planInfo.name}* y quiero más información.`;
-
-    let url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(textValuation)}`;
+    const textValuation = whatsappTemplate.replace("{plan}", planName);
+    const url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(textValuation)}`;
     window.open(url);
   }
 
   const btns = document.querySelectorAll("#btnWhatsapp");
   btns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      const {
-        dataset: { title },
-      } = e.target as any;
-      sendMessageWhatsapp({ name: title });
+      const title = e.target.dataset.title;
+      sendMessageWhatsapp(title);
     });
   });
 </script>
@@ -144,12 +83,12 @@ const plans = [
   <section>
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
       <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12 grid gap-4">
-        <h4 data-reveal class="tracking-tight font-semibold text-primary">Planes Codevistax</h4>
+        <h4 data-reveal class="tracking-tight font-semibold text-primary">{t.tag}</h4>
         <h3 data-split-text class="text-4xl tracking-tight font-bold text-gradient">
-          Soluciones digitales profesionales
+          {t.title}
         </h3>
         <p data-reveal class="text-slate-500 max-w-[600px] mx-auto text-lg" style="transition-delay: 200ms;">
-          Desarrollamos páginas web y plataformas diseñadas para escalar tu negocio y aumentar tus ventas.
+          {t.description}
         </p>
       </div>
 
@@ -178,13 +117,13 @@ const plans = [
           >
             {index === 3 && (
               <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-black dark:bg-primary text-white text-xs font-semibold px-4 py-1 rounded-full">
-                Más completo
+                {t.badges.mostComplete}
               </span>
             )}
 
             {index === 1 && (
               <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-semibold px-4 py-1 rounded-full">
-                Recomendado
+                {t.badges.recommended}
               </span>
             )}
 
@@ -223,7 +162,7 @@ const plans = [
                   : "border-primary text-primary",
               ]}
             >
-              Elegir plan
+              {t.button}
             </button>
           </div>
           </ElectricBorder>
