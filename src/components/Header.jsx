@@ -1,6 +1,107 @@
 import { useEffect, useRef, useState } from "react";
 import { ui, languages, defaultLang } from "../i18n/ui";
 
+const GlobeIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="9" />
+    <path d="M3.6 9h16.8M3.6 15h16.8" />
+    <path d="M11.5 3a17 17 0 0 0 0 18M12.5 3a17 17 0 0 1 0 18" />
+  </svg>
+);
+
+const LanguageSwitcher = ({ lang }) => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDocClick = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("click", onDocClick);
+    return () => document.removeEventListener("click", onDocClick);
+  }, [open]);
+
+  const switchLang = (newLang) => {
+    if (newLang === lang) {
+      setOpen(false);
+      return;
+    }
+    window.location.href =
+      newLang === defaultLang ? "/" : `/${newLang}/`;
+  };
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          setOpen((o) => !o);
+        }}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-300 border border-black/10 dark:border-white/15 bg-white/50 dark:bg-white/5 hover:border-primary hover:text-primary dark:hover:text-primary transition-colors"
+      >
+        <GlobeIcon />
+        <span>{lang}</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="12"
+          height="12"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`transition-transform ${open ? "rotate-180" : ""}`}
+        >
+          <path d="M6 9l6 6l6 -6" />
+        </svg>
+      </button>
+      {open && (
+        <ul
+          role="listbox"
+          className="absolute right-0 mt-2 min-w-[140px] rounded-xl bg-white dark:bg-[#0a1025] border border-black/5 dark:border-white/10 shadow-xl shadow-primary/10 overflow-hidden z-50"
+        >
+          {Object.entries(languages).map(([code, name]) => (
+            <li key={code}>
+              <button
+                type="button"
+                onClick={() => switchLang(code)}
+                className={`w-full flex items-center justify-between gap-3 px-4 py-2.5 text-sm text-left transition-colors ${
+                  code === lang
+                    ? "bg-primary/10 text-primary font-semibold"
+                    : "text-slate-700 dark:text-slate-300 hover:bg-primary/5 hover:text-primary"
+                }`}
+              >
+                <span>{name}</span>
+                <span className="text-xs font-bold uppercase tracking-wide opacity-60">
+                  {code}
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
 const Header = ({ lang = defaultLang }) => {
   const t = ui[lang] || ui[defaultLang];
 
@@ -17,8 +118,6 @@ const Header = ({ lang = defaultLang }) => {
   const [theme, setTheme] = useState("light");
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("#hero");
-  const [langOpen, setLangOpen] = useState(false);
-  const langRef = useRef(null);
 
   const handleClick = () => {
     setTheme(theme === "light" ? "dark" : "light");
@@ -26,15 +125,6 @@ const Header = ({ lang = defaultLang }) => {
 
   const handleToggleMenu = () => {
     setIsShowMenu(!isShowMenu);
-  };
-
-  const switchLang = (newLang) => {
-    if (newLang === lang) {
-      setLangOpen(false);
-      return;
-    }
-    const base = newLang === defaultLang ? "/" : `/${newLang}/`;
-    window.location.href = base;
   };
 
   useEffect(() => {
@@ -70,17 +160,9 @@ const Header = ({ lang = defaultLang }) => {
       observers.push(observer);
     });
 
-    const onDocClick = (e) => {
-      if (langRef.current && !langRef.current.contains(e.target)) {
-        setLangOpen(false);
-      }
-    };
-    document.addEventListener("click", onDocClick);
-
     return () => {
       window.removeEventListener("scroll", onScroll);
       observers.forEach((observer) => observer.disconnect());
-      document.removeEventListener("click", onDocClick);
     };
   }, []);
 
@@ -107,77 +189,6 @@ const Header = ({ lang = defaultLang }) => {
       ? "bg-white/80 dark:bg-[#050816]/90 shadow-lg dark:shadow-primary/5 border-b border-black/5 dark:border-white/10"
       : "bg-white/60 dark:bg-[#050816]/90 border-b border-transparent",
   ].join(" ");
-
-  const GlobeIcon = () => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <circle cx="12" cy="12" r="9" />
-      <path d="M3.6 9h16.8M3.6 15h16.8" />
-      <path d="M11.5 3a17 17 0 0 0 0 18M12.5 3a17 17 0 0 1 0 18" />
-    </svg>
-  );
-
-  const LanguageSwitcher = () => (
-    <div className="relative" ref={langRef}>
-      <button
-        onClick={() => setLangOpen((o) => !o)}
-        aria-haspopup="listbox"
-        aria-expanded={langOpen}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-300 border border-black/10 dark:border-white/15 bg-white/50 dark:bg-white/5 hover:border-primary hover:text-primary dark:hover:text-primary transition-colors"
-      >
-        <GlobeIcon />
-        <span>{lang}</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="12"
-          height="12"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className={`transition-transform ${langOpen ? "rotate-180" : ""}`}
-        >
-          <path d="M6 9l6 6l6 -6" />
-        </svg>
-      </button>
-      {langOpen && (
-        <ul
-          role="listbox"
-          className="absolute right-0 mt-2 min-w-[140px] rounded-xl bg-white dark:bg-[#0a1025] border border-black/5 dark:border-white/10 shadow-xl shadow-primary/10 overflow-hidden z-50"
-        >
-          {Object.entries(languages).map(([code, name]) => (
-            <li key={code}>
-              <button
-                onClick={() => switchLang(code)}
-                className={`w-full flex items-center justify-between gap-3 px-4 py-2.5 text-sm text-left transition-colors ${
-                  code === lang
-                    ? "bg-primary/10 text-primary font-semibold"
-                    : "text-slate-700 dark:text-slate-300 hover:bg-primary/5 hover:text-primary"
-                }`}
-              >
-                <span>{name}</span>
-                <span className="text-xs font-bold uppercase tracking-wide opacity-60">
-                  {code}
-                </span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
 
   const homePath = lang === defaultLang ? "/" : `/${lang}/`;
 
@@ -220,7 +231,7 @@ const Header = ({ lang = defaultLang }) => {
               </a>
             ))}
 
-            <LanguageSwitcher />
+            <LanguageSwitcher lang={lang} />
 
             <button onClick={handleClick} aria-label="Toggle theme">
               {theme === "light" ? "🌙" : "☀️"}
@@ -229,7 +240,7 @@ const Header = ({ lang = defaultLang }) => {
 
           {/* Mobile controls */}
           <div className="md:hidden flex items-center gap-3">
-            <LanguageSwitcher />
+            <LanguageSwitcher lang={lang} />
             <button onClick={handleClick} aria-label="Toggle theme">
               {theme === "light" ? "🌙" : "☀️"}
             </button>
