@@ -436,8 +436,32 @@ const { title } = Astro.props;
       }
     }
 
-    document.addEventListener('DOMContentLoaded', initScrollReveal);
-    document.addEventListener('astro:page-load', initScrollReveal);
+    function refreshScrollTrigger() {
+      ScrollTrigger.refresh();
+    }
+
+    function scheduleRefreshes() {
+      if (document.readyState === 'complete') {
+        refreshScrollTrigger();
+      } else {
+        window.addEventListener('load', refreshScrollTrigger, { once: true });
+      }
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(refreshScrollTrigger);
+      }
+      // Catch late layout shifts from hydrated React islands / images
+      setTimeout(refreshScrollTrigger, 300);
+      setTimeout(refreshScrollTrigger, 1200);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollReveal();
+      scheduleRefreshes();
+    });
+    document.addEventListener('astro:page-load', () => {
+      initScrollReveal();
+      scheduleRefreshes();
+    });
   </script>
 
   <script>
