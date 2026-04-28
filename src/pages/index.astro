@@ -22,9 +22,9 @@ import Footer from "../components/Footer.astro";
 import CompanySlider from "../components/CompanySlider.astro";
 ---
 
-<Layout title="Code Vista">
-  <Header client:load lang={Astro.currentLocale} />
-  <main class="font-inter grid gap-20 dark:bg-[#050816] transition-colors">
+<Layout title="Code Vista" lang="es">
+  <Header client:idle lang={Astro.currentLocale} />
+  <main id="main-content" class="font-inter grid gap-20 dark:bg-[#050816] transition-colors">
     <Hero />
     <About />
     <Metrics />

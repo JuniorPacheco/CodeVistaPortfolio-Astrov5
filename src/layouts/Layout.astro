@@ -1,9 +1,25 @@
 ---
+import SchemaOrg from '../components/SchemaOrg.astro';
+import { SITE } from '../constants/config';
+import { useTranslations } from '../i18n/utils';
+
 interface Props {
   title: string;
+  description?: string;
+  image?: string;
+  canonicalUrl?: string;
+  lang?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = SITE.description,
+  image = '/og-image.png',
+  canonicalUrl = Astro.url.href,
+  lang = 'es'
+} = Astro.props;
+
+const t = useTranslations(lang);
 ---
 
 <script is:inline>
@@ -28,16 +44,51 @@ const { title } = Astro.props;
 <html class="scroll-smooth" lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="CodeVista - Agencia de desarrollo web en Colombia. Diseño, e-commerce y soluciones digitales a medida."
-    />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/png+xml" href="/logo-full-color.png" />
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:site_name" content={SITE.name} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.fontsource.org" crossorigin />
+
+    <SchemaOrg />
   </head>
   <body>
+    <!-- Skip to content link for accessibility -->
+    <a
+      href="#main-content"
+      class="skip-link"
+    >
+      {t.skipLink}
+    </a>
+
     <!-- Noise texture SVG filter -->
     <svg class="fixed" width="0" height="0" aria-hidden="true">
       <filter id="noise-filter">
@@ -62,6 +113,28 @@ const { title } = Astro.props;
 
     .dark .noise-overlay {
       opacity: 0.06;
+    }
+
+    /* Skip link for accessibility */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgb(74, 108, 247);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0 0 8px 8px;
+      z-index: 10000;
+      font-weight: 600;
+      text-decoration: none;
+      transition: top 0.3s ease;
+    }
+
+    .skip-link:focus {
+      top: 0;
+      outline: 2px solid white;
+      outline-offset: 2px;
     }
 
     /* Scroll Reveal base states */
@@ -336,219 +409,21 @@ const { title } = Astro.props;
   </style>
 
   <script>
-    import { gsap } from 'gsap';
-    import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    function initScrollReveal() {
-      const revealElements = document.querySelectorAll('[data-reveal]');
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      if (prefersReduced) {
-        revealElements.forEach(el => el.classList.add('revealed'));
-        return;
-      }
-
-      // Kill previous ScrollTriggers to avoid duplicates on page transitions
-      ScrollTrigger.getAll().forEach(st => st.kill());
-
-      revealElements.forEach((el) => {
-        // Read the computed transition-delay for stagger support
-        const computedDelay = parseFloat(getComputedStyle(el).transitionDelay) || 0;
-
-        ScrollTrigger.create({
-          trigger: el,
-          start: 'top 88%',
-          once: true,
-          onEnter: () => {
-            if (computedDelay > 0) {
-              setTimeout(() => el.classList.add('revealed'), computedDelay * 1000);
-            } else {
-              el.classList.add('revealed');
-            }
-          },
-        });
-      });
-
-      // Split text animation on section titles
-      const splitTitles = document.querySelectorAll('[data-split-text]');
-      splitTitles.forEach((title) => {
-        const el = title as HTMLElement;
-        const text = el.textContent || '';
-        el.innerHTML = '';
-        // Wrap each character in a span (preserve spaces)
-        text.split('').forEach((char) => {
-          const span = document.createElement('span');
-          span.className = 'split-char';
-          span.textContent = char === ' ' ? '\u00A0' : char;
-          el.appendChild(span);
-        });
-
-        const chars = el.querySelectorAll('.split-char');
-        gsap.set(chars, { opacity: 0, y: 20, display: 'inline-block' });
-
-        ScrollTrigger.create({
-          trigger: el,
-          start: 'top 85%',
-          once: true,
-          onEnter: () => {
-            gsap.to(chars, {
-              opacity: 1,
-              y: 0,
-              duration: 0.4,
-              stagger: 0.02,
-              ease: 'power2.out',
-            });
-          },
-        });
-      });
-
-      // Hero parallax scrub — move the circle SVG with scroll
-      const heroCircle = document.getElementById('hero-parallax-circle');
-      if (heroCircle) {
-        gsap.to(heroCircle, {
-          y: 200,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '#hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 0.8,
-          },
-        });
-      }
-
-      // Hero content parallax — text fades and moves up slightly as user scrolls
-      const heroText = document.querySelector('#hero > div:first-child');
-      if (heroText) {
-        gsap.to(heroText, {
-          y: -60,
-          opacity: 0.3,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '#hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 0.5,
-          },
-        });
-      }
-    }
-
-    function refreshScrollTrigger() {
-      ScrollTrigger.refresh();
-    }
-
-    function scheduleRefreshes() {
-      if (document.readyState === 'complete') {
-        refreshScrollTrigger();
-      } else {
-        window.addEventListener('load', refreshScrollTrigger, { once: true });
-      }
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(refreshScrollTrigger);
-      }
-      // Catch late layout shifts from hydrated React islands / images
-      setTimeout(refreshScrollTrigger, 300);
-      setTimeout(refreshScrollTrigger, 1200);
-    }
+    import { initScrollReveal, scheduleRefreshes } from '../scripts/animations';
+    import { initSpotlight } from '../scripts/spotlight';
+    import { initCursorFollower } from '../scripts/cursor';
 
     document.addEventListener('DOMContentLoaded', () => {
       initScrollReveal();
       scheduleRefreshes();
+      initSpotlight();
+      initCursorFollower();
     });
     document.addEventListener('astro:page-load', () => {
       initScrollReveal();
       scheduleRefreshes();
+      initSpotlight();
+      initCursorFollower();
     });
-  </script>
-
-  <script>
-    function initSpotlight() {
-      const cards = document.querySelectorAll('[data-spotlight]');
-      if (!cards.length) return;
-
-      const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-      if (isTouch) return;
-
-      cards.forEach((card) => {
-        const el = card as HTMLElement;
-
-        el.addEventListener('mousemove', (e: MouseEvent) => {
-          const rect = el.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          el.style.setProperty('--spotlight-x', `${x}px`);
-          el.style.setProperty('--spotlight-y', `${y}px`);
-        });
-
-        el.addEventListener('mouseenter', () => {
-          el.style.setProperty('--spotlight-opacity', '1');
-        });
-
-        el.addEventListener('mouseleave', () => {
-          el.style.setProperty('--spotlight-opacity', '0');
-        });
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', initSpotlight);
-    document.addEventListener('astro:page-load', initSpotlight);
-  </script>
-
-  <script>
-    function initCursorFollower() {
-      const cursor = document.getElementById('cursor-follower');
-      if (!cursor) return;
-
-      // Only on non-touch desktop devices
-      const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (isTouch || prefersReduced) return;
-
-      let mouseX = 0;
-      let mouseY = 0;
-      let cursorX = 0;
-      let cursorY = 0;
-
-      document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        if (!cursor.classList.contains('visible')) {
-          cursor.classList.add('visible');
-        }
-      });
-
-      document.addEventListener('mouseleave', () => {
-        cursor.classList.remove('visible');
-      });
-
-      // Detect hoverable elements
-      const hoverSelectors = 'a, button, [role="button"], input, textarea, select';
-      document.addEventListener('mouseover', (e: Event) => {
-        if ((e.target as Element).closest(hoverSelectors)) {
-          cursor.classList.add('hovering');
-        }
-      });
-      document.addEventListener('mouseout', (e: Event) => {
-        if ((e.target as Element).closest(hoverSelectors)) {
-          cursor.classList.remove('hovering');
-        }
-      });
-
-      // Smooth follow with lerp
-      function animate() {
-        cursorX += (mouseX - cursorX) * 0.15;
-        cursorY += (mouseY - cursorY) * 0.15;
-        cursor.style.left = `${cursorX}px`;
-        cursor.style.top = `${cursorY}px`;
-        requestAnimationFrame(animate);
-      }
-      animate();
-    }
-
-    document.addEventListener('DOMContentLoaded', initCursorFollower);
-    document.addEventListener('astro:page-load', initCursorFollower);
   </script>
 </html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://codevista.com.co/sitemap-index.xml

@@ -1,0 +1,251 @@
+{
+  "skipLink": "Skip to content",
+  "nav": {
+    "home": "Home",
+    "about": "About us",
+    "services": "Services",
+    "works": "Works",
+    "pricing": "Pricing",
+    "contact": "Contact"
+  },
+  "hero": {
+    "words": ["Code", "Vista", "Solid", "solutions"],
+    "subtitlePre": "Professionals",
+    "subtitlePost": "in web development",
+    "description": "We design and build digital experiences that turn visitors into customers. Quality and commitment in every project.",
+    "btnPrimary": "Contact us",
+    "btnSecondary": "About us",
+    "imageAlt": "CodeVista team building web solutions"
+  },
+  "about": {
+    "tag": "About us",
+    "titleLine1": "The best design,",
+    "titleLine2": "The best experience",
+    "description": "CodeVista is a leading web development company, known for innovation and technical excellence. Founded by a passionate team, we stand out for delivering high-quality, tailored solutions for every client.",
+    "connectTitle": "Connect with us",
+    "connectDescription": "Ready to take your online presence to the next level? We're here to help! Get in touch with our expert web development team and discover how we can bring your digital projects to life. Connect with us today!"
+  },
+  "metrics": [
+    "Projects delivered",
+    "Years of experience",
+    "Satisfied clients",
+    "Support available"
+  ],
+  "services": {
+    "tag": "What we offer",
+    "title": "Our services",
+    "description": "CodeVista powers your online presence with custom web solutions. From creative design to advanced development, we bring your digital projects to life. Stand out on the web with us!",
+    "items": [
+      {
+        "title": "Custom Web Development",
+        "description": "We build websites and apps from scratch, tailored to your business needs. Clean code, optimal performance and guaranteed scalability."
+      },
+      {
+        "title": "Visual Design",
+        "description": "Make your brand stand out and connect with your audience memorably with our web design expertise."
+      },
+      {
+        "title": "User Research",
+        "description": "We analyze your audience's behavior and preferences to improve usability and boost conversion."
+      },
+      {
+        "title": "User Experience",
+        "description": "We ensure your site's excellence with thorough testing for an optimal user experience."
+      },
+      {
+        "title": "Responsive Design",
+        "description": "Your site will look perfect on any device. We design mobile-first for mobile, tablet and desktop."
+      }
+    ]
+  },
+  "works": {
+    "tag": "Portfolio",
+    "title": "Recent work",
+    "description": "Discover our recent projects at CodeVista. Get inspired by our experience and quality in innovative, visually impactful projects for satisfied clients.",
+    "filters": ["All", "Web Design", "Mobile", "API"],
+    "projects": [
+      {
+        "title": "BuildingHomeConstructora S.A.S",
+        "description": "Check out our latest creation: a Startup landing page for BuildingHomeConstructora. See how this construction company stands out with an impressive presentation and features that capture potential clients' attention."
+      },
+      {
+        "title": "GamaRentCar",
+        "description": "Explore our e-commerce with 360° technology letting you inspect every car detail from all angles."
+      },
+      {
+        "title": "Liga De Futbol Del Tolima",
+        "description": "Modern, responsive platform with a self-managed admin panel that lets you customize colors, content and manage information easily."
+      },
+      {
+        "title": "Cabal Studios - Management System",
+        "description": "Full management system for a professional photo studio. Includes real-time KPI dashboard, billing, WhatsApp and email reminders, Google Calendar sync and POS receipts with QR code.",
+        "captions": [
+          "Login - JWT authentication with role system (Owner, Admin, Photographer, Assistant, Viewer)",
+          "Dashboard - Real-time KPIs: clients, invoices, payments. Revenue charts and invoice distribution",
+          "Connections - Integration with WhatsApp (Evolution API) and Google Calendar (OAuth2) for automatic reminders"
+        ]
+      },
+      {
+        "title": "SmartStart S.A.S",
+        "description": "Landing page for a company providing specialized solutions for the oil industry with a focus on quality, cutting-edge technology and cost efficiency."
+      }
+    ],
+    "swipeHint": "Swipe to navigate"
+  },
+  "companySlider": {
+    "tag": "Who we work with",
+    "title": "Our clients"
+  },
+  "pricing": {
+    "tag": "Codevistax Plans",
+    "title": "Professional digital solutions",
+    "description": "We build websites and platforms designed to scale your business and grow your sales.",
+    "badges": {
+      "recommended": "Recommended",
+      "mostComplete": "Most complete"
+    },
+    "button": "Choose plan",
+    "whatsappTemplate": "Hi, I'm interested in the *{plan}* plan and would like more information.",
+    "plans": [
+      {
+        "name": "Landing Page Pro",
+        "description": "High-impact landing page designed to convert visitors into customers.",
+        "features": [
+          "Custom UI/UX design",
+          "Mobile-first responsive",
+          "Animations + slider",
+          "WhatsApp integration",
+          "SEO optimized",
+          "Premium support: 1 month"
+        ]
+      },
+      {
+        "name": "E-commerce Pro",
+        "description": "Full online store with integrated payments and admin panel.",
+        "features": [
+          "Shopping cart",
+          "Payment gateway",
+          "Product management",
+          "Self-managed panel",
+          "Notifications",
+          "Premium support: 2 months"
+        ]
+      },
+      {
+        "name": "Enterprise Platform",
+        "description": "Custom web system with backend, API and scalable architecture.",
+        "features": [
+          "Frontend + Backend",
+          "Custom API",
+          "Database",
+          "Roles and permissions",
+          "Scalability",
+          "Premium support: 3 months"
+        ]
+      },
+      {
+        "name": "Elite Digital Solution",
+        "description": "Advanced digital solution for companies looking to scale and automate.",
+        "features": [
+          "Everything in Enterprise",
+          "Process automation",
+          "CRM/API integrations",
+          "Advanced dashboard",
+          "High priority",
+          "Premium support: 6 months"
+        ]
+      }
+    ]
+  },
+  "faq": {
+    "tag": "We answer your questions",
+    "title": "Frequently asked questions",
+    "description": "Find answers to the most common questions about our services, processes and how we work.",
+    "items": [
+      {
+        "question": "How long does a landing page take to build?",
+        "answer": "Average time is 2 to 3 weeks, depending on design complexity and required features. We keep constant communication to meet agreed deadlines."
+      },
+      {
+        "question": "What does premium support include?",
+        "answer": "Premium support includes bug fixes, content updates, performance optimization, site monitoring and priority technical assistance during the contracted period."
+      },
+      {
+        "question": "Can I request changes after delivery?",
+        "answer": "Yes, during the included support period you can request adjustments and modifications. Major changes or new features are quoted separately with preferential rates for existing clients."
+      },
+      {
+        "question": "What is the work process like?",
+        "answer": "Our process has 4 stages: discovery (we understand your business and goals), design (we create prototypes and mockups), development (we build your site) and launch (final testing and go-live)."
+      },
+      {
+        "question": "Do you offer hosting and domain?",
+        "answer": "Yes, we can manage hosting and domain for you. We work with reliable providers guaranteeing speed, security and 99.9% uptime."
+      },
+      {
+        "question": "What payment methods do you accept?",
+        "answer": "We accept bank transfers, credit/debit card payments and digital platforms. Payment is typically split 50% upfront and 50% on delivery."
+      }
+    ]
+  },
+  "team": {
+    "tag": "Smart work",
+    "title": "Our team",
+    "description": "Meet the dedicated CodeVista team, committed to bringing your digital projects to life. From creative designers to expert developers, we strive for excellence in every detail. Trust us to take your vision further.",
+    "founders": [
+      {
+        "name": "Oscar López",
+        "subName": "Founder @ Code Vista",
+        "description": "Oscar López is a web designer, entrepreneur and founder of CodeVista. A specialist in web development and digital strategy, he has led projects with major companies. As CEO he drives innovative solutions focused on business growth."
+      },
+      {
+        "name": "Junior Pacheco",
+        "subName": "Founder @ Code Vista",
+        "description": "Co-founder and CTO of CodeVista, FullStack developer with solid experience in Frontend, Backend and Design, focused on technical excellence and building efficient solutions. Web programming instructor committed to training new developers."
+      },
+      {
+        "name": "Anderson Castro Vallejo",
+        "subName": "Partner @ Code Vista",
+        "description": "Partner at CodeVista, a front-end designer with great design ideas. His creativity and meticulous approach have been crucial to the company's success, building intuitive, appealing web interfaces."
+      }
+    ]
+  },
+  "contact": {
+    "tag": "Contact us",
+    "title": "Have a project in mind?",
+    "description": "At CodeVista, we turn your ideas into digital reality. Tell us your vision and we'll work together to make it happen.",
+    "infoTitle": "Contact information",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "locationValue": "Colombia",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Enter your name",
+      "company": "Company (Optional)",
+      "emailLabel": "Email",
+      "emailPlaceholder": "Email",
+      "phoneLabel": "Phone number",
+      "phonePlaceholder": "Phone",
+      "project": "Tell us about the project",
+      "projectPlaceholder": "Project",
+      "submit": "Contact"
+    }
+  },
+  "footer": {
+    "description": "Innovation in development and technology solutions. We turn your ideas into digital experiences.",
+    "linksTitle": "Links",
+    "contactTitle": "Contact",
+    "copyright": "© 2024. CodeVista. All rights reserved.",
+    "backToTop": "Back to top",
+    "links": [
+      { "label": "Services", "hash": "services" },
+      { "label": "Portfolio", "hash": "works" },
+      { "label": "Pricing", "hash": "pricing" },
+      { "label": "Contact", "hash": "contact" }
+    ]
+  },
+  "languageSwitcher": {
+    "label": "Language"
+  }
+}

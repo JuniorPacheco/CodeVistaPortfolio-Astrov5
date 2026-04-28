@@ -1,0 +1,69 @@
+---
+import { CONTACT } from '../constants/contact';
+import { SITE } from '../constants/config';
+---
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": SITE.name,
+  "url": SITE.url,
+  "description": SITE.description,
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${SITE.url}/search?q={search_term_string}`
+    },
+    "query-input": "required name=search_term_string"
+  }
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": SITE.name,
+  "url": SITE.url,
+  "logo": `${SITE.url}/logo-full-color.png`,
+  "description": SITE.description,
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": CONTACT.phone,
+    "contactType": "customer service",
+    "availableLanguage": ["Spanish", "English", "French"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Colombia",
+    "addressCountry": "CO"
+  },
+  "sameAs": [
+    CONTACT.social.facebook.url,
+    CONTACT.social.x.url,
+    CONTACT.social.linkedin.url,
+    CONTACT.social.instagram.url,
+    CONTACT.social.tiktok.url
+  ]
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": SITE.name,
+  "image": `${SITE.url}/logo-full-color.png`,
+  "url": SITE.url,
+  "telephone": CONTACT.phone,
+  "email": CONTACT.email,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Colombia",
+    "addressCountry": "CO"
+  },
+  "priceRange": "$$",
+  "openingHours": "Mo-Fr 08:00-18:00",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Colombia"
+  },
+  "serviceType": ["Web Development", "Web Design", "E-commerce Solutions"]
+})} />

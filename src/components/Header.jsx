@@ -276,7 +276,7 @@ const Header = ({ lang = defaultLang }) => {
 
       {/* WhatsApp */}
       <a
-        href="https://wa.me/+573184281039"
+        href={`https://wa.me/${import.meta.env.PUBLIC_WA_PHONE || '+573184281039'}`}
         target="_blank"
         rel="noopener noreferrer"
         className="whatsapp-pulse fixed bottom-4 right-4 z-50 bg-green-500 text-white p-3 rounded-full shadow-lg flex items-center justify-center duration-300 ease-in-out transform hover:scale-125 transition-transform"
