@@ -38,7 +38,7 @@ const SliderImages = ({ images }) => {
       <div className="scroller__inner">
         {images.map((image) => (
           <img
-            className="w-52 aspect-square object-contain"
+            className={`w-52 aspect-square object-contain${image.className ? ` ${image.className}` : ""}`}
             key={image.src}
             src={image.src}
             alt={image.name}
