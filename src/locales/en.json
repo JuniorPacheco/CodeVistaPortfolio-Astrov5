@@ -9,7 +9,12 @@
     "contact": "Contact"
   },
   "hero": {
-    "words": ["Code", "Vista", "Solid", "solutions"],
+    "words": [
+      "Code",
+      "Vista",
+      "Solid",
+      "solutions"
+    ],
     "subtitlePre": "Professionals",
     "subtitlePost": "in web development",
     "description": "We design and build digital experiences that turn visitors into customers. Quality and commitment in every project.",
@@ -62,7 +67,12 @@
     "tag": "Portfolio",
     "title": "Recent work",
     "description": "Discover our recent projects at CodeVista. Get inspired by our experience and quality in innovative, visually impactful projects for satisfied clients.",
-    "filters": ["All", "Web Design", "Mobile", "API"],
+    "filters": [
+      "All",
+      "Web Design",
+      "Mobile",
+      "API"
+    ],
     "projects": [
       {
         "title": "BuildingHomeConstructora S.A.S",
@@ -88,6 +98,10 @@
       {
         "title": "SmartStart S.A.S",
         "description": "Landing page for a company providing specialized solutions for the oil industry with a focus on quality, cutting-edge technology and cost efficiency."
+      },
+      {
+        "title": "Catleya Royal Club",
+        "description": "Luxury website for a boutique resort in the heart of Colombia's Coffee Region. Elegant design featuring online reservations, immersive gallery and an experience optimized to attract national and international travelers."
       }
     ],
     "swipeHint": "Swipe to navigate"
@@ -239,10 +253,22 @@
     "copyright": "© 2024. CodeVista. All rights reserved.",
     "backToTop": "Back to top",
     "links": [
-      { "label": "Services", "hash": "services" },
-      { "label": "Portfolio", "hash": "works" },
-      { "label": "Pricing", "hash": "pricing" },
-      { "label": "Contact", "hash": "contact" }
+      {
+        "label": "Services",
+        "hash": "services"
+      },
+      {
+        "label": "Portfolio",
+        "hash": "works"
+      },
+      {
+        "label": "Pricing",
+        "hash": "pricing"
+      },
+      {
+        "label": "Contact",
+        "hash": "contact"
+      }
     ]
   },
   "languageSwitcher": {

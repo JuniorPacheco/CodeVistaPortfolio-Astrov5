@@ -9,7 +9,12 @@
     "contact": "Contacto"
   },
   "hero": {
-    "words": ["Code", "Vista", "Soluciones", "sólidas"],
+    "words": [
+      "Code",
+      "Vista",
+      "Soluciones",
+      "sólidas"
+    ],
     "subtitlePre": "Profesionales",
     "subtitlePost": "en el desarrollo web",
     "description": "Diseñamos y desarrollamos experiencias digitales que convierten visitantes en clientes. Calidad y compromiso en cada proyecto.",
@@ -62,7 +67,12 @@
     "tag": "Portafolio",
     "title": "Trabajos recientes",
     "description": "Descubre nuestros proyectos recientes en CodeVista. Inspírate con nuestra experiencia y calidad en proyectos innovadores y visualmente impactantes para clientes satisfechos.",
-    "filters": ["Todos", "Diseño web", "Móvil", "API"],
+    "filters": [
+      "Todos",
+      "Diseño web",
+      "Móvil",
+      "API"
+    ],
     "projects": [
       {
         "title": "BuildingHomeConstructora S.A.S",
@@ -88,6 +98,10 @@
       {
         "title": "SmartStart S.A.S",
         "description": "Landing page de una empresa que ofrece soluciones especializadas para la industria petrolera con un enfoque en calidad, tecnología de vanguardia y costos eficientes."
+      },
+      {
+        "title": "Catleya Royal Club",
+        "description": "Sitio web de lujo para un resort boutique en el corazón del Eje Cafetero. Diseño elegante con reservas en línea, galería inmersiva y experiencia optimizada para atraer viajeros nacionales e internacionales."
       }
     ],
     "swipeHint": "Desliza para navegar"
@@ -239,10 +253,22 @@
     "copyright": "© 2024. CodeVista. Todos los derechos reservados.",
     "backToTop": "Volver arriba",
     "links": [
-      { "label": "Servicios", "hash": "services" },
-      { "label": "Portafolio", "hash": "works" },
-      { "label": "Precios", "hash": "pricing" },
-      { "label": "Contacto", "hash": "contact" }
+      {
+        "label": "Servicios",
+        "hash": "services"
+      },
+      {
+        "label": "Portafolio",
+        "hash": "works"
+      },
+      {
+        "label": "Precios",
+        "hash": "pricing"
+      },
+      {
+        "label": "Contacto",
+        "hash": "contact"
+      }
     ]
   },
   "languageSwitcher": {

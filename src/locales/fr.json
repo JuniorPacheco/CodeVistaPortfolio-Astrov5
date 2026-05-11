@@ -9,7 +9,12 @@
     "contact": "Contact"
   },
   "hero": {
-    "words": ["Code", "Vista", "Solutions", "solides"],
+    "words": [
+      "Code",
+      "Vista",
+      "Solutions",
+      "solides"
+    ],
     "subtitlePre": "Professionnels",
     "subtitlePost": "du développement web",
     "description": "Nous concevons et développons des expériences numériques qui transforment les visiteurs en clients. Qualité et engagement sur chaque projet.",
@@ -62,7 +67,12 @@
     "tag": "Portfolio",
     "title": "Projets récents",
     "description": "Découvrez nos projets récents chez CodeVista. Inspirez-vous de notre expérience et de notre qualité dans des projets innovants et visuellement percutants pour des clients satisfaits.",
-    "filters": ["Tous", "Design web", "Mobile", "API"],
+    "filters": [
+      "Tous",
+      "Design web",
+      "Mobile",
+      "API"
+    ],
     "projects": [
       {
         "title": "BuildingHomeConstructora S.A.S",
@@ -88,6 +98,10 @@
       {
         "title": "SmartStart S.A.S",
         "description": "Landing page d'une entreprise offrant des solutions spécialisées pour l'industrie pétrolière, axée sur la qualité, la technologie de pointe et l'efficacité des coûts."
+      },
+      {
+        "title": "Catleya Royal Club",
+        "description": "Site web de luxe pour un resort boutique au cœur de la région caféière de Colombie. Design élégant avec réservations en ligne, galerie immersive et expérience optimisée pour attirer les voyageurs nationaux et internationaux."
       }
     ],
     "swipeHint": "Glissez pour naviguer"
@@ -239,10 +253,22 @@
     "copyright": "© 2024. CodeVista. Tous droits réservés.",
     "backToTop": "Retour en haut",
     "links": [
-      { "label": "Services", "hash": "services" },
-      { "label": "Portfolio", "hash": "works" },
-      { "label": "Tarifs", "hash": "pricing" },
-      { "label": "Contact", "hash": "contact" }
+      {
+        "label": "Services",
+        "hash": "services"
+      },
+      {
+        "label": "Portfolio",
+        "hash": "works"
+      },
+      {
+        "label": "Tarifs",
+        "hash": "pricing"
+      },
+      {
+        "label": "Contact",
+        "hash": "contact"
+      }
     ]
   },
   "languageSwitcher": {
