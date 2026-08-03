@@ -102,6 +102,10 @@
       {
         "title": "Catleya Royal Club",
         "description": "Site web de luxe pour un resort boutique au cœur de la région caféière de Colombie. Design élégant avec réservations en ligne, galerie immersive et expérience optimisée pour attirer les voyageurs nationaux et internationaux."
+      },
+      {
+        "title": "El ProfeLeo",
+        "description": "Plateforme éducative et communautaire pour Leo Alzate, conseiller municipal et enseignant à Envigado, en Colombie. Elle organise les ressources par communauté (enseignants, jeunes et parents), les services de formation, un podcast et les informations sur les établissements scolaires, avec un formulaire de signalement de quartier et un contact direct par WhatsApp."
       }
     ],
     "swipeHint": "Glissez pour naviguer"

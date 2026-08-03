@@ -102,6 +102,10 @@
       {
         "title": "Catleya Royal Club",
         "description": "Sitio web de lujo para un resort boutique en el corazón del Eje Cafetero. Diseño elegante con reservas en línea, galería inmersiva y experiencia optimizada para atraer viajeros nacionales e internacionales."
+      },
+      {
+        "title": "El ProfeLeo",
+        "description": "Plataforma educativa y comunitaria para Leo Alzate, concejal y docente de Envigado. Organiza recursos por comunidades (profes, jóvenes y padres de familia), servicios de formación, podcast e información de instituciones educativas, con formulario \"El Profe en el Barrio\" y contacto directo por WhatsApp."
       }
     ],
     "swipeHint": "Desliza para navegar"
