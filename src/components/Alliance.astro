@@ -1,0 +1,40 @@
+---
+import Section from "./Section.astro";
+import { useTranslations } from "../i18n/utils";
+
+const t = useTranslations(Astro.currentLocale).alliance;
+
+// Same-domain path. It is a Vercel rewrite to the partner store deployment,
+// not an Astro route, so it intentionally 404s under `astro dev`.
+const storeHref = "/tienda";
+---
+
+<Section separation="none">
+  <div
+    data-reveal
+    class="flex flex-col items-center gap-5 rounded-2xl border border-slate-200 bg-slate-50/60 px-6 py-6 text-center dark:border-white/10 dark:bg-white/5 mmd:flex-row mmd:justify-between mmd:gap-8 mmd:text-left"
+  >
+    <img
+      src="/company-logos/gsp-logo.png"
+      alt={t.logoAlt}
+      width="640"
+      height="164"
+      loading="lazy"
+      decoding="async"
+      class="gsp-logo h-12 w-auto shrink-0"
+    />
+    <div class="grid gap-1">
+      <h4 class="text-primary text-sm font-semibold">{t.tag}</h4>
+      <h3 class="text-gradient text-2xl font-bold">{t.title}</h3>
+      <p class="text-sm text-slate-500 dark:text-slate-400">{t.description}</p>
+      <p class="text-xs text-slate-400 dark:text-slate-500">{t.note}</p>
+    </div>
+    <a
+      href={storeHref}
+      class="shrink-0 rounded-full bg-primary px-6 py-2 text-sm font-semibold text-white transition-all hover:bg-primary/90 hover:shadow-md"
+    >
+      {t.cta}
+      <span aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+</Section>

@@ -114,6 +114,14 @@
     "tag": "¿Con quién trabajamos?",
     "title": "Nuestros clientes"
   },
+  "alliance": {
+    "tag": "Alianza comercial",
+    "title": "CodeVista x GamingSoftwarePereira",
+    "description": "¿Buscas computadores gamer, componentes o periféricos? Visita nuestra tienda aliada.",
+    "note": "GamingSoftwarePereira es un negocio independiente, aliado comercial de CodeVista.",
+    "cta": "Visitar la tienda",
+    "logoAlt": "Logo de GamingSoftwarePereira"
+  },
   "pricing": {
     "tag": "Planes Codevistax",
     "title": "Soluciones digitales profesionales",
