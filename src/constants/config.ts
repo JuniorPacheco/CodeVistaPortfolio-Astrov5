@@ -1,7 +1,7 @@
 export const SITE = {
   name: 'CodeVista',
   description: 'CodeVista - Agencia de desarrollo web en Colombia. Diseño, e-commerce y soluciones digitales a medida.',
-  url: 'https://codevista.com.co',
+  url: 'https://www.codevistax.com',
   locale: 'es_CO',
   timezone: 'America/Bogota',
 } as const;

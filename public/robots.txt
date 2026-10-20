@@ -7,5 +7,5 @@ Disallow: /tienda/admin
 Disallow: /tienda/checkout
 Disallow: /tienda/carrito
 
-Sitemap: https://codevista.com.co/sitemap-index.xml
+Sitemap: https://www.codevistax.com/sitemap-index.xml
 Sitemap: https://www.codevistax.com/tienda/sitemap-index.xml

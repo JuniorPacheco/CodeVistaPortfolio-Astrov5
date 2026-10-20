@@ -11,7 +11,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://codevista.com.co',
+  site: 'https://www.codevistax.com',
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en', 'fr'],
