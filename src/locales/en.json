@@ -116,8 +116,28 @@
   },
   "alliance": {
     "tag": "Commercial partnership",
-    "title": "CodeVista x GamingSoftwarePereira",
-    "description": "Looking for gaming PCs, components or peripherals? Visit our partner store.",
+    "title": "Trusted ally",
+    "description": "GamingSoftwarePereira is our technology ally for gaming PCs, components and peripherals: computers assembled by hand in Pereira, tested and backed by a warranty.",
+    "badge": "CodeVista ally",
+    "cardCta": "View in the store",
+    "cards": [
+      {
+        "title": "Pre-built gaming PCs",
+        "description": "Ready-to-play computers, assembled by hand and tested."
+      },
+      {
+        "title": "Components",
+        "description": "Graphics cards, processors, RAM, storage and power supplies."
+      },
+      {
+        "title": "Peripherals",
+        "description": "Gaming mice, keyboards and mousepads to complete your setup."
+      },
+      {
+        "title": "Build your PC",
+        "description": "No-commitment quote. Tell us what you play and we put the parts list together."
+      }
+    ],
     "note": "GamingSoftwarePereira is an independent business and a commercial partner of CodeVista.",
     "cta": "Visit the store",
     "logoAlt": "GamingSoftwarePereira logo"

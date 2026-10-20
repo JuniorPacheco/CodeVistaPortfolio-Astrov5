@@ -116,8 +116,28 @@
   },
   "alliance": {
     "tag": "Alianza comercial",
-    "title": "CodeVista x GamingSoftwarePereira",
-    "description": "¿Buscas computadores gamer, componentes o periféricos? Visita nuestra tienda aliada.",
+    "title": "Aliado de confianza",
+    "description": "GamingSoftwarePereira es nuestro aliado tecnológico en computadores gamer, componentes y periféricos: equipos armados a mano en Pereira, probados y con garantía.",
+    "badge": "Aliado de CodeVista",
+    "cardCta": "Ver en la tienda",
+    "cards": [
+      {
+        "title": "PC Gamer armados",
+        "description": "Computadores listos para jugar, armados a mano y probados."
+      },
+      {
+        "title": "Componentes",
+        "description": "Tarjetas gráficas, procesadores, memorias RAM, almacenamiento y fuentes de poder."
+      },
+      {
+        "title": "Periféricos",
+        "description": "Mouse gamer, teclados y mousepads para completar tu setup."
+      },
+      {
+        "title": "Arma tu PC",
+        "description": "Cotización sin compromiso. Dinos qué juegas, nosotros armamos la lista."
+      }
+    ],
     "note": "GamingSoftwarePereira es un negocio independiente, aliado comercial de CodeVista.",
     "cta": "Visitar la tienda",
     "logoAlt": "Logo de GamingSoftwarePereira"
