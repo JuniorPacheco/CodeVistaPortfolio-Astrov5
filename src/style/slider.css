@@ -50,6 +50,13 @@
   }
 }
 
+/* GSP logo: halo claro en modo oscuro porque el isotipo "G" es gris oscuro */
+.dark .gsp-logo {
+  filter:
+    drop-shadow(0 0 1px rgba(255, 255, 255, 0.85))
+    drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+}
+
 /* Catleya logo: drop-shadow en modo claro para que se vea sobre fondo blanco */
 :root:not(.dark) .catleya-logo {
   filter:
