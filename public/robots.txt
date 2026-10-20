@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
 
+# Partner store served under /tienda (proxied by vercel.json).
+# Crawlers only read this file, so the store's rules live here.
+Disallow: /tienda/admin
+Disallow: /tienda/checkout
+Disallow: /tienda/carrito
+
 Sitemap: https://codevista.com.co/sitemap-index.xml
+Sitemap: https://codevista.com.co/tienda/sitemap-index.xml
