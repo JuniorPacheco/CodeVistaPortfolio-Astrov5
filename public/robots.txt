@@ -6,6 +6,7 @@ Allow: /
 Disallow: /tienda/admin
 Disallow: /tienda/checkout
 Disallow: /tienda/carrito
+Disallow: /tienda/cuenta
 
 Sitemap: https://www.codevistax.com/sitemap-index.xml
 Sitemap: https://www.codevistax.com/tienda/sitemap-index.xml
